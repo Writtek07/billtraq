@@ -10,8 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+ActiveRecord::Schema.define(version: 2023_01_06_153105) do
 
-ActiveRecord::Schema.define(version: 2023_01_23_141802) do
   create_table "invoices", force: :cascade do |t|
     t.datetime "date"
     t.decimal "total"
@@ -22,15 +22,14 @@ ActiveRecord::Schema.define(version: 2023_01_23_141802) do
     t.string "payment_mode"
     t.integer "student_id"
     t.string "class_no"
-    t.bigint "cheque_no"
-    t.bigint "receipt_number"
+    t.integer "cheque_no"
+    t.integer "receipt_number"
     t.string "bank_account"
     t.string "status"
     t.datetime "discarded_at"
     t.string "month_from"
     t.string "month_to"
     t.integer "discarded_by"
-    t.string "notes"
     t.index ["discarded_at"], name: "index_invoices_on_discarded_at"
   end
 
@@ -59,8 +58,6 @@ ActiveRecord::Schema.define(version: 2023_01_23_141802) do
     t.date "dob"
     t.date "date_of_admission"
     t.datetime "discarded_at"
-    t.json "pending_fees", default: []
-    t.boolean "fee_pending", default: false
     t.index ["discarded_at"], name: "index_students_on_discarded_at"
   end
 
