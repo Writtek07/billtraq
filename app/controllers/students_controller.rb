@@ -22,7 +22,6 @@ class StudentsController < ApplicationController
   def edit
   end
 
-
   def pending_fee
     @students = Student.where(fee_pending: true).page(params[:page])
     cur_students = []
@@ -30,7 +29,6 @@ class StudentsController < ApplicationController
     @current_month_students = Student.all - cur_students.uniq
     render 'pending_fee.html.erb'
   end
-
 
   def removed
     @students = Student.discarded

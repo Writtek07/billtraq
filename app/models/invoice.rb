@@ -12,10 +12,8 @@ class Invoice < ApplicationRecord
 	
 	after_validation :invoice_month_validity, on: [ :create, :update ]
 
-
 	after_create :update_pending_months
 	#after_destroy :update_pending_months
-
 	paginates_per 10
 
 	def date_validity?

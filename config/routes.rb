@@ -3,10 +3,12 @@ Rails.application.routes.draw do
   resources :students do
     collection { post :import}
     get :removed, on: :collection
+
     collection do
       get 'pending_fee'
       get 'missing'
     end
+
     resources :invoices
   end
  
@@ -30,7 +32,9 @@ Rails.application.routes.draw do
   resources :invoices do
       collection do
         match 'search' => 'invoices#search', via: [:get, :post], as: :search
+
         get 'cheque'
+
       end
 
       resources :particulars, except: [:show], controller: 'invoices/particulars'

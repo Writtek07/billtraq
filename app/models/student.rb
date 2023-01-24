@@ -11,6 +11,7 @@ class Student < ApplicationRecord
 	validates :dob, presence: true
 	validates :date_of_admission, presence: true
 	validates :admission_no, presence: true, uniqueness: true
+
 	#validates :phone_number, numericality: { only_integer: true }, length: { is: 10 }
 	validates :grade, presence: true
 	validates :section, presence: true,  unless: Proc.new { |a| a.grade == "Playgroup" }
