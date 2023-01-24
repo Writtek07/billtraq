@@ -80,14 +80,14 @@
                     <%= @invoice.bank_account.upcase %>
                   </li>
                   <% end %>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-                  
->>>>>>> origin/main
-=======
-                  
->>>>>>> origin/main
+
+                  <% if @invoice.notes.present? %>
+                    <li class="inv-list">
+                      <strong>Bank Name:</strong>
+                      <%= @invoice.bank_account.upcase %>
+                    </li>
+                  <% end %>
+
             </ul>
         </div>
 
