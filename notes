@@ -1,0 +1,117 @@
+#Check workaround for validations on Invoice, 
+#Test build with next deploy by removing gem update --system 3.2.3 & bundle update --bundler
+
+##Update all validations post missing data is empty
+
+##Particulars dont update discarded_at on invoice deletion.
+
+##web-app on ruby on rails for upgrading the daily invoice creation process for students and provides a centralised database to show analytics as per the client need 
+
+##Script to find daily missing month fields in Invoice
+invs = Invoice.where(created_at: Time.zone.now.beginning_of_day ... Time.zone.now)
+upd = []
+invs.each do |inv|
+if inv.user_id = 3 && (inv.month_from.empty? || inv.month_to.empty?) 
+upd << [inv.student.first_name, inv.student.grade, inv.id]
+end
+end
+
+##Invoice.where(created_at: Time.zone.today.beginning_of_day..Time.zone.today.end_of_day)
+
+
+#For removing version objects--> PaperTrail::Version.last 
+
+
+
+##Check if any of parent's name exists and then print it or else remove the field from printing
+
+
+#7e52cc   --> Hex code color use it somewhere
+
+.navbar-nav .nav-link, 
+     .nav-link:focus {
+    display: inline;
+    text-transform: uppercase;
+    font-size: 18px;
+    text-decoration: none;
+    //color: black;
+    font-family:"open-sans";
+    transition:0.15s ease-in-out;
+    //border-top: 4px solid ;
+    //border-bottom: 4px solid ;
+    margin: 0 20px;
+    padding: 20px 0;
+
+}
+
+
+#Scaffold CSS for forms and invoice pages
+body {
+  background-color: #fff;
+  color: #333;
+  margin: 33px; }
+
+body, p, ol, ul, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 16px;
+  line-height: 20px; }
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px; }
+
+a {
+  color: #000; }
+
+a:visited {
+  color: #666; }
+
+a:hover {
+  color: #fff;
+  border: 1px solid #e3f2fd;
+  background-color: #e2f2fe; }
+
+th {
+  padding-bottom: 5px; }
+
+td {
+  padding: 0 5px 7px; }
+
+div.field,
+div.actions {
+  margin-bottom: 10px; }
+
+#notice {
+  color: green; }
+
+#error {
+  color: green; }
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table; }
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px 7px 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0; }
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px -7px 0;
+  background-color: #c00;
+  color: #fff; }
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square; }
+
+label {
+  display: block; }

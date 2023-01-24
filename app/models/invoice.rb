@@ -14,8 +14,6 @@ class Invoice < ApplicationRecord
 
 	after_create :update_pending_months
 	#after_destroy :update_pending_months
-
-
 	paginates_per 10
 
 	def date_validity?
@@ -130,4 +128,6 @@ class Invoice < ApplicationRecord
 	  end
 	  missing_nums
 	end
+
+	private
 end
