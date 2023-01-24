@@ -1,0 +1,53 @@
+
+.table-sty >* {
+  font-size: 0.9em;
+}
+
+#show-invoices-for-stu {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
+//#import-grp {
+  //margin-top: 5em;
+  //margin-bottom: 2em;
+  
+//}
+
+#import-crd {
+  width: 50em;
+  margin-bottom: 2em;
+  margin-left: 40em;
+  padding: 0px 0px 0;
+  border: 2px solid;
+  font-size: 10px;
+  font-family: 'open-sans';
+}
+
+
+
+//.field_with_errors {
+//  padding: 2px;
+//  background-color: red;
+//  display: table; 
+//
+//}
+
+//#error_explanation {
+//  width: 450px;
+//  border: 2px solid red;
+//  padding: 7px 7px 0;
+//  margin-bottom: 20px;
+//  background-color: #f0f0f0; }
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px -7px 0;
+  background-color: #c00;
+  color: #fff; }
+
+#error_explanation ul li {
+  font-size: 15px;
+  list-style: square; }

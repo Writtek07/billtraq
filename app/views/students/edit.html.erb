@@ -1,0 +1,11 @@
+<div class="container text-center" style="max-width:60em;font-family: 'open-sans';">
+	<h2>Editing Student for <%= @student.first_name.capitalize %></h2>
+
+	<%= render 'form', student: @student %>
+	<% if @student.kept? %>
+	<div class="btn-group" role="group" style="width:400px;margin-top: 10px;margin-left: 30em;margin-bottom: 3em;">
+			<%= link_to 'Show Student Details'.html_safe, @student, class: 'btn btn-outline-info rounded' %> <br> 
+			<% link_to 'Back <i class="bi bi-arrow-left-circle"></i>'.html_safe, students_path, class: 'btn btn-outline-dark' %>
+	</div>
+	<% end %>
+</div>

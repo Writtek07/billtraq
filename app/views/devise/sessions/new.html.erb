@@ -1,0 +1,40 @@
+<div class="container" style="max-width:60em;margin-top: 2em;" >
+    <div class="card border-dark align-self-center text-center devise-form-sty">
+          <div class="card-header text-dark">
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                <!--<div class="col-lg-5"> -->
+                    <div class="login-wrap p-4 p-md-5">
+                        <h3 class="text-center mb-4" style="">Log In</h3>
+                        <h6 class="blockquote-footer">Enter your credentails to access your account</h6>
+                        <form action="#" class="login-form">
+                            <div class="forms-group" style="padding: 0 1em 1em 0;">
+                                <div class="input-group">
+                                    <span class="input-group-text" id="addon-wrapping"><%= f.label :login , class: 'fw-bolder', placeholder: 'Email/Username'%>:</span>
+                                    <b><%=f.text_field :login, autofocus: true, class: "form-control rounded-left", placeholder:"Username/Email", aria_label:"Username", aria_describedby: "addon-wrapping" %></b>
+                                </div>
+                            </div>
+                            <div class="forms-group" style="padding: 0 1em 1em 0;">
+                                <div class="input-group">
+                                        <span class="input-group-text" id="addon-wrapping"><%= f.label :password, class: 'fw-bolder', placeholder: 'Password'%>:</span>
+                                        <b><%=f.password_field :password, autofocus: true, class: "form-control rounded-left", placeholder:"Password", aria_label:"Password", aria_describedby: "addon-wrapping", autocomplete: "current-password" %></b>
+                                        </div>
+                            </div>
+                            
+                            <div class="forms-group actions">
+                                <b><%=f.submit "Log in", class: "form-control btn btn-primary rounded submit px-3", style: "margin-top: 4.5em;" %></b>
+                            </div>
+                            
+                        </form>
+                    </div>
+                <!--</div> -->
+            <% end %>
+            <div class= "d-grid gap-2 col-4 mx-auto">
+                <% render "devise/shared/links" %>
+                <% if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                  <%= link_to "Forgot your password? Click here!", new_password_path(resource_name), class: "btn btn-outline-secondary" %>
+                <% end %>
+                <p><em>If you are a new user, click <u>Sign Up</u> button on top of the page to create your new account.</em></p>
+          </div>
+          </div>
+    </div>
+</div>

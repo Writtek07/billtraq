@@ -1,0 +1,133 @@
+<%= wicked_pdf_stylesheet_link_tag 'print'%>
+<% unless request.format.to_sym == :pdf %>  <!--Added to not render print button in pdf preview -->
+  <%= link_to 'Print <i class="bi bi-printer"></i>'.html_safe, invoices_print_path(@invoice, format: :pdf), class: 'btn btn-outline-primary', style: 'margin-bottom:10px;margin-left:5em;'%>
+<% end %>
+
+<meta charset="UTF-8"> <!--This is added to make the currency appear in print page -->
+<div class="invoice-box">
+
+	<div class="header">
+		<h4>MIMIS KIDS DAY BOARDING SCHOOL</h4>
+		<h5>Bharat Mata Chowk, Gudiyari, Raipur(C.G)
+			<br>9329385300, 0771-4061888
+			<br>English Medium</h5>
+	</div>
+
+
+        <table cellpadding="0" cellspacing="0">
+          <tr class="top">
+            <td colspan="4">
+              <table>
+                <tr>
+
+                 <td class="left"> 
+                    Name of Student: <b><%= @invoice.student.first_name %> <%= @invoice.student.last_name %></b>
+                    <br>
+                    Father's Name: <b><%= @invoice.student.father_name %></b>
+                    <br>
+                    Mother's Name: <b><%= @invoice.student.mother_name %></b>
+                    <br>
+                    
+                    Class: <b><%= @invoice.student.grade %></b>
+                    <br>
+                  </td>
+
+                  <td class="right">
+                    Invoice #: <strong><%= @invoice.id %></strong>
+                    <br>
+                    Date: <strong><%= @invoice.created_at.strftime('%d/%m/%Y') %></strong>
+                    <br>
+                    Month paid: <strong>
+                      <% if month_name(@invoice.month_from) != month_name(@invoice.month_to) %>
+                        <%= month_name(@invoice.month_from) %> to <%= month_name(@invoice.month_to) %>
+                      <% else %>
+                        <%= month_name(@invoice.month_from) %>
+                        </strong>
+                      <% end %>
+                    <br>
+                   </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+			
+
+		   <tr class="heading">
+		      <td>Fee_type</td>
+		      <td colspan="2"></td>
+		      <td class="right">Amount</td>
+		   </tr>
+
+		   <tr>
+            <td colspan="4"></td>
+          </tr>
+
+          <% @invoice.particulars.each do |invoice_item| %>
+            <tr class="item">
+                <td>
+                    <%= invoice_item.fee_type %><br>   
+                </td>
+                <td colspan="2">
+                <td class="right">
+                    <%= number_to_currency(invoice_item.amount, unit: "₹", raise: true) %>
+                </td>  
+                
+            </tr>
+          <% end %>
+
+          <tr>
+            <td colspan="4"></td>
+          </tr>
+
+          
+          <tr class="amt">
+          	<td class="left">
+          		Amount in Words: <b><%= @invoice.total.to_i.humanize.capitalize %></b> Rupees.
+          	</td>
+          	<td colspan="2"></td>
+            <td class="right">
+            	Total: <b><%= number_to_currency(@invoice.total || 0.00, unit: "₹", raise: true) %></b>
+            <br>
+        	</td>
+          </tr>
+
+          <tr>
+            <td colspan="4"></td>
+          </tr>
+          
+          <tr class="non-heading">
+            <td>Payment Method</td>
+            <td colspan="2"></td>
+            <td class="right"><strong><%= @invoice.payment_mode %></strong></td>
+          </tr>
+
+          <% if @invoice.payment_mode == 'Cheque' %>
+          <tr class="non-heading">
+            <td>Cheque No:</td>
+            <td colspan="2"></td>
+            <td class="right"><strong><%= @invoice.cheque_no %></strong></td>
+          </tr>
+
+          <tr class="non-heading">
+            <td>Bank:</td>
+            <td colspan="2"></td>
+            <td class="right"><strong><%= @invoice.bank_account %></strong></td>
+          </tr>
+
+          <% end %>
+          <tr>
+            <td colspan="4"></td>
+          </tr>
+
+        </table>
+
+
+        <div class="footer">
+        	<p class="left">
+        		Pay your fees before 10th of every month<br> Or pay fine of ₹50/- PM.<br>
+        	</p>
+        	<p class="right">STAMP/SIGN</p>
+        </div>
+
+
+</div>

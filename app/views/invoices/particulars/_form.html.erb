@@ -1,0 +1,29 @@
+
+    
+        <%= form_with(model: [@invoice,@particular], local: true) do |form| %>
+          <% if particular.errors.any? %>
+                <% particular.errors.full_messages.each do |message| %>
+                  <% flash[:error] = message %>
+                <% end %>
+            
+          <% end %>
+
+
+          <div class="form-group">
+                <div class="input-group" id="part-sty">
+                    <span class="input-group-text"><strong>Fee Type:</strong></span>
+                   <b> <%= form.select(:fee_type, options_for_select([['Maintenance Fees','Maintenance Fees'],['Tuition Fees','Tuition Fees'],['Miscellaneous Fees','Miscellaneous Fees'],['Transport Fees','Transport Fees'],['Fine','Fine']]) , {}, { class: 'form-control rounded-left text-center', style:'font-size:1.15em;' }) %> </b>
+                </div>
+          </div>
+
+        <div class="form-group">
+          <div class="input-group" id="part-sty">
+              <span class="input-group-text"><strong>Amount:</strong></span>
+              <b><%= form.number_field :amount, step: 0.01, autofocus: true, class: "form-control text-center rounded-left", placeholder:"0.00",aria_describedby: "addon-wrapping", style: "font-size: 1.1em;" %></b>
+          </div>
+        </div>
+
+          <div class="form-group">
+            <%= form.submit class: 'btn btn-primary', style: 'width:auto;' %>
+          </div>
+      <% end %>

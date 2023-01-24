@@ -1,0 +1,81 @@
+<div class="container" style="max-width: 75em;font-family: open-sans;font-size: 0.98em;">
+	<div class="card border-dark align-self-center text-center" id="show-invoices-for-stu">
+		<div class="card-header text-dark">
+			<div class="card-title">
+			<ul class="list-inline text-center d-flex justify-content-center">
+				<li class="inv-list">Invoices for Student: <%= link_to @student.first_name, student_path(@student) %></li>
+				<li class="inv-list">Class: <%= @student.grade unless !@student.grade.present? %></li>
+			</ul>
+			</div>
+		</div>
+
+		<div class="card-body text-center">
+			<table class="table invoice-sty table-hover table-sm">
+			            <thead>
+			              <tr>
+			              	  <th>Invoice ID</th>
+			                  <th>Date</th>
+			                  <th>Student</th>
+			                  <th>Total</th>
+			                  <th>Payment Mode</th>
+			                  <th>Paid for</th>
+			                  <% if current_user.admin? %>
+			                  	<th>Submitted By</th>
+			                  	<th>Deleted?</th>
+			                  <% end %>
+			                  <th>Invoice Notes</th>
+			                </tr>
+			            </thead>
+
+		
+					<tbody>
+			                	<% @invoices.each do |invoice| %>
+			                      <tr>
+			                      	<td><%= link_to invoice.id, invoice_path(invoice) %></td>
+			                        <td><%= invoice.created_at.strftime("%d-%m-%Y") %></td>
+			                        <td><%= invoice.student.first_name %></td>
+			                        <td><%= invoice.total %></td>
+			                        <td><%= invoice.payment_mode %></td>
+			                        <td>
+			                          <% if month_name(invoice.month_from) != month_name(invoice.month_to) %>
+			                              <%= month_name(invoice.month_from).present? ? month_name(invoice.month_from) : "<a href='#''>Missing</a>".html_safe %> to <%= month_name(invoice.month_to).present? ? month_name(invoice.month_to) : "<a href='#''>Missing</a>".html_safe %>
+			                            <% else %>
+			                              <%= month_name(invoice.month_to).present? ? month_name(invoice.month_to) : "<a href='#''>Missing</a>".html_safe %>
+			                            <% end %>
+			                        </td>
+			                        
+			                        <% if current_user.admin? %>
+			                        	<td><%= invoice.user.username %></td>
+			                        
+
+			                      	<td>
+			                      		<% if current_user.admin? && invoice.discarded? %>
+			                      			<p>Deleted by <%= User.find_by_id(invoice.discarded_by).username unless !invoice.discarded_by.present? %></p>
+			                      		<% else %>
+			                      			<p style="font-size: inherit;">No</p>
+			                      		<% end %>
+			                      		
+			                      	</td>
+			                      	<% end %>
+
+			                      	<td>
+			                      		<% if invoice.notes.present? %>
+			                      		    <%= invoice.notes %>
+			                      		<% end %>                  
+			                      	</td>
+
+			                      </tr>
+			                    <% end %>
+			        </tbody>
+
+			        <tfoot>
+			        		<th colspan="3"></th>
+			        		<th>Total amount Paid: <%= @invoices.sum(:total) %></th>
+			        </tfoot>
+			</table>
+		</div>
+		<div class="card-footer">
+			<%= link_to 'Back <i class="bi bi-arrow-left-circle"></i>'.html_safe, students_path, class: 'btn btn-outline-dark' %>
+		</div>
+	</div>
+</div>

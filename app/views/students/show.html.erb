@@ -1,0 +1,64 @@
+<div class="container text-center" style="max-width:40em;">
+    <div class="card border-dark ">
+        <div class="card-header text-dark" style="font-family: open-sans;">
+            <p>
+              <strong>First name:</strong>
+              <%= @student.first_name %>
+            </p>
+
+            <p>
+              <strong>Last name:</strong>
+              <%= @student.last_name %>
+            </p>
+
+            <p>
+              <strong>Date of Birth:</strong>
+              <%= @student.dob %>
+            </p>
+
+            <p>
+              <strong>Date of Admission:</strong>
+              <%= @student.date_of_admission %>
+            </p>
+
+            <p>
+              <strong>Admission no:</strong>
+              <%= @student.admission_no %>
+            </p>
+
+            <p>
+              <strong>Phone number:</strong>
+              <%= @student.phone_number %>
+            </p>
+
+            <p>
+              <strong>Grade:</strong>
+              <%= @student.grade %>
+            </p>
+
+            <p>
+              <strong>Section:</strong>
+              <%= @student.section %>
+            </p>
+
+            <p>
+              <strong>Father name:</strong>
+              <%= @student.father_name %>
+            </p>
+
+            <p>
+              <strong>Mother name:</strong>
+              <%= @student.mother_name %>
+            </p>
+
+            <div class="card-footer text-center">
+                <div class="btn-group">
+                    <%= link_to 'Edit <i class="bi bi-pass-fill"></i>'.html_safe, edit_student_path(@student), class: 'btn btn-outline-secondary' %>
+                    <!--<% link_to 'Back <i class="bi bi-arrow-left-circle"></i>'.html_safe, students_path, class: 'btn btn-outline-dark' %> -->
+                    <%= link_to 'Show <i class="bi bi-receipt-cutoff"></i>'.html_safe, students_show_invoices_path(@student), class: 'btn btn-outline-dark' %>
+                    <%= link_to 'Add <i class="bi bi-receipt-cutoff"></i>'.html_safe, new_student_invoice_path(@student), class: 'btn btn-outline-dark' %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

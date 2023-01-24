@@ -1,0 +1,7 @@
+<div class="container text-center" style="max-width: 35em; font-family: open-sans;">
+	<h3>Creating new Invoice for <%= @student.first_name %> </h3>
+
+	<%= render 'form', invoice: @invoice %>
+
+	<%= link_to 'Back <i class="bi bi-arrow-left-circle"></i>'.html_safe, invoices_path, class: 'btn btn-outline-dark btn-lg',style:'margin-top:1em;' %>
+</div>

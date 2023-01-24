@@ -1,0 +1,60 @@
+<div class="container" style="max-width:65em;margin-top: 2em;">
+    <div class="card border-dark col align-self-center text-center devise-form-sty">
+          <div class="card-header  text-dark">
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+              <%= render "devise/shared/error_messages", resource: resource %>
+                <!--<div class="col-lg-5"> -->
+                    <div class="login-wrap">
+                        <h3 class="text-center mb-4">Sign Up</h3>
+                        <h6 class="blockquote-footer">Create your account.</h6>
+                        <form  class="login-form">
+                            <div class="forms-group" style="padding: 0 1em 1em 0;">
+                                <div class="input-group">
+                                    <span class="input-group-text" id="addon-wrapping"><%= f.label :username , class: 'fw-bolder', placeholder: 'Username'%>:</span>
+                                    <b><%= f.text_field :username, class: "form-control rounded-left", placeholder:"Like Name Surname", aria_label:"Username", aria_describedby: "addon-wrapping",autofocus: true %></b>
+                                </div>
+                            </div>
+                            <div class="forms-group" style="padding: 0 1em 1em 0;">
+                                <div class="input-group">
+                                    <span class="input-group-text" id="addon-wrapping"><%= f.label :phonenum , class: 'fw-bolder'%><strong>:</strong></span>
+                                    <b><%= f.text_field :phonenum, class: "form-control rounded-left", placeholder:"Like 9087267890", aria_label:"phonenum", aria_describedby: "addon-wrapping",autofocus: true %></b>
+                                </div>
+                            </div>
+                            <div class="forms-group" style="padding: 0 1em 1em 0;">
+                                <div class="input-group">
+                                    <span class="input-group-text" id="addon-wrapping"><%= f.label :email , class: 'fw-bolder' %><strong></strong></span>
+                                    <b><%= f.email_field :email, class: "form-control rounded-left", placeholder:"Like username@example.com", aria_label:"email",aria_describedby: "addon-wrapping",autofocus: true %></b>
+                                </div>
+                            </div>
+                            <div class="forms-group" style="padding: 0 1em 1em 0;">
+                                <div class="input-group">
+                                    <span class="input-group-text" id="addon-wrapping"><%= f.label :password , class: 'fw-bolder', placeholder: 'Password'%>:</span>
+                                    <b><%= f.password_field :password, class: "form-control rounded-left", placeholder:"Minimum 6 Characters", aria_describedby: "addon-wrapping",autofocus: true %></b>
+                                </div>
+                            </div>
+                            <div class="forms-group" style="padding: 0 1em 1em 0;">
+                                <div class="input-group">
+                                    <span class="input-group-text" id="addon-wrapping"><%= f.label :password_confirmation , class: 'fw-bolder'%><strong>:</strong></span>
+                                    <b><%= f.password_field :password_confirmation, class: "form-control rounded-left", placeholder:"Retype same password", aria_label:"password", aria_describedby: "addon-wrapping",autofocus: true %></b>
+                                </div>
+                            </div>
+                            <div class="forms-group actions">
+                                <%=f.submit "Sign up", class: "form-control btn btn-primary rounded px-3", style: "margin-top: 4em;margin-left:2em;" %>
+                            </div>
+                        </form>
+                    </div>
+                <!--</div> -->
+            <% end %>
+          </div>
+
+          <div class="card-body">
+            <div class="d-grid gap-2 col-4 mx-auto">
+               <%= render "devise/shared/links" %>
+            </div>
+          </div>
+
+          <div class="card-footer" style="height:3em;">
+              
+          </div>
+    </div>
+</div>

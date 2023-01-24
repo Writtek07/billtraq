@@ -1,0 +1,17 @@
+<strong>Search Students with:</strong>
+<%= search_form_for @q do |f| %>
+  
+  <div class="input-group" style="margin-bottom:10px;">
+  
+	  <%= f.search_field :first_name_or_last_name_cont, placeholder: 'Name', class: 'form-control rounded btn-outline-primary text-center', style: 'width:300px' %>
+	  
+	  <%= f.search_field :grade_eq, placeholder: 'Class', class: 'form-control rounded btn-outline-primary text-center', style: 'width:300px' %>
+
+	  <%= f.search_field :admission_no_eq, placeholder: 'Admission No', class: 'form-control rounded btn-outline-primary text-center', style: 'width:300px' %>
+</div>
+	
+	<div class="btn-group">
+  		<%= f.submit 'Search!', class: 'btn btn-outline-success rounded', style: 'width:100px;margin-bottom:10px;' %>
+  		<%= link_to 'Reset Filter', students_path, class: 'btn btn-outline-dark rounded', style: 'width:150px;margin-left:10px;margin-bottom:10px;' %>
+  </div>
+<% end %>

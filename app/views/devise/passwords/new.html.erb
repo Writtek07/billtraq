@@ -1,0 +1,35 @@
+<% content_for :header do %>
+  <%= stylesheet_link_tag 'devise' %>
+<% end %>
+<div class="container" style="max-width:62em;margin-top: 2em;">
+    <div class="card border-dark align-self-center text-center devise-form-sty">
+          <div class="card-header text-dark">
+            <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+              <%= render "devise/shared/error_messages", resource: resource %>
+                    <div class="login-wrap p-4 p-md-5">
+                        <h3 class="text-center mb-4">Reset your password here!</h3>
+                        <form action="#" class="login-form">
+                            <div class="forms-group" >
+                              <div class="input-group">
+                                  <span class="input-group-text" id="addon-wrapping"><%= f.label :email , class: 'fw-bolder', style: 'margin-right:100px;'%>:</span>
+                                  <b><%=f.email_field :email, autofocus: true, class: "form-control rounded-left", placeholder:"Registered Email Address", aria_describedby: "addon-wrapping", autocomplete: "email" %></b>
+                              </div>
+                            </div>
+                            <div class="forms-group actions">
+                                <b><%=f.submit "Send me reset password link", class: "form-control opacity-75 fw-bolder btn btn-outline-primary rounded submit px-3", style: "margin-bottom:-4.5em;" %></b>
+                            </div>
+                        </form>
+                    </div>
+            <% end %>
+            </div>
+
+            <div class="card-body">
+                <div class="d-grid gap-2 col-4 mx-auto">
+                   <%= render "devise/shared/links" %>
+                </div>
+            </div>
+            <div class="card-footer" style="height:3em;">
+              
+            </div>
+    </div>
+</div>

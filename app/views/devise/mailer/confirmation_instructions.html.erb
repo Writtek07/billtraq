@@ -1,0 +1,20 @@
+<div id="email_wrapper">
+	<div id="header">
+		<table>
+			<tbody>
+				<tr>
+					<td width="100px"><%= email_image_tag "logo.png", class: "logo" %></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div id="body">
+			<h3>Welcome <%= @resource.username %>!</h3>
+			Please confirm your email by clicking on the link:
+			<%= link_to 'Confirm my account!', confirmation_url(@resource, confirmation_token: @token)%>
+			<p id="body_p">Link will expire in 6 hours.</p>
+	</div>
+	<div id="footer">
+		&copy;Mimis School
+	</div>
+</div>

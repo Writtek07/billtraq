@@ -1,0 +1,34 @@
+
+<div class="container" style="max-width:60em;margin-top: 2em;font-family: open-sans;">
+    <br><div class="card border-dark col align-self-center text-center devise-form-sty">
+          <div class="card-header  text-dark">
+            <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+              <%= render "devise/shared/error_messages", resource: resource %>
+                <!--<div class="col-lg-5"> -->
+                    <div class="login-wrap p-4 p-md-5">
+                        <h4 class="text-center mb-4">Resend account confirmation link to your email</h4>
+                    </div>
+            
+                        <form action="#" class="login-form">
+                            <div class="form-group" style="width:auto;">
+                                <b><%=f.email_field :email, autofocus: true, class: "form-control text-center rounded-left", placeholder:"Enter your registered Email",autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email)%></b> 
+                            </div>
+                            <div class="form-group actions">
+                                <b><%=f.submit "Resend confirmation instructions", class: "form-control opacity-75 fw-bolder btn btn-outline-primary rounded submit",style: "margin-top:1em;" %></b>
+                            </div>
+                        </form>
+                <% end %>
+            </div>
+                <!--</div> -->
+
+          <div class="card-body text-center" style="margin-top:2em;">
+              <div class="d-grid gap-2 col-4 mx-auto">
+                 <%= render "devise/shared/links" %><br>
+              </div>
+          </div>
+
+          <div class="card-footer" style="height: 3em;">
+              
+          </div>
+    </div>
+</div>

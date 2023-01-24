@@ -1,0 +1,217 @@
+#These are anomolies found during testing in local. Steps taken are:-
+
+1. In Data sheet removed the duplicate students  
+2. For students with different names and same admission number, made the admission number blank for now to update later.
+
+[
+    [0] #<Student:0x00007fba9f7f95e8> {
+                       :id => 171,
+               :first_name => "Chirag",
+                :last_name => "Banjare",
+             :admission_no => 969,
+             :phone_number => 7000165620,
+                    :grade => "PP-1",
+                  :section => "C",
+              :father_name => "Mr. Suraj Banjare",
+              :mother_name => "Mrs. Ritika Banjare",
+               :created_at => Sun, 01 Jan 2023 23:24:13 IST +05:30,
+               :updated_at => Sun, 01 Jan 2023 23:24:13 IST +05:30,
+                      :dob => Wed, 24 Jan 2018,
+        :date_of_admission => Sat, 13 Nov 2021,
+             :discarded_at => nil
+    },
+    [1] #<Student:0x00007fba9f7f9250> {
+                       :id => 222,
+               :first_name => "Chirag",
+                :last_name => "Banjare",
+             :admission_no => 969,
+             :phone_number => nil,
+                    :grade => "PP-2",
+                  :section => "A",
+              :father_name => "Mr. Suraj Banjare",
+              :mother_name => "Mrs. Retika Banjare",
+               :created_at => Sun, 01 Jan 2023 23:24:20 IST +05:30,
+               :updated_at => Sun, 01 Jan 2023 23:24:20 IST +05:30,
+                      :dob => Wed, 24 Jan 2018,
+        :date_of_admission => Sat, 13 Nov 2021,
+             :discarded_at => nil
+    }
+]
+=> nil
+
+[
+    [0] #<Student:0x00007fbaa2163910> {
+                       :id => 89,
+               :first_name => "Mishti",
+                :last_name => "Jatav",
+             :admission_no => 1036,
+             :phone_number => nil,
+                    :grade => "Nursery",
+                  :section => "B",
+              :father_name => "Mr. Bhagwan Singh Jatav",
+              :mother_name => "Mrs. Varsha Jatav",
+               :created_at => Sun, 01 Jan 2023 23:23:11 IST +05:30,
+               :updated_at => Sun, 01 Jan 2023 23:23:11 IST +05:30,
+                      :dob => Fri, 30 Nov 2018,
+        :date_of_admission => Wed, 08 Jun 2022,
+             :discarded_at => nil
+    },
+    [1] #<Student:0x00007fbaa2163780> {
+                       :id => 152,
+               :first_name => "Rishabh",
+                :last_name => "Nirmalkar",
+             :admission_no => 1036,
+             :phone_number => 8349300745,
+                    :grade => "PP-1",
+                  :section => "B",
+              :father_name => "Mr. Jitendra Kumar Nirmalkar",
+              :mother_name => "Mrs. Heena Nirmalkar",
+               :created_at => Sun, 01 Jan 2023 23:24:13 IST +05:30,
+               :updated_at => Sun, 01 Jan 2023 23:24:13 IST +05:30,
+                      :dob => Sun, 02 Jul 2017,
+        :date_of_admission => Sat, 16 Apr 2022,
+             :discarded_at => nil
+    }
+]
+
+[
+    [0] #<Student:0x00007fba9f78cbf0> {
+                       :id => 249,
+               :first_name => "Rishika",
+                :last_name => "Yadav",
+             :admission_no => 818,
+             :phone_number => 9425511818,
+                    :grade => "PP-2",
+                  :section => "A",
+              :father_name => "Mr. Rajesh Kumar Yadav",
+              :mother_name => "Mrs. Rakhee Yadav",
+               :created_at => Sun, 01 Jan 2023 23:24:20 IST +05:30,
+               :updated_at => Sun, 01 Jan 2023 23:24:20 IST +05:30,
+                      :dob => Thu, 27 Oct 2016,
+        :date_of_admission => Sat, 08 Jun 2019,
+             :discarded_at => nil
+    },
+    [1] #<Student:0x00007fba9f78cb00> {
+                       :id => 313,
+               :first_name => "Rishika",
+                :last_name => "Yadav",
+             :admission_no => 818,
+             :phone_number => 9425511818,
+                    :grade => "1",
+                  :section => "A",
+              :father_name => "Mr. Rajesh Kumar Yadav",
+              :mother_name => "Mrs. Rakhee Yadav",
+               :created_at => Sun, 01 Jan 2023 23:24:27 IST +05:30,
+               :updated_at => Sun, 01 Jan 2023 23:24:27 IST +05:30,
+                      :dob => Thu, 27 Oct 2016,
+        :date_of_admission => Sat, 08 Jun 2019,
+             :discarded_at => nil
+    }
+]
+
+
+[
+    [0] #<Student:0x00007fba9f746718> {
+                       :id => 311,
+               :first_name => "S. Nayra",
+                :last_name => nil,
+             :admission_no => 577,
+             :phone_number => 9755233066,
+                    :grade => "1",
+                  :section => "A",
+              :father_name => "Mr. S. Lalu",
+              :mother_name => "Mrs. Samkka",
+               :created_at => Sun, 01 Jan 2023 23:24:27 IST +05:30,
+               :updated_at => Sun, 01 Jan 2023 23:24:27 IST +05:30,
+                      :dob => Sun, 09 Feb 2014,
+        :date_of_admission => Mon, 28 May 2018,
+             :discarded_at => nil
+    },
+    [1] #<Student:0x00007fba9f7465b0> {
+                       :id => 470,
+               :first_name => "Vihan",
+                :last_name => "Trivedi",
+             :admission_no => 577,
+             :phone_number => nil,
+                    :grade => "4",
+                  :section => "A",
+              :father_name => "Mr. Krishananand Trivedi",
+              :mother_name => "Mrs. Aarti Trivedi",
+               :created_at => Sun, 01 Jan 2023 23:24:47 IST +05:30,
+               :updated_at => Sun, 01 Jan 2023 23:24:47 IST +05:30,
+                      :dob => Sun, 16 Jan 2011,
+        :date_of_admission => Thu, 03 May 2018,
+             :discarded_at => nil
+    }
+]
+
+[
+    [0] #<Student:0x00007fba9f704908> {
+                       :id => 333,
+               :first_name => "Bhumika",
+                :last_name => "Sahu",
+             :admission_no => 598,
+             :phone_number => 8982238670,
+                    :grade => "2",
+                  :section => "A",
+              :father_name => "Mr. Krishna Sahu",
+              :mother_name => "Mrs. Jageshwari Sahu",
+               :created_at => Sun, 01 Jan 2023 23:24:35 IST +05:30,
+               :updated_at => Sun, 01 Jan 2023 23:24:35 IST +05:30,
+                      :dob => Tue, 20 Jan 2015,
+        :date_of_admission => Mon, 11 Jun 2018,
+             :discarded_at => nil
+    },
+    [1] #<Student:0x00007fba9f704818> {
+                       :id => 603,
+               :first_name => "Koena",
+                :last_name => "Tandi",
+             :admission_no => 598,
+             :phone_number => 9752991065,
+                    :grade => "11",
+                  :section => "A",
+              :father_name => "Mr.Pabitra Tandi",
+              :mother_name => "Mrs. Chitra Tandi",
+               :created_at => Sun, 01 Jan 2023 23:26:45 IST +05:30,
+               :updated_at => Sun, 01 Jan 2023 23:26:45 IST +05:30,
+                      :dob => Thu, 15 Dec 2005,
+        :date_of_admission => Mon, 11 Jun 2018,
+             :discarded_at => nil
+    }
+]
+
+
+[
+    [0] #<Student:0x00007fba9f6a68d0> {
+                       :id => 371,
+               :first_name => "Swati",
+                :last_name => "Gedam",
+             :admission_no => 346,
+             :phone_number => 8109416954,
+                    :grade => "2",
+                  :section => "A",
+              :father_name => "Mr. Janendra Kumar Gedam",
+              :mother_name => "Mrs. Manju Gedam",
+               :created_at => Sun, 01 Jan 2023 23:24:36 IST +05:30,
+               :updated_at => Sun, 01 Jan 2023 23:24:36 IST +05:30,
+                      :dob => Sat, 29 Mar 2014,
+        :date_of_admission => Sun, 15 Jan 2017,
+             :discarded_at => nil
+    },
+    [1] #<Student:0x00007fba9f6a6808> {
+                       :id => 429,
+               :first_name => "Simran",
+                :last_name => "Yadav",
+             :admission_no => 346,
+             :phone_number => 9981632894,
+                    :grade => "3",
+                  :section => "A",
+              :father_name => "Mr. Manoj Kumar Yadav",
+              :mother_name => "Mrs. Bidanti Yadav",
+               :created_at => Sun, 01 Jan 2023 23:24:41 IST +05:30,
+               :updated_at => Sun, 01 Jan 2023 23:24:41 IST +05:30,
+                      :dob => Fri, 20 Sep 2013,
+        :date_of_admission => Wed, 29 Jun 2016,
+             :discarded_at => nil
+    }
+]

@@ -1,0 +1,27 @@
+.forms-group {
+	margin-top: 2em;
+	text-align: center;
+	display: inline-block;
+}
+
+b, input {
+	display: inline-block;
+	width: 100%;
+	
+}
+
+.w-50 {
+	text-align: center;
+	display: inline-block;
+}
+
+p{
+	font-family:"open-sans";
+	font-size: 18px;
+}
+
+.devise-form-sty {
+	box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px; //Modal Effect
+	height: auto;
+	margin-bottom: 2em;
+}

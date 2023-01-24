@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fee_type: MyString
+  amount: 1
+  invoice: one
+
+two:
+  fee_type: MyString
+  amount: 1
+  invoice: two

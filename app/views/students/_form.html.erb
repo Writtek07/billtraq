@@ -1,0 +1,116 @@
+<div class="card border-dark shadow-lg">
+    <div class="card-header text-dark text-center">
+        <ul class="list-inline text-center d-flex justify-content-center">  
+            <%= form_with(model: student, local: true) do |form| %>
+                 <% if student.errors.any? %>
+                    <div class="alert alert-danger">
+                      <h4><%= pluralize(student.errors.count, "error") %> prohibited this student from being saved:</h4>
+
+                      <ul>
+                        <% student.errors.full_messages.each do |message| %>
+                          <li><%= message %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  <% end %> 
+
+                <div class="form-group">
+                    <div class="input-group">
+                          <span class="input-group-text" id="addon-wrapping"><strong>First Name:</strong></span>
+                          <b><%= form.text_field :first_name, autofocus: true, class: "form-control rounded-left", aria_describedby: "addon-wrapping", style: 'width:300px; margin-bottom:0.9em;' %></b>
+                    </div>
+                </div>
+                
+
+
+                <div class="form-group">
+                    <div class="input-group">
+                          <span class="input-group-text" id="addon-wrapping"><strong>Last Name:</strong></span>
+                          <b><%= form.text_field :last_name, autofocus: true, class: "form-control rounded-left", aria_describedby: "addon-wrapping", style: 'width:300px; margin-bottom:0.9em;' %></b>
+                    </div>
+                </div>
+                
+
+                <div class="form-group">
+                    <div class="input-group">
+                          <span class="input-group-text" id="addon-wrapping"><strong>Date of Birth:</strong></span>
+                          <b><%= form.date_field :dob, autofocus: true, max: Time.zone.today,class: "form-control rounded-left", aria_describedby: "addon-wrapping", style: 'width:300px; margin-bottom:0.9em;' %></b>
+                    </div>
+                </div>
+                
+
+                <div class="form-group">
+                    <div class="input-group">
+                          <span class="input-group-text" id="addon-wrapping"><strong>Date of Admission:</strong></span>
+                          <b><%= form.date_field :date_of_admission, autofocus: true, max: Time.zone.today, class: "form-control rounded-left", aria_describedby: "addon-wrapping", style: 'width:300px; margin-bottom:0.9em;' %></b>
+                    </div>
+                </div>
+                
+
+                <div class="form-group">
+                    <div class="input-group">
+                          <span class="input-group-text" id="addon-wrapping"><strong>Admission No:</strong></span>
+                          <b><%= form.number_field :admission_no, autofocus: true, class: "form-control rounded-left", aria_describedby: "addon-wrapping", style: 'width:300px; margin-bottom:0.9em;' %></b>
+                    </div>
+                </div>
+            
+
+                <div class="form-group">
+                    <div class="input-group">
+                          <span class="input-group-text" id="addon-wrapping"><strong>Phone Number:</strong></span>
+                          <b><%= form.number_field :phone_number, autofocus: true, class: "form-control rounded-left", aria_describedby: "addon-wrapping", style: 'width:300px; margin-bottom:0.9em;' %></b>
+                    </div>
+                </div>
+                
+
+                <div class="form-group">
+                    <div class="input-group">
+                          <span class="input-group-text" id="addon-wrapping"><strong>Class:</strong></span>
+                          <b><%= form.select(:grade, options_for_select([['Playgroup','Playgroup'],['Nursery','Nursery'],['PP-1','PP-1'],['PP-2','PP-2'],['1','1'],['2','2'],['3','3'],['4','4'],['5','5'],['6','6'],['7','7'],['8','8'],['9','9'],['10','10'],['11','11'],['12','12']], student.grade) , {}, { class: 'form-control rounded-left', style: 'width:300px; margin-bottom:0.9em;' }) %></b>
+                    </div>
+                </div>
+                
+
+                <div class="form-group">
+                    <div class="input-group">
+                          <span class="input-group-text" id="addon-wrapping"><strong>Section:</strong></span>
+                          <b><%= form.select(:section, options_for_select([['A','A'],['B','B'],['C','C']],student.section) , {include_blank: true}, {class: 'form-control rounded-left', style: 'width:300px; margin-bottom:0.9em;'}) %></b>
+                    </div>
+                </div>
+                
+
+
+                <div class="form-group">
+                    <div class="input-group">
+                          <span class="input-group-text" id="addon-wrapping"><strong>Father's Name:</strong></span>
+                          <b><%= form.text_field :father_name, autofocus: true, class: "form-control rounded-left", aria_describedby: "addon-wrapping", style: 'width:300px; margin-bottom:0.9em;' %></b>
+                    </div>
+                </div>
+                
+
+
+                <div class="form-group">
+                    <div class="input-group">
+                          <span class="input-group-text" id="addon-wrapping"><strong>Mother's Name:</strong></span>
+                          <b><%= form.text_field :mother_name, autofocus: true, class: "form-control rounded-left", aria_describedby: "addon-wrapping", style: 'width:300px, margin-bottom:0.9em;' %></b>
+                    </div>
+                </div>
+                
+
+                <% if @student.discarded? %>
+                <div class="d-grid gap-2 col-8">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" name= "restore" id="restore" style="margin-left: 30em;margin-right: -2em;height: 1.5em;width: 3em;">
+                              <label class="form-check-label" for="flexSwitchCheckChecked" style="margin-left: 0em;"><strong>Click to Restore Student!</strong></label>
+                            <% end %>
+                        </div>
+                </div>
+                
+
+                <div class="form-action", style="margin-top:10px">
+                      <%= form.submit class: 'btn btn-outline-primary' , style: 'width:300px; margin-bottom:0.9em;' %>
+                 </div>       
+            <% end %>
+        </ul>
+    </div>
+</div>

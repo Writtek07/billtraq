@@ -1,0 +1,30 @@
+
+<h1>Particulars</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Fee type</th>
+      <th>Amount</th>
+      <th>Invoice</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @particulars.each do |particular| %>
+      <tr>
+        <td><%= particular.fee_type %></td>
+        <td><%= number_to_currency(particular.amount, unit: "₹", raise: true %></td>
+        <td><%= particular.invoice_id %></td>
+        <td><%= link_to 'Show', particular %></td>
+        <td><%= link_to 'Edit', edit_particular_path(particular) %></td>
+        <td><%= link_to 'Destroy', particular, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Particular', new_particular_path %>

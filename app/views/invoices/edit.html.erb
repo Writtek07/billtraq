@@ -1,0 +1,15 @@
+<% if current_user.admin? || current_user.id == @invoice.user_id %>
+	<div class="container text-center" style="max-width: 35em;font-family: open-sans;">
+		<h3>Editing Invoice for <%= @invoice.student.first_name.capitalize %></h3>
+		<%= render 'form', invoice: @invoice %>
+		<div class="btn-group" role="group" style="width:400px;margin-top: 1em;margin-bottom: 1.5em;">
+			<%= link_to 'Show this invoice'.html_safe, @invoice, class: 'btn btn-outline-primary' %> 
+			<% link_to 'Back <i class="bi bi-arrow-left-circle"></i>'.html_safe, root_path, class: 'btn btn-outline-dark' %>
+		</div>
+	</div>
+<% else %>
+<% flash[:error] = "Unauthorized Access!!" %>
+	<div class="container text-center">
+			<%= render 'invoices/unauth_error' %><br>
+	</div>
+<% end %>

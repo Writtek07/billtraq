@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mimis Invoice App</title>
+    <%= favicon_link_tag asset_path('favicon.png') %>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application' %>
+    <%= javascript_pack_tag 'application' %>
+    
+    <%= yield(:header) if @content_for_header %>
+
+  </head>
+
+  <body>
+      <nav class="navbar navbar-expand" style="background-color: #6269a1;width: auto;">
+        
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span></button>
+            
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                  <a class="navbar-brand" ><%= image_tag 'logo.png', style:'height:50px;width:150px;' %></a>
+                  <div class="d-grid col-6 mx-auto">
+                                      <ul class="navbar-nav nav-fill justify-content-center">
+                                        <li class="nav-item">
+                                          <a><%= link_to "Home", root_path, class: 'nav-link active fw-bolder'%></a>
+                                        </li>
+                                        <li class="nav-item">
+                                          <a><%= link_to "Students", students_path, class: 'nav-link active fw-bolder'%></a>
+                                        </li>
+                                        <% if current_user && current_user.admin? %>
+                                            <li class="nav-item">
+                                              <a><%= link_to "Cheque Data", cheque_invoices_path, class: 'nav-link active fw-bolder' %></a>
+                                            </li>
+                                        <% end %>
+
+                                        <% if current_user %>
+                                          <li class="nav-item">
+                                            <a><%= link_to "Missing Data", missing_students_path, class: 'nav-link active fw-bolder'%></a>
+                                          </li>
+                                        <% end %>
+                                      </ul>
+                  </div> 
+                  <form class="d-flex">
+                      <% if current_user %>
+                        <a><%= link_to "Log Out", destroy_user_session_path, class: 'btn btn-success', method: :delete %></a>
+                      <% else %>
+                        <a><%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-outline-info', style: 'margin-right:10px' %></a>
+                        <a><%= link_to "Log In", new_user_session_path, class: 'btn btn-outline-info' %></a>
+                      <% end %>
+                  </form>
+            </div>
+          
+      </nav>
+
+    <div class="container-fluid">
+          <!-- Blocked header to render before login works for both html & css code-->
+          <% if current_user %>
+            
+                
+                  <% if current_user.admin? %>
+                    <div class="salution-header">
+                        <% if Time.zone.now < Time.zone.now.middle_of_day %>
+                            <h4 class="alert alert-info">Good Morning! <%= current_user.username %> (Admin)</h4>
+                        <% elsif Time.zone.now > Time.zone.now.middle_of_day && Time.zone.now < (Time.zone.now.middle_of_day+4.hours) %>
+                            <h4 class="alert alert-info">Good Afternoon! <%= current_user.username %> (Admin)</h4>
+                        <% else %>
+                            <h4 class="alert alert-info">Good Evening! <%= current_user.username %> (Admin)</h4>
+                        <% end %>
+                    </div>
+                  <% else %>
+                    <% if Time.zone.now < Time.zone.now.middle_of_day %>
+                        <h4 class="usr-salut-head">Good Morning! <%= current_user.username %></h4>
+                    <% elsif Time.zone.now > Time.zone.now.middle_of_day && Time.zone.now < (Time.zone.now.middle_of_day+4.hours) %>
+                        <h4 class="usr-salut-head">Good Afternoon! <%= current_user.username %></h4>
+                    <% else %>
+                        <h4 class="usr-salut-head">Good Evening! <%= current_user.username %></h4>
+                    <% end %>
+                  <% end %>
+                
+            
+          <% end %>
+
+          <% if flash[:notice] %>
+            <div class="alert alert-success alert-dismissible fade show m-1 text-center" role="alert" style="height:55px;">
+              <p class="text-center fw-bolder" style="font-size:18px;"><%= flash[:notice] %></p>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                  </button>
+            </div>
+          <% elsif flash[:error] %>
+            <div class="alert alert-danger alert-dismissible fade show m-1" role="alert" style="height:55px;">
+              <p class="text-center fw-bolder" style="font-size:18px;"><%= flash[:error] %></p>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                  </button>
+            </div>
+            <% elsif flash[:alert] %>
+            <div class="alert alert-primary alert-dismissible fade show m-1" role="alert" style="height:55px;">
+              <p class="text-center fw-bolder" style="font-size:18px;"><%= flash[:alert] %></p>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true"></span>
+                  </button>
+            </div>
+          <% end %>
+              <%= yield %>
+    </div>
+    </body>
+</html>

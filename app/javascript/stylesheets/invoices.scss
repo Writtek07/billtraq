@@ -1,0 +1,19 @@
+// Place all the styles related to the Invoices controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: #FFFF00;
+    color: #FFC0CB;
+}
+
+//li {
+//   border: 1px solid;     This is place to update the borders of the navbar items
+//    margin: 10px;
+//}
+
+a:hover {
+    color: #fff;
+    border: 1px solid #e3f2fd;
+    background-color: #e2f2fe;
+}

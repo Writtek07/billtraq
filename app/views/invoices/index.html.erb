@@ -1,0 +1,7 @@
+<div class="container" style="max-width: 80em;font-size:0.95em;">
+      <% if current_user.admin? %>
+            <%= render 'invoices/admin' %>
+      <% else %>
+            <%= render 'invoices/user' %>
+      <% end %>
+</div>
