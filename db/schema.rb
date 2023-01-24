@@ -59,8 +59,8 @@ ActiveRecord::Schema.define(version: 2023_01_23_141802) do
     t.date "dob"
     t.date "date_of_admission"
     t.datetime "discarded_at"
-    t.json "pending_fees", default: []
-    t.boolean "fee_pending", default: false
+    t.json "pending_fees"
+    t.boolean "fee_pending"
     t.index ["discarded_at"], name: "index_students_on_discarded_at"
   end
 
