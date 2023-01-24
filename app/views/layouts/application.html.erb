@@ -34,6 +34,7 @@
                                         </li>
                                         <% if current_user && current_user.admin? %>
                                             <li class="nav-item">
+
                                               <a><%= link_to "Cheque Data", cheque_invoices_path, class: 'nav-link active fw-bolder' %></a>
                                             </li>
                                         <% end %>

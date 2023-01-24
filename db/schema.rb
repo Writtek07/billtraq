@@ -10,8 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_23_141802) do
 
+ActiveRecord::Schema.define(version: 2023_01_23_141802) do
   create_table "invoices", force: :cascade do |t|
     t.datetime "date"
     t.decimal "total"
@@ -22,8 +22,8 @@ ActiveRecord::Schema.define(version: 2023_01_23_141802) do
     t.string "payment_mode"
     t.integer "student_id"
     t.string "class_no"
-    t.integer "cheque_no"
-    t.integer "receipt_number"
+    t.bigint "cheque_no"
+    t.bigint "receipt_number"
     t.string "bank_account"
     t.string "status"
     t.datetime "discarded_at"

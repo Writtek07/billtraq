@@ -12,9 +12,9 @@ class Invoice < ApplicationRecord
 	
 	after_validation :invoice_month_validity, on: [ :create, :update ]
 
+
 	after_create :update_pending_months
 	#after_destroy :update_pending_months
-
 
 	paginates_per 10
 
@@ -130,4 +130,6 @@ class Invoice < ApplicationRecord
 	  end
 	  missing_nums
 	end
+
+	private
 end

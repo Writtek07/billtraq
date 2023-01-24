@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <div class="container" style="max-width: 75em;font-family: open-sans;font-size: 0.98em;">
+=======
+<div class="container" style="max-width: 60em;font-family: open-sans;font-size: 1.1em;">
+>>>>>>> origin/main
 	<div class="card border-dark align-self-center text-center" id="show-invoices-for-stu">
 		<div class="card-header text-dark">
 			<div class="card-title">
@@ -21,9 +25,14 @@
 			                  <th>Paid for</th>
 			                  <% if current_user.admin? %>
 			                  	<th>Submitted By</th>
+<<<<<<< HEAD
 			                  	<th>Deleted?</th>
 			                  <% end %>
 			                  <th>Invoice Notes</th>
+=======
+			                  <% end %>
+			                  <th>Deleted?</th>
+>>>>>>> origin/main
 			                </tr>
 			            </thead>
 
@@ -46,6 +55,7 @@
 			                        
 			                        <% if current_user.admin? %>
 			                        	<td><%= invoice.user.username %></td>
+<<<<<<< HEAD
 			                        
 
 			                      	<td>
@@ -63,13 +73,33 @@
 			                      		    <%= invoice.notes %>
 			                      		<% end %>                  
 			                      	</td>
+=======
+			                        <% end %>
+
+			                      	<td>
+			                      		<% if current_user.admin? && invoice.discarded? %>
+			                      			<p>Deleted by <%= User.find_by_id(invoice.discarded_by).username %></p>
+			                      		<% elsif !current_user.admin? && invoice.discarded? %>
+			                      			<p>Yes</p>
+
+			                      		<% else %>
+			                      			<p>No</p>
+			                      		<% end %>
+			                      		
+			                      	</td>
+
+>>>>>>> origin/main
 
 			                      </tr>
 			                    <% end %>
 			        </tbody>
 
 			        <tfoot>
+<<<<<<< HEAD
 			        		<th colspan="3"></th>
+=======
+			        		<th colspan="2"></th>
+>>>>>>> origin/main
 			        		<th>Total amount Paid: <%= @invoices.sum(:total) %></th>
 			        </tfoot>
 			</table>
