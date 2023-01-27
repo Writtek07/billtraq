@@ -22,31 +22,39 @@
 @import "**/*";
 
 
-.salution-header {
- font-family: 'Comic Sans MS','open-sans';
- font-size: 1.4em;
- text-align: center;
- margin-left: 2.5em;
- margin-top: 0.3em;
- margin-bottom: 1.2em;
- box-shadow: 7px 9px #dde3eb;
- border-radius: 50%;
- width: auto;
- height: 3em;
-}
+//.salution-header {
+ //font-family: 'Comic Sans MS','open-sans';
+ //font-size: 1.4em;
+ //text-align: center;
+ //margin-left: 2.5em;
+ //margin-top: 0.3em;
+ //margin-bottom: 1.2em;
+ //box-shadow: 7px 9px #dde3eb;
+ //border-radius: 50%;
+// width: auto;
+// height: 3em;
+//}
 
-.salution-header .alert {
-    background-color: #fad796;
-    border-radius: 50%;
-    font-size: 0.9em;
-}
+//.salution-header .alert {
+//    background-color: #fad796;
+//    border-radius: 50%;
+//    font-size: 0.9em;
+//}
 
 .usr-salut-head {
     font-family: 'Comic Sans MS','open-sans';
     text-align: left;
-    font-size: 2em;
-    width: auto;
+    //font-size: 2em;
+    //width: auto;
     text-decoration: underline dotted 3px;
+}
+
+.user-txt:hover {
+    background-color: #a2acfc;
+    //font: up
+    //border-radius: 100%;
+    border: #a2acfc 1px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 

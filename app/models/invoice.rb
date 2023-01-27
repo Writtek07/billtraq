@@ -13,6 +13,7 @@ class Invoice < ApplicationRecord
 	after_validation :invoice_month_validity, on: [ :create, :update ]
 
 	after_create :update_pending_months
+	after_create :change_status
 	#after_destroy :update_pending_months
 	paginates_per 10
 
@@ -37,6 +38,14 @@ class Invoice < ApplicationRecord
 			end
 		end
 	end
+
+	def change_status
+        if self.payment_mode == 'Cash' || self.payment_mode == 'Online'
+          self.update_attributes!(status: 'Paid')
+        elsif self.payment_mode == 'Cheque'
+          self.update_attributes!(status: 'Pending')
+        end
+  	end
 
 	def update_pending_months
 	    student = Student.find(self.student_id)
