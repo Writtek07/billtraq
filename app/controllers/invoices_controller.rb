@@ -45,13 +45,6 @@ class InvoicesController < ApplicationController
     end
   end
 
-  def change_status
-        if @invoice.payment_mode == 'Cash' || @invoice.payment_mode == 'Online'
-          @invoice.update_attributes!(status: 'Paid')
-        elsif @invoice.payment_mode == 'Cheque'
-          @invoice.update_attributes!(status: 'Pending')
-        end
-  end
 
 
   # GET /invoices/1 or /invoices/1.json
@@ -80,7 +73,6 @@ class InvoicesController < ApplicationController
     @student = @invoice.student
     respond_to do |format|
       if @invoice.save
-        change_status
         format.html { redirect_to invoice_url(@invoice), notice: "Invoice was successfully created." }
         format.json { render :show, status: :created, location: @invoice }
       else

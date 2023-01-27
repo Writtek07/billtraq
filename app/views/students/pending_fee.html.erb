@@ -1,69 +1,79 @@
-<div class="container text-center" style="font-family: open-sans; max-width: 75em;">
-	<h4><u>Students Pending Fee List</u></h4>
-	<table class="table table-bordered table-hover table-sm">
-		<thead>
-			<tr>
-				<th>ID</th>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Class</th>
-				<th>Pending For</th>
-				<th>Show Invoices</th>
-			</tr>
-		</thead>
+<div class="container text-center" style="font-family: open-sans; max-width: 75em;font-size: 0.9em;">
+	<div class="card border-dark">
+		<div class="card-header text-dark">
+			<p class="fw-bolder">Students Pending Fee List</p>
+		</div>
 
-		<tbody>
-			<% @students.each do |student| %>
-			<tr>
-				<td><%= student.id %></td>
-				<td><%= student.first_name %></td>
-				<td><%= student.last_name %></td>
-				<td><%= student.grade %></td>
-				<td>
-								<% if student.pending_fees.keys.count > 1 %>
-									<% student.pending_fees.keys.each do|year| %>
-										<div class="btn-group">
-											<div class="dropdown">
-													  <button class="btn btn-sm btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-													  		Year: <%= year %> ,
-													    	Months:
-													  </button>
-													  <ul class="dropdown-menu dropdown-menu-dark">
-													  	<% if year.to_i != Time.zone.today.year %>
-														  	<% month_names(student.pending_fees[year]).each do |months| %>
-														    			<li><button class="dropdown-item" type="button"><%= months %></button></li>
-														    <% end %>
-														<% else %>
-																<% month_names(student.pending_fees[year]).each do |months| %>
-																	<% if months.to_date < Time.zone.today %>
-														    			<li><button class="dropdown-item" type="button"><%= months %></button></li>
-														    		<% end %>
-														    	<% end %>
-													    <% end %>
-													  </ul>
+		<div class="card-body">
+			<table class="table table-bordered table-hover table-sm">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Class</th>
+						<th>Pending For</th>
+						<th>Show Invoices</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<% @students.each do |student| %>
+					<tr>
+						<td><%= student.id %></td>
+						<td><%= student.first_name %></td>
+						<td><%= student.last_name %></td>
+						<td><%= student.grade %></td>
+						<td>
+										<% if student.pending_fees.keys.count > 1 %>
+											<% student.pending_fees.keys.each do|year| %>
+												<div class="btn-group">
+													<div class="dropdown">
+															  <button class="btn btn-sm btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+															  		Year: <%= year %> ,
+															    	Months:
+															  </button>
+															  <ul class="dropdown-menu dropdown-menu-dark">
+															  	<% if year.to_i != Time.zone.today.year %>
+																  	<% month_names(student.pending_fees[year]).each do |months| %>
+																    			<li><button class="dropdown-item" type="button"><%= months %></button></li>
+																    <% end %>
+																<% else %>
+																		<% month_names(student.pending_fees[year]).each do |months| %>
+																			<% if months.to_date < Time.zone.today %>
+																    			<li><button class="dropdown-item" type="button"><%= months %></button></li>
+																    		<% end %>
+																    	<% end %>
+															    <% end %>
+															  </ul>
+													</div>
+												</div>
+											<% end %>
+										<% else %>
+											<div class="dropdown-center">
+												
+											  <button class="btn btn-sm btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+											  	Year: <%= student.pending_fees.keys.first %>,
+											    Months:
+											  </button>
+											  <ul class="dropdown-menu dropdown-menu-dark">
+											  	<% month_names(student.pending_fees.values.first).each do |months| %>
+											    	<li><button class="dropdown-item" type="button"><%= months %>  </button></li>
+											    <% end %>
+											  </ul>
 											</div>
-										</div>
-									<% end %>
-								<% else %>
-									<div class="dropdown-center">
-										
-									  <button class="btn btn-sm btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-									  	Year: <%= student.pending_fees.keys.first %>,
-									    Months:
-									  </button>
-									  <ul class="dropdown-menu dropdown-menu-dark">
-									  	<% month_names(student.pending_fees.values.first).each do |months| %>
-									    	<li><button class="dropdown-item" type="button"><%= months %>  </button></li>
-									    <% end %>
-									  </ul>
-									</div>
-								<% end %>
-				</td>
-				<td><%= link_to '<i class="bi bi-receipt-cutoff"></i>'.html_safe, students_show_invoices_path(student), class: 'btn btn-info btn-sm' %></td>
-			</tr>
-			<% end %>		
-		</tbody>
-		
-	</table>
-		<% paginate @students %>
+										<% end %>
+						</td>
+						<td><%= link_to '<i class="bi bi-receipt-cutoff"></i>'.html_safe, students_show_invoices_path(student), class: 'btn btn-info btn-sm' %></td>
+					</tr>
+					<% end %>		
+				</tbody>
+				
+			</table>
+		</div>
+
+		<div class="card-footer">
+			<% paginate @students %>
+		</div>
+	</div>
 </div>

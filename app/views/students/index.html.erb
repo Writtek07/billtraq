@@ -1,13 +1,21 @@
 <!--<h3 style="margin-bottom:20px;">Students</h3> -->
 
-<div class="container text-center">
-  <%= render 'students/search_form.html.erb' %>
+<div class="container text-center" style="margin-bottom:0.6em;">
+  <div class="btn-group">
+    <%= render 'students/search_form.html.erb' %>
+    <%= link_to 'Add New Student', new_student_path, class:'btn btn-outline-primary rounded', style: 'margin-left: 5em;' %>
+    <!--<button class="btn btn-outline-primary dropdown-toggle rounded" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="margin-left: 5em;">
+      More Options
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <%# if current_user.admin? %>
+        <li><%# link_to 'TC Student List', removed_students_path , class:'dropdown-item' %></li>
+      <%# end %>
+      <li><%# link_to 'Add New Student', new_student_path, class:'dropdown-item' %></li>
+    </ul> -->
+  </div>
 </div>
-<div class="container fluid text-center">
-  <%= link_to 'TC Student List', removed_students_path, class: 'btn btn-outline-primary btn-sm rounded', style: 'width:300px;margin-bottom:1em;' unless !current_user.admin?%>
-  <%= link_to 'Add New Student', new_student_path, class: 'btn btn-outline-primary btn-sm rounded', style: 'width:300px;margin-bottom:1em;' %>
-  <%= link_to 'Pending fee', pending_fee_students_path, class: 'btn btn-outline-primary btn-sm rounded', style: 'width:300px;margin-bottom:1em;' %>
-</div>
+
 <table class="table table-sty table-hover table-striped table-bordered" cellspacing="0" width="100%">
   <thead>
     <tr>
@@ -21,7 +29,7 @@
       <th>Section</th>
       <th>Father name</th>
       <th>Mother name</th>
-      <th colspan="4"></th>
+      <th class="text-center" colspan="4">Actions</th>
     </tr>
   </thead>
 
