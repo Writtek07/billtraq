@@ -45,12 +45,12 @@
 
                   <li class="inv-list">
                     <strong>Invoice_From:</strong>
-                    <%= @invoice.month_from.present? ? month_name(@invoice.month_from) : "<a href='#''>Missing</a>".html_safe %>
+                    <%= @invoice.month_from.present? ? month_name(@invoice.month_from)+" "+@invoice.month_from.split("-").first[2,3] : "<a href='#''>Missing</a>".html_safe %>
                   </li>
 
                   <li class="inv-list">
                     <strong>Invoice_To:</strong>
-                    <%= @invoice.month_to.present? ? month_name(@invoice.month_to) : "<a href='#''>Missing</a>".html_safe %>
+                    <%= @invoice.month_to.present? ? month_name(@invoice.month_to)+" "+@invoice.month_to.split("-").first[2,3] : "<a href='#''>Missing</a>".html_safe %>
                   </li>
 
                   
