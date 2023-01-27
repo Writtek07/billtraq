@@ -65,9 +65,9 @@
                     <div class="dropdown">
                       <button class="btn btn-outline-info dropdown-toggle rounded" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         <% if current_user.admin? %>
-                          <%= current_user.username.capitalize %> (Admin)
+                          <%= current_user.username.titleize %> (Admin)
                         <% else %>
-                          <%= current_user.username.capitalize %>
+                          <%= current_user.username.titleize %>
                         <% end %>
                       </button>
                         <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end text-center" aria-labelledby="dropdownMenuButton1">

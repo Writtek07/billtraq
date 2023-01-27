@@ -38,9 +38,9 @@
 			                        <td><%= invoice.payment_mode %></td>
 			                        <td>
 			                          <% if month_name(invoice.month_from) != month_name(invoice.month_to) %>
-			                              <%= month_name(invoice.month_from).present? ? month_name(invoice.month_from) : "<a href='#''>Missing</a>".html_safe %> to <%= month_name(invoice.month_to).present? ? month_name(invoice.month_to) : "<a href='#''>Missing</a>".html_safe %>
+			                              <%= month_name(invoice.month_from).present? ? month_name(invoice.month_from)+" "+invoice.month_to.split("-").first[2,3] : "<a href='#''>Missing</a>".html_safe %> to <%= month_name(invoice.month_to).present? ? month_name(invoice.month_to)+" "+invoice.month_to.split("-").first[2,3] : "<a href='#''>Missing</a>".html_safe %>
 			                            <% else %>
-			                              <%= month_name(invoice.month_to).present? ? month_name(invoice.month_to) : "<a href='#''>Missing</a>".html_safe %>
+			                              <%= month_name(invoice.month_to).present? ? month_name(invoice.month_to)+" "+invoice.month_to.split("-").first[2,3] : "<a href='#''>Missing</a>".html_safe %>
 			                            <% end %>
 			                        </td>
 			                        
