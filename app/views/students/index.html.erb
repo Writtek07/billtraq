@@ -3,7 +3,31 @@
 <div class="container text-center" style="margin-bottom:0.6em;">
   <div class="btn-group">
     <%= render 'students/search_form.html.erb' %>
-    <%= link_to 'Add New Student', new_student_path, class:'btn btn-outline-primary rounded', style: 'margin-left: 5em;' %>
+    <%= link_to 'Add New Student', new_student_path, class:'btn btn-outline-primary rounded' , style: 'margin-right: 1em;margin-left: 2em;' %>
+    <% if current_user.admin? %>
+        <button type="button" class="btn rounded btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Import Students
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="font-family: open-sans;">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header bg-info">
+                <h5 class="modal-title" id="exampleModalLabel">Import Students via CSV File</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <%= form_tag import_students_path, multipart: true do %>
+                  <span class="btn btn-sm btn-secondary btn-file" style="margin-bottom:1em;">
+                  <%= file_field_tag :file, accept: '.csv', style: 'width:300px;', class: 'fw-bolder' %></span>
+                  <%= submit_tag "Upload File!",class: 'btn btn-outline-success btn-round btn-sm', style: 'width:15em;' %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+    <% end %>
     <!--<button class="btn btn-outline-primary dropdown-toggle rounded" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="margin-left: 5em;">
       More Options
     </button>
@@ -46,9 +70,12 @@
         <td><%= student.section %></td>
         <td><%= student.father_name %></td>
         <td><%= student.mother_name %></td>
-        <td><%= link_to '<i class="bi bi-receipt-cutoff"></i>'.html_safe, students_show_invoices_path(student), class: 'btn btn-info btn-sm' %></td>
-        <td><%= link_to '<i class="bi bi-pass-fill"></i>'.html_safe, edit_student_path(student), class: 'btn btn-secondary btn-round btn-sm' %></td>
-        <td><%= link_to '<i class="bi bi-trash3-fill"></i>'.html_safe, student, method: :delete, class: 'btn btn-danger btn-round btn-sm', data: { confirm: 'Are you sure?' } %></td>
+        <td><button type="button" class="btn btn-tip" data-bs-toggle="tooltip" trigger="hover focus" title="Show Student invoices">
+                <%= link_to '<i class="bi bi-receipt-cutoff"></i>'.html_safe, students_show_invoices_path(student), class: 'btn btn-info btn-sm' %></button></td>
+        <td><button type="button" class="btn btn-tip" data-bs-toggle="tooltip" title="Edit Student Data">
+          <%= link_to '<i class="bi bi-pass-fill"></i>'.html_safe, edit_student_path(student), class: 'btn btn-secondary btn-round btn-sm' %></button></td>
+        <td><button type="button" class="btn btn-tip" data-bs-toggle="tooltip" title="Delete">
+          <%= link_to '<i class="bi bi-trash3-fill"></i>'.html_safe, student, method: :delete, class: 'btn btn-danger btn-round btn-sm', data: { confirm: 'Are you sure?' } %></button></td>
         <td><%= link_to 'Add <i class="bi bi-receipt-cutoff"></i>'.html_safe, new_student_invoice_path(student), class: 'btn btn-primary btn-round btn-sm' %></td>
       </tr>
     <% end %>
@@ -59,23 +86,23 @@
 <div class="container text-center" style="margin-bottom: 2.5em;">
   <%= paginate @students %>  
   
-        <% if current_user.admin? %>
-              <div class="card" id="import-crd">
+        <%# if current_user.admin? %>
+             <!-- <div class="card" id="import-crd">
                 <div class="card-header">
                   <h5>Import Students From CSV File</h5>
                 </div>
                 <div class="card-body" style="background-color:#333;">
                   <div class="input-group" id="import-grp">
                 
-                      <%= form_tag import_students_path, multipart: true do %>
+                      <%# form_tag import_students_path, multipart: true do %>
                         <span class="btn btn-sm btn-info btn-file opacity-50" style="margin-bottom:1em;">
-                        <%= file_field_tag :file, accept: '.csv', style: 'width:300px;', class: 'fw-bolder' %></span>
-                        <%= submit_tag "Upload File!",class: 'btn btn-outline-success btn-round btn-sm', style: 'width:15em;' %>
-                      <% end %>
+                        <%# file_field_tag :file, accept: '.csv', style: 'width:300px;', class: 'fw-bolder' %></span>
+                        <%# submit_tag "Upload File!",class: 'btn btn-outline-success btn-round btn-sm', style: 'width:15em;' %>
+                      <%# end %>
 
                     
                   </div>
                 </div>
-              </div>
-        <% end %>
+              </div> -->
+        <%# end %>
 </div>

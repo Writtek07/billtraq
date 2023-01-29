@@ -18,7 +18,7 @@
 				</thead>
 
 				<tbody>
-					<% @students.each do |student| %>
+					<% @students.sort_by { |i| i.grade }.each do |student| %>
 					<tr>
 						<td><%= student.id %></td>
 						<td><%= student.first_name %></td>
@@ -29,7 +29,7 @@
 											<% student.pending_fees.keys.each do|year| %>
 												<div class="btn-group">
 													<div class="dropdown">
-															  <button class="btn btn-sm btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+															  <button class="btn btn-sm btn-outline-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 															  		Year: <%= year %> ,
 															    	Months:
 															  </button>
@@ -52,7 +52,7 @@
 										<% else %>
 											<div class="dropdown-center">
 												
-											  <button class="btn btn-sm btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+											  <button class="btn btn-sm btn-outline-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 											  	Year: <%= student.pending_fees.keys.first %>,
 											    Months:
 											  </button>

@@ -49,9 +49,14 @@ class InvoicesController < ApplicationController
 
   # GET /invoices/1 or /invoices/1.json
   def show
-    @invoice = Invoice.find(params[:id])
-    @student = Student.find_by_id(@invoice.student_id)
-    @particulars = @invoice.particulars
+    begin
+      @invoice = Invoice.find(params[:id])
+      @student = Student.find_by_id(@invoice.student_id)
+      @particulars = @invoice.particulars
+    rescue StandardError => e
+      redirect_to root_path
+      flash[:error] = e.message
+    end
   end
 
   # GET /invoices/new
