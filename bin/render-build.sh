@@ -2,8 +2,7 @@
 # exit on error
 set -o errexit
 
-gem update --system 3.2.3
-bundle update --bundler
+bundle install
 bundle exec rails assets:precompile
 bundle exec rails assets:clean
 bundle exec rails db:migrate
