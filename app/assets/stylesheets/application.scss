@@ -14,13 +14,21 @@
  
  *= require_tree .
  *= require_self
-
  */
 
 @import "bootstrap/scss/bootstrap";
 @import 'bootstrap_icons';
 @import "**/*";
+@import 'animate';
 
+.nav-header-txt {
+    -webkit-animation-duration: 4.5s;
+    animation-duration: 4.5s;
+    -webkit-animation-name: bounceInDown;
+    animation-name: bounceInDown;
+    animation-iteration-count: infinite;
+    text-decoration: underline;
+}
 
 //.salution-header {
  //font-family: 'Comic Sans MS','open-sans';

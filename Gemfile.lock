@@ -58,6 +58,7 @@ GEM
       zeitwerk (~> 2.2, >= 2.2.2)
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
+    animate.css-rails (3.2.0)
     autoprefixer-rails (10.4.7.0)
       execjs (~> 2)
     awesome_print (1.9.2)
@@ -286,6 +287,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  animate.css-rails (~> 3.2)
   awesome_print
   bootsnap (>= 1.4.2)
   bootstrap

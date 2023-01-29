@@ -26,16 +26,14 @@
                      </div>
                     </li>
 
+                    <li>
+                      <div class="btn-group" role="group" id="adm-inv-btn-group">
+                        <%= f.submit "Search", class: "form-control btn btn-outline-primary rounded", style: "margin-right:1em;" %>
+                      
+                        <%= link_to "Reset",root_path, class: "btn btn-outline-dark rounded form-control" %>
+                      </div>
+                    </li>
                   </ul>
-                </div>
-                 
-        
-                 
-
-                <div class="btn-group" role="group" id="adm-inv-btn-group">
-                  <%= f.submit "Search", class: "form-control btn btn-outline-primary rounded", style: "margin-right:1em;" %>
-                
-                  <%= link_to "Reset",root_path, class: "btn btn-outline-dark rounded form-control" %>
                 </div>
               <% end %>
         
@@ -45,14 +43,14 @@
             <thead>
               <tr>
                   <th><%= sort_link(@q, :id, 'Invoice ID:') %></th>
-                  <th><%= sort_link(@q, :id, 'Created On') %></th>
+                  <th><%= sort_link(@q, :created_at, 'Created On') %></th>
                   <th>Student</th>
                   <th>Total</th>
                   <th>Paid for</th>
                   <th><%= sort_link(@q, :payment_mode, 'Payment Mode') %></th>
+                  <th>Class</th>
                   <th>Staff Name</th>
-                  <th class="text-center">Actions</th>
-                  <th colspan="4"></th>
+                  <th colspan="4" class="text-center">Actions</th>
                 </tr>
             </thead>
 
@@ -85,6 +83,7 @@
                          
                         </td>
                         <td><%= invoice.payment_mode %></td>
+                        <td><%= invoice.student.grade %></td>
                         <td><%= invoice.user.username %></td>
                         <td><%= link_to 'Show <i class="bi bi-receipt-cutoff"></i>'.html_safe, invoice, style: 'font-size:0.9em;',class: 'btn btn-outline-primary' %></td>
                         <td><%= link_to 'Edit <i class="bi bi-pass-fill"></i>'.html_safe, edit_invoice_path(invoice), style: 'font-size:0.9em;', class: 'btn btn-outline-secondary' %></td>

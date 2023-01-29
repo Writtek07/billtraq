@@ -41,10 +41,24 @@ class StudentsController < ApplicationController
   end
 
   def import
-    Student.import(params[:file])
-    return redirect_to students_path, error: "Please upload CSV only!" unless params[:file].content_type == 'text/csv'
-
-    redirect_to students_path, notice: "Students Uploaded Successfully"
+    if params[:file].present?
+      begin
+        student = Student.import(params[:file])
+        if student.present?
+          return redirect_to students_path, error: "Please upload CSV only!" unless params[:file].content_type == 'text/csv'
+          redirect_to students_path, notice: "Students Uploaded Successfully"
+        else
+          redirect_to students_path
+          flash[:error] = "Please upload a file to proceed."  
+        end  
+      rescue Exception => e
+        redirect_to students_path
+        flash[:error] = e.message  
+      end  
+    else
+      redirect_to students_path
+      flash[:error] = "Please upload a file to proceed."
+    end
   end
 
 

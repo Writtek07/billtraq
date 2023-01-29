@@ -77,3 +77,4 @@ gem 'discard', '~> 1.2'
 
 gem 'nokogiri'
 gem 'premailer-rails'
+gem 'animate.css-rails', '~> 3.2'
