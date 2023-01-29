@@ -78,5 +78,5 @@ gem 'discard', '~> 1.2'
 gem 'nokogiri'
 gem 'premailer-rails'
 gem 'animate.css-rails', '~> 3.2'
-gem "lograge"
-gem 'newrelic_rpm'
+gem 'lograge'
+#gem 'newrelic_rpm'
