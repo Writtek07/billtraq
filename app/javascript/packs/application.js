@@ -10,6 +10,8 @@ require("@rails/activestorage").start()
 require("channels")
 require("@popperjs/core")
 require("../stylesheets/application.scss")
+require("invoice_date")
+
 import 'bootstrap-icons/font/bootstrap-icons.css'
 
 // Import the specific modules you may need (Modal, Alert, etc)

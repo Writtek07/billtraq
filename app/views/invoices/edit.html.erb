@@ -1,5 +1,5 @@
 <% if current_user.admin? || current_user.id == @invoice.user_id %>
-	<div class="container text-center" style="max-width: 35em;font-family: open-sans;">
+	<div class="container text-center" style="max-width: 35em;font-family: 'open-sans';">
 		<h3>Editing Invoice for <%= @invoice.student.first_name.capitalize %></h3>
 		<%= render 'form', invoice: @invoice %>
 		<div class="btn-group" role="group" style="width:400px;margin-top: 1em;margin-bottom: 1.5em;">

@@ -10,20 +10,14 @@ class Invoice < ApplicationRecord
 	validates :month_to, presence: true
 	validates :month_from, presence: true
 	
-	after_validation :invoice_month_validity, on: [ :create, :update ]
-
-	after_create :update_pending_months
+	before_validation :invoice_month_validity, on: [ :create, :update ]
+	before_validation :check_invoice_dates, on: :create
 	after_create :change_status
+	#after_validation :repeated_invoice_month_check, on: [ :create, :update ]
+	
 	paginates_per 10
 
-	def date_validity?
-		if self.date.present? && self.date.to_date > self.created_at.to_date
-			return false
-		else
-			return true
-		end
-	end
-
+	
 	def invoice_month_validity
 		year_from = self.month_from.split("-").first.to_i
 		month_frm = self.month_from.split("-").second.to_i
@@ -44,98 +38,46 @@ class Invoice < ApplicationRecord
         elsif self.payment_mode == 'Cheque'
           self.update_attributes!(status: 'Pending')
         end
-  	end
-
-	def update_pending_months
-	    student = Student.find(self.student_id)
-	    months_array = []
-	    student.invoices.kept.each do |inv|
-	    	if inv.month_from == inv.month_to
-	    		months_array << [inv.month_from]
-	    	else
-	    		months_array << [inv.month_from]
-	    		months_array << [inv.month_to]
-	    	   	cur_months = months_array.sort.map {|i| i[0].to_s.split("-").second} #=> ["05", "06", "09"]
-	    		missing_months = find_missing_consecutive_numbers(cur_months).map { |e| e.rjust(2, "0") }
-	    		temp_months = []
-	    		missing_months.map { |j| temp_months << [months_array.last[0].split("-").first+ "-" +j] }
-	    	    months_array += temp_months	
-	    	end
-		end	    
-	    
-	    #pending_months_2022 = check_months(months_array, "2022") #returns => {"2022"=>["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"]}
-	    #pending_months_till = check_months(months_array, "#{Time.zone.today.year}")
-
-	    #pending_months = student.pending_fees
-	    #if pending_months.blank?
-	    	pending_months = {}
-	    #end
-	    (2022..Time.zone.now.year).each do |year|
-	    	inv_year = []
-	    	#inv_month = []
-	    	months_array.each do |e|
-	    		inv_year << e[0].to_s.split("-").first
-	    		if inv_year.include?(year.to_s)
-	    			pending_months.merge!(check_months(months_array, year.to_s))
-	    		end
-	    	end
-	    end
-	    student.update_column(:pending_fees, pending_months)
-	    year = student.pending_fees.keys.sort.first
-	    	if year.to_i >= Time.zone.now.year.to_i
-			    student.pending_fees[Time.now.year.to_s].each do |month|
-				    if month.to_i <= Time.now.month
-				    	student.update_column(:fee_pending, true)
-				    else
-				    	student.update_column(:fee_pending, false)
-				    end
-				end
-			else
-				if student.pending_fees[year].present?
-					student.update_column(:fee_pending, true)
-				else
-					student.update_column(:fee_pending, false)
-				end
-			end
-	 end
-
-	private
+  end
 	
-	def check_months(arr,year)
-	  # Initialize an empty hash to store months for the given year
-	  months_year = {}
-	  # Initialize an array to store the pending months
-	  pending_months = []
-	  # Iterate through the input array
-	  arr.each do |date|
-	    # Split the date string into year and month
-	    date_year, month = date[0].split("-")
 
-	    # Add the month to the corresponding year array
-	    if date_year == year
-	      months_year[year] = [] unless months_year.key?(year)
-	      months_year[year] << month
+	def check_invoice_dates
+    student = Student.find(self.student_id)
+    pending_fee = student.pending_fees
+    from_year, from_month = self.month_from.split("-")
+    #to_year, to_month = self.month_to.split("-")
+    puts student.id,from_year, from_month,pending_fee
+    if pending_fee[from_year].present?
+	    if !pending_fee[from_year].include?(from_month)
+	    	puts pending_fee[from_year].include?(from_month).to_s+"Pending->#{pending_fee[from_year]}"+"from_month->#{from_month}"
+	    	errors.add(:month_from, 'Invoice exists!')
+	    end
+	    if pending_fee[from_year].include?(from_month) && pending_fee[from_year].index(from_month) != 0
+	    	errors.add(:base, 'There are months pending for this student before'.concat(" "+month_from.concat("-01").to_date.strftime("%B")))
 	    end
 	  end
+  end
 
-	  # Check if all 12 months are present in the given year array
-	  (1..12).each do |month|
-	    pending_months << month.to_s.rjust(2, "0") if !months_year[year].include?(month.to_s.rjust(2, "0"))
-	  end
 
-	  return { year => pending_months }
-	end
 
-	def find_missing_consecutive_numbers(arr)
-	  missing_nums = []
-	  arr.each_with_index do |num, index|
-	    next_num = arr[index + 1]
-	    if next_num.nil? || (next_num.to_i - num.to_i) > 1
-	      (num.to_i + 1...next_num.to_i).each { |n| missing_nums << n.to_s }
-	    end
-	  end
-	  missing_nums
-	end
+
+
+  #Moved all logic to controller as validations in model is getting affected by update pending fees logic
+	#For now skipping that part where invoice having month_from != month_to 
+  #def repeated_invoice_month_check
+  #	student = Student.find(self.student_id)
+  #	if student.pending_fees.present?
+	#  	if self.month_from == self.month_to
+	#  		if !(student.pending_fees[self.month_from.split("-").first.to_s].include?(self.month_from.split("-").last.to_s))
+	#  			errors.add(:base, 'Invoice for entered months already exists.')
+	#  		end
+	#  	else
+	#  		if !student.pending_fees[self.month_from.split("-").first].include?(self.month_from.split("-").last) && !student.pending_fees[self.month_to.split("-").first].include?(self.month_to.split("-").last)
+	#  			errors.add(:base, 'Invoice for entered months already exists.')
+	#  		end
+	#  	end
+	#  end
+  #end
 
 	private
 end
