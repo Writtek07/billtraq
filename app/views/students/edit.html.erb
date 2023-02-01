@@ -1,5 +1,5 @@
 <div class="container text-center" style="max-width:60em;font-family: 'open-sans';">
-	<h2>Editing record for <%= @student.first_name.capitalize %></h2>
+	<h2>Editing record for <u><%= @student.first_name.capitalize %></u></h2>
 
 	<%= render 'form', student: @student %>
 	<% if @student.kept? %>
