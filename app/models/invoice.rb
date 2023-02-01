@@ -10,7 +10,7 @@ class Invoice < ApplicationRecord
 	validates :month_to, presence: true
 	validates :month_from, presence: true
 	
-	before_validation :invoice_month_validity, on: [ :create, :update ]
+	after_validation :invoice_month_validity, on: [ :create, :update ]
 	before_validation :check_invoice_dates, on: :create
 	after_create :change_status
 	#after_validation :repeated_invoice_month_check, on: [ :create, :update ]
@@ -28,6 +28,7 @@ class Invoice < ApplicationRecord
 		if year_from == year_to
 			if month_frm > to_month
 				errors.add(:base, 'Invoice from: date should be less than Invoice to: date')
+			else
 			end
 		end
 	end
@@ -46,14 +47,16 @@ class Invoice < ApplicationRecord
     pending_fee = student.pending_fees
     from_year, from_month = self.month_from.split("-")
     #to_year, to_month = self.month_to.split("-")
-    puts student.id,from_year, from_month,pending_fee
+    #puts student.id,from_year, from_month,pending_fee
     if pending_fee[from_year].present?
 	    if !pending_fee[from_year].include?(from_month)
-	    	puts pending_fee[from_year].include?(from_month).to_s+"Pending->#{pending_fee[from_year]}"+"from_month->#{from_month}"
+	    	#puts pending_fee[from_year].include?(from_month).to_s+"Pending->#{pending_fee[from_year]}"+"from_month->#{from_month}"
 	    	errors.add(:month_from, 'Invoice exists!')
+	    else
 	    end
 	    if pending_fee[from_year].include?(from_month) && pending_fee[from_year].index(from_month) != 0
 	    	errors.add(:base, 'There are months pending for this student before'.concat(" "+month_from.concat("-01").to_date.strftime("%B")))
+	    else
 	    end
 	  end
   end
