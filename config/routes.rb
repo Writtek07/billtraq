@@ -40,6 +40,10 @@ Rails.application.routes.draw do
       resources :particulars, except: [:show], controller: 'invoices/particulars'
   end
 
+  namespace :admin do
+    resources :dashboard
+  end
+
   root 'invoices#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

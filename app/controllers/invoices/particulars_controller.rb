@@ -55,9 +55,9 @@ class Invoices::ParticularsController < ApplicationController
   def destroy
     @particular = Particular.find(params[:id])
     title = @particular.fee_type
-
     if @particular.discard
-      @particular.discard  
+      @particular.discard
+      @particular.update(discarded_by: current_user.id)
       flash[:notice] = "\"#{title}\" was deleted successfully."
       redirect_to @invoice
     else

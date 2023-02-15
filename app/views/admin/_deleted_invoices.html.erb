@@ -1,0 +1,74 @@
+<% if @discarded_invoices.present? %>
+  <table class="table table-sty table-hover table-bordered" cellspacing="0" width="100%">
+    <thead><span class="fw-bolder">Invoices Deleted By User</span>
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @discarded_invoices.each do |invoice| %>
+        <tr>
+          <td><%= invoice.user.id %></td>
+          <td><%= invoice.user.username %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% elsif @anamoly_invoices.present? %>
+  <table class="table table-sty table-hover table-bordered" cellspacing="0" width="100%">
+    <thead><span class="fw-bolder">Invoices updated atleast 1 day after creation</span>
+      <tr>
+        <th>Invoice ID</th>
+        <th>Created By</th>
+        <th>Created At</th>
+        <th>Updated At</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @anamoly_invoices.each do |invoice| %>
+        <tr>
+          <td><%= invoice.id %></td>
+          <td><%= invoice.user.username %></td>
+          <td><%= invoice.created_at.strftime("%d-%B-%y") %></td>
+          <td><%= invoice.updated_at.strftime("%d-%B-%y") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p style="font-family: monospace;">No Data for Invoice!</p>
+<% end %>
+
+<% if @discarded_particulars.present? %>
+  <table class="table table-sty table-hover table-bordered" cellspacing="0" width="100%">
+    <thead><span class="fw-bolder">Particulars Deleted By User</span>
+      <tr>
+        <th>ID</th>
+        <th>Fee type</th>
+        <th>Amount</th>
+        <th>Deleted At</th>
+        <th>Created By</th>
+        <th>Deleted By</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @discarded_particulars.each do |particular| %>
+        <tr>
+          <td><%= particular.id %></td>
+          <td><%= particular.fee_type %></td>
+          <td><%= particular.amount %></td>
+          <td><%= particular.discarded_at.strftime("%d-%b-%y") %></td>
+          <td><%= particular.invoice.user.username %></td>
+          <td><%= particular.discarded_by.present? ? User.find(particular.discarded_by).username : 'Not Recorded' %></td>
+        </tr>
+      <% end %>      
+    </tbody>
+  </table>
+<% else %>
+  <p style="font-family: monospace;">No Data for Particulars!</p>
+<% end %>

@@ -21,7 +21,7 @@ end
 
 #For removing version objects--> PaperTrail::Version.last 
 
-
+<!-- Invoices Chart shows just the last 7 days data. Add mechanism to filter update this method -->
 
 ##Check if any of parent's name exists and then print it or else remove the field from printing
 
