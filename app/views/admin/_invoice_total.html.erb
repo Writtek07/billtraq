@@ -13,7 +13,7 @@
         <td><%= dates.to_date.strftime("%d-%B") %></td>
         <td><%= @invoices_created_this_month.kept.where(created_at: dates.to_date.beginning_of_day .. dates.to_date.end_of_day).sum(:total) %></td>
         <td>
-          <button type="button" class="btn btn-sm rounded btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<%= dates%>">
+          <button type="button" class="btn btn-sm rounded btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<%= dates.to_s.split(" ").first %>">
             <i class="bi bi-file-earmark-bar-graph"></i>
           </button>
 
