@@ -1,0 +1,98 @@
+<%= stylesheet_link_tag 'admin_dashboard' %>
+<div class="container text-center" style="font-family: open-sans">
+	<div class="admin-head">Admin Dashboard</div>
+	<div class="d-flex bd-highlight">
+		<!--<div class="p-2 flex-grow-1 bd-highlight">
+			<button class="btn btn-outline-secondary text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePart" aria-expanded="false" aria-controls="collapseExample">
+		     Invoice Data
+			</button>
+			<div class="collapse" id="collapsePart">
+		 		<div class="card card-body border-primary" id="chart-js">
+		 			<%# column_chart Invoice.kept.group("date(created_at)").limit(3).count %>
+		 		</div>
+			</div>
+		</div> -->
+
+		<!--<div class="p-2 flex-grow-1 bd-highlight">
+			<button class="btn btn-outline-secondary text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInv" aria-expanded="false" aria-controls="collapseExample">
+		     Particular Data
+			</button>
+			<div class="collapse" id="collapseInv">
+		 		<div class="card card-body border-primary">
+		 			<%# pie_chart Particular.joins(:invoice).where(invoices: { discarded_at: nil }).group(:fee_type).count %>
+		 		</div>
+			</div>
+		</div> -->
+
+		<!--<button type="button" class="btn rounded btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Invoice Data
+        </button>
+
+
+        <div class="modal modal-lg fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="font-family: open-sans;">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header bg-primary">
+                <h5 class="modal-title" id="exampleModalLabel">Invoice Stats</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body chart-container">
+                <div><%# line_chart Invoice.kept.group("date(created_at)").limit(7).count %></div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+
+        <!-- Here Invoices Chart shows just the last 7 days data. Add mechanism to filter update this method -->
+        <div class="card border-dark text-center" id="charts">        	
+        	<%= column_chart Invoice.kept.group("date(created_at)").limit(7).count.map { |h| [h.first.to_date.strftime("%d-%b"),h.second] }, width: '720px', height: '300px', ytitle: "No of Invoices", points: false, title: 'Date wise count of Invoices created in last 7 days', label: 'Invoices created' %>
+        	<div class="card-footer bg-white"></div>
+        </div>
+        <div class="card border-dark " id="charts" style="margin-left: 0.6em;">
+        	<%= pie_chart Particular.joins(:invoice).where(invoices: { discarded_at: nil }).group(:fee_type).count,width: '530px', height: '300px', title: 'Current Fee types & Count ' %>
+        </div>
+	</div>
+	<div class="d-flex align-content-start flex-wrap" style="margin-top:0.7em; margin-bottom: 1em;">
+		
+		<div class="card border-dark" style="font-family: inherit; margin-right: 0.8em;" id="charts">
+			<div class="card-header">
+				<h6><u>User Data Stats</u></h6>
+			</div>
+			<div class="card-body">
+				<div class="table-responsive"><%= render 'admin/user_data' %></div>
+			</div>
+			
+		</div>
+		
+		<div class="card border-dark" id="charts" style="width: 300px;">
+			<div class="card-header"><h6><u>Last 7 Days Invoice Total</u></h6></div>
+			<div class="card-body">
+				<%= render 'admin/invoice_total' %>
+			</div>			
+		</div>		
+
+		<div class="card border-dark" id="charts" style="margin-top:0.7em;width: 100%;">
+			<div class="card-header"><h6><u>Fee Pending Status</u></h6></div>
+				<div class="card-body">
+					<ul class="list-inline text-center d-flex">
+						<li><%= pie_chart Student.all.group(:fee_pending).count, width: '740px', height: '300px', title: 'Student Pending Fee Percentage' %></li>
+						<li><div class="text-center font-monospace" style="margin-top: 5em;font-size: 0.85em;">Here data with:-
+							<ul>
+								<li><u>Null</u> block indicates student whose pending fees is not set yet.</li>
+								<li><u>True</u> block indicates student with pending fees.</li>
+								<li><u>False</u> block indicates student without pending fees.</li>
+							</ul>
+						</div></li>						
+					</ul>			
+				</div>			
+		</div>
+
+		<div class="card border-dark" id="charts" style="margin-top:0.7em; width: 100%">
+			<div class="card-header"><h6><u>Invoice or Particular Anamoly/Deleted Data</u></h6></div>
+			<div class="card-body">
+				<%= render 'admin/deleted_invoices' %>
+			</div>			
+		</div>
+
+	</div>
+</div>

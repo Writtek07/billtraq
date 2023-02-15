@@ -12,6 +12,9 @@ require("@popperjs/core")
 require("../stylesheets/application.scss")
 
 import 'bootstrap-icons/font/bootstrap-icons.css'
+import "chartkick"
+//= require highcharts
+//= require chartkick
 
 // Import the specific modules you may need (Modal, Alert, etc)
 import { Tooltip, Popover } from "bootstrap"
@@ -22,10 +25,6 @@ var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggl
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl)
 })
-
-
- 
-
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)

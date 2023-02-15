@@ -18,6 +18,7 @@ module InvoiceFinal
 
     config.active_record.default_timezone = :local
     config.time_zone = 'New Delhi'
+    #Groupdate.time_zone = 'UTC'
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

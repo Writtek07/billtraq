@@ -1,0 +1,29 @@
+<table class="table table-sty table-hover table-bordered" cellspacing="0" width="100%" height="100%">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Sign In Count</th>
+      <th>Last Sign In</th>
+      <th>Phone Number</th>
+      <th>Invoices created</th>
+      <th>Email Confirmed</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.username %></td>
+        <td><%= user.email %></td>
+        <td><%= user.sign_in_count %></td>
+        <td><%= user.current_sign_in_at.present? ? time_ago_in_words(user.current_sign_in_at)+' Ago' : 'Never Logged In' %></td>
+        <td><%= user.phonenum %></td>
+        <td><%= user.invoices.count %></td>
+        <td><%= user.confirmed_at.present? ? time_ago_in_words(user.confirmed_at)+' Ago' : 'No' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

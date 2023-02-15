@@ -30,7 +30,9 @@
                       <div class="btn-group" role="group" id="adm-inv-btn-group">
                         <%= f.submit "Search", class: "form-control btn btn-outline-primary rounded", style: "margin-right:1em;" %>
                       
-                        <%= link_to "Reset",root_path, class: "btn btn-outline-dark rounded form-control" %>
+                        <%= link_to "Reset",root_path, class: "btn btn-outline-dark rounded form-control", style: "margin-right:1em;" %>
+
+                        <%= link_to "Dashboard",admin_dashboard_index_path, class: "btn btn-outline-success rounded form-control" %>
                       </div>
                     </li>
                   </ul>
@@ -49,9 +51,9 @@
                   <th>Paid for</th>
                   <th><%= sort_link(@q, :payment_mode, 'Payment Mode') %></th>
                   <th>Class</th>
-                  <th>Staff Name</th>
+                  <th>Created By</th>
                   <th colspan="4" class="text-center">Actions</th>
-                </tr>
+              </tr>
             </thead>
 
             <tbody>
