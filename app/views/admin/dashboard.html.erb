@@ -53,25 +53,26 @@
         </div>
 	</div>
 	<div class="d-flex align-content-start flex-wrap" style="margin-top:0.7em; margin-bottom: 1em;">
-		
-		<div class="card border-dark" style="font-family: inherit; margin-right: 0.8em;" id="charts">
-			<div class="card-header">
-				<h6><u>User Data Stats</u></h6>
-			</div>
-			<div class="card-body">
-				<div class="table-responsive"><%= render 'admin/user_data' %></div>
-			</div>
+		<ul class="list-inline d-flex">
+			<li><div class="card border-dark" style="font-family: inherit; margin-right: 0.8em;" id="charts">
+				<div class="card-header">
+					<h6><u>User Data Stats</u></h6>
+				</div>
+				<div class="card-body">
+					<div class="table-responsive"><%= render 'admin/user_data' %></div>
+				</div>
+				
+			</div></li>
 			
-		</div>
-		
-		<div class="card border-dark" id="charts" style="width: 300px;">
-			<div class="card-header"><h6><u>Last 7 Days Invoice Total</u></h6></div>
-			<div class="card-body">
-				<%= render 'admin/invoice_total' %>
-			</div>			
-		</div>		
+			<li><div class="card border-dark" id="charts" style="width: 300px;">
+				<div class="card-header"><h6><u>Last 7 Days Invoice Total</u></h6></div>
+				<div class="card-body">
+					<%= render 'admin/invoice_total' %>
+				</div>			
+			</div></li>			
+		</ul>
 
-		<div class="card border-dark" id="charts" style="margin-top:0.7em;width: 100%;">
+		<div class="card border-dark" id="charts" style="width: 100%;">
 			<div class="card-header"><h6><u>Fee Pending Status</u></h6></div>
 				<div class="card-body">
 					<ul class="list-inline text-center d-flex">
