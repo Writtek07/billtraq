@@ -1,18 +1,21 @@
 <% if @discarded_invoices.present? %>
   <table class="table table-sty table-hover table-bordered" cellspacing="0" width="100%">
-    <thead><span class="fw-bolder">Invoices Deleted By User</span>
+    <thead><span class="fw-bolder">Invoices Deleted By User after 20/01/23</span>
       <tr>
         <th>ID</th>
         <th>Username</th>
-        
+        <th>Created At</th>
+        <th>Amount</th>
       </tr>
     </thead>
 
     <tbody>
-      <% @discarded_invoices.each do |invoice| %>
+      <% @discarded_invoices.where(created_at: "20-01-2023".to_date.beginning_of_day..Time.zone.now).each do |invoice| %>
         <tr>
-          <td><%= invoice.user.id %></td>
+          <td><%= link_to invoice.id, invoice_path(invoice) %></td>
           <td><%= invoice.user.username %></td>
+          <td><%= invoice.created_at.strftime("%B") %></td>
+          <td><%= invoice.total %></td>
         </tr>
       <% end %>
     </tbody>
@@ -31,7 +34,7 @@
     <tbody>
       <% @anamoly_invoices.each do |invoice| %>
         <tr>
-          <td><%= invoice.id %></td>
+          <td><%= link_to invoice.id, invoice_path(invoice) %></td>
           <td><%= invoice.user.username %></td>
           <td><%= invoice.created_at.strftime("%d-%B-%y") %></td>
           <td><%= invoice.updated_at.strftime("%d-%B-%y") %></td>
