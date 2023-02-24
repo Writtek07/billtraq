@@ -10,8 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+ActiveRecord::Schema.define(version: 2023_02_15_154043) do
 
-ActiveRecord::Schema.define(version: 2023_01_23_141802) do
   create_table "invoices", force: :cascade do |t|
     t.datetime "date"
     t.decimal "total"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2023_01_23_141802) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "discarded_at"
+    t.integer "discarded_by"
     t.index ["discarded_at"], name: "index_particulars_on_discarded_at"
     t.index ["invoice_id"], name: "index_particulars_on_invoice_id"
   end

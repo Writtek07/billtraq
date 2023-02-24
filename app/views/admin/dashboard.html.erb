@@ -45,7 +45,7 @@
 
         <!-- Here Invoices Chart shows just the last 7 days data. Add mechanism to filter update this method -->
         <div class="card border-dark text-center" id="charts">        	
-        	<%= column_chart Invoice.kept.group("date(created_at)").limit(7).count.map { |h| [h.first.to_date.strftime("%d-%b"),h.second] }, width: '720px', height: '300px', ytitle: "No of Invoices", points: false, title: 'Date wise count of Invoices created in last 7 days', label: 'Invoices created' %>
+        	<%= column_chart Invoice.kept.group("date(created_at)").limit(7).count.sort.map { |h| [h.first.to_date.strftime("%d-%b"),h.second] }, width: '720px', height: '300px', ytitle: "No of Invoices", points: false, title: 'Date wise count of Invoices created in last 7 days', label: 'Invoices created' %>
         	<div class="card-footer bg-white"></div>
         </div>
         <div class="card border-dark " id="charts" style="margin-left: 0.6em;">

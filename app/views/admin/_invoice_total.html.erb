@@ -8,7 +8,7 @@
   </thead>
 
   <tbody>
-    <% @invoices_created_this_month.kept.where(created_at: (Time.zone.now.beginning_of_day - 7.days).. Time.zone.now).pluck('DATE(created_at)').uniq.each do |dates| %>
+    <% @invoices_created_this_month.kept.where(created_at: (Time.zone.now.beginning_of_day - 7.days).. Time.zone.now).pluck('DATE(created_at)').uniq.sort.each do |dates| %>
       <tr>
         <td><%= dates.to_date.strftime("%d-%B") %></td>
         <td><%= @invoices_created_this_month.kept.where(created_at: dates.to_date.beginning_of_day .. dates.to_date.end_of_day).sum(:total) %></td>
@@ -39,7 +39,7 @@
                                 <% @invoices_created_this_month.kept.where(created_at: dates.to_date.beginning_of_day .. dates.to_date.end_of_day).each do|invoice| %>
                                   <% invoice.particulars.each do |particular| %>
                                     <% if fee.has_key?(particular.fee_type) %>
-                                      <% fee[particular.fee_type] += particular.amount %>
+                                      <% fee[particular.fee_type] += particular.amount unless particular.amount.nil? %>
                                     <% else %>
                                       <% fee[particular.fee_type] = particular.amount %>
                                     <% end %>

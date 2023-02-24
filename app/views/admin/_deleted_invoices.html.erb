@@ -1,6 +1,6 @@
 <% if @discarded_invoices.present? %>
-  <ul class="list-inline d-flex">
-    <li><table class="table table-sty table-hover table-bordered" cellspacing="0">
+<ul class="list-inline">
+    <li class="d-flex"><table class="table table-sm table-sty table-hover table-bordered" cellspacing="0">
       <thead><span class="fw-bolder">Invoices Deleted By User after 20/01/23</span>
         <tr>
           <th>ID</th>
@@ -22,7 +22,7 @@
       </tbody>
     </table></li>
   <% elsif @anamoly_invoices.present? %>
-    <li><table class="table table-sty table-hover table-bordered" cellspacing="0">
+    <li class="d-flex"><table class="table table-sm table-sty table-hover table-bordered" cellspacing="0">
       <thead><span class="fw-bolder">Invoices updated atleast 1 day after creation</span>
         <tr>
           <th>Invoice ID</th>
@@ -48,7 +48,7 @@
   <% end %>
 
   <% if @discarded_particulars.present? %>
-    <li><table class="table table-sty table-hover table-bordered" cellspacing="0">
+    <li class="d-flex"><table class="table table-sm table-sty table-hover table-bordered" cellspacing="0">
       <thead><span class="fw-bolder">Particulars Deleted By User</span>
         <tr>
           <th>ID</th>

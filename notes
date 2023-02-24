@@ -1,3 +1,8 @@
+##Download data from Render server
+1. Add ssh keys to account( Google)
+2.scp srv-ceavhi2rrk0bbtdf7820@ssh.oregon.render.com:~/project/src/lib/data.csv Desktop/  (This cmd will save file in lib of render to Desktop of local)
+
+
 #Check workaround for validations on Invoice, 
 #Test build with next deploy by removing gem update --system 3.2.3 & bundle update --bundler
 
