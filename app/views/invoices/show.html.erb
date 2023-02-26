@@ -1,5 +1,5 @@
-<div class="container text-center">
-    <div class="card border-dark justify-content-center" style="max-width: 70em;margin-left: 5em;margin-top: 1.7em;">
+<div class="container-xl me-0 pe-5 text-center">
+    <div class="card border-dark" style="max-width: 70em;margin-top: 1.7em;">
         <div class="card-header text-dark">
             <ul class="list-inline text-center d-flex justify-content-center">  
                 
@@ -123,6 +123,25 @@
                 </div>
               </div>
 
+
+              <%# link_to 'Add new items', '#', class: 'btn btn-outline-primary', data: { bs_toggle: 'modal', bs_target: '#modalAddPart' } %>
+              
+
+              <!--<div class="modal fade" id="modalAddPart" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="font-family: open-sans;">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header bg-primary">
+                      <h5 class="modal-title text-center" id="exampleModalLabel">Add Fee </h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <%# render 'particulars/new.html.erb' %>
+                      <div id="new-invoice-particular-form"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>-->
+              
               <%= link_to 'Add new items', new_invoice_particular_path(@invoice), class: 'btn btn-outline-primary' %>
               
               <h4 >Total: <%= number_to_currency(cur_total, unit: "₹", raise: true) %></h4>

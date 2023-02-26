@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="table-responsive text-center" style="font-family: open-sans;font-size: 0.9em;">
 	<table class="table table-hover table-striped table-bordered" cellspacing="0" width="100%">
 		<thead>
 		  <tr>
@@ -21,15 +21,17 @@
 		    <tr>
 		      <td><%= student.first_name %></td>
 		      <td><%= student.last_name %></td>
-		      <td><%= student.dob.strftime("%d-%m-%Y") %></td>
-		      <td><%= student.date_of_admission.strftime("%d-%m-%Y") %></td>
+		      <td><%= student.dob.strftime("%d-%m-%Y") unless student.date_of_admission.nil? %></td>
+		      <td><%= student.date_of_admission.strftime("%d-%m-%Y") unless student.date_of_admission.nil? %></td>
 		      <td><%= student.admission_no %></td>
 		      <td><%= student.phone_number %></td>
 		      <td><%= student.grade %></td>
 		      <td><%= student.section %></td>
 		      <td><%= student.father_name %></td>
 		      <td><%= student.mother_name %></td>
-		      <td><%= link_to 'Edit', edit_student_path(student), class: 'btn btn-secondary btn-round btn-sm' %></td>
+		      <td><%= link_to 'Restore', undiscard_student_path(student), 
+		      		class: 'btn btn-outline-secondary btn-round btn-sm', 
+		      		method: :patch %></td>
 		    </tr>
 		  <% end %>
 		</tbody>

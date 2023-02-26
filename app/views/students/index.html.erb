@@ -1,6 +1,6 @@
 <!--<h3 style="margin-bottom:20px;">Students</h3> -->
 
-<div class="container text-center" style="margin-bottom:0.6em;">
+<div class="text-center" style="margin-bottom:0.6em;">
   <div class="btn-group">
     <%= render 'students/search_form.html.erb' %>
     <%= link_to 'Add New Student', new_student_path, class:'btn btn-outline-primary rounded' , style: 'margin-right: 1em;margin-left: 2em;' %>
@@ -40,50 +40,51 @@
   </div>
 </div>
 
-<table class="table table-sty table-hover table-striped table-bordered" cellspacing="0" width="100%">
-  <thead>
-    <tr>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Date of Birth</th>
-      <th>Date of Admission</th>
-      <th>Admission no</th>
-      <th>Phone number</th>
-      <th>Class</th>
-      <th>Section</th>
-      <th>Father name</th>
-      <th>Mother name</th>
-      <th class="text-center" colspan="4">Actions</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @students.each do |student| %>
+<div class="table-responsive">
+  <table class="table table-sty table-hover table-striped table-bordered" cellspacing="0" width="100%">
+    <thead>
       <tr>
-        <td><%= student.first_name %></td>
-        <td><%= student.last_name %></td>
-        <td><%= student.dob.strftime("%d-%m-%Y") unless !student.dob.present?%></td>
-        <td><%= student.date_of_admission.strftime("%d-%m-%Y") unless !student.date_of_admission.present?%></td>
-        <td><%= student.admission_no %></td>
-        <td><%= student.phone_number %></td>
-        <td><%= student.grade %></td>
-        <td><%= student.section %></td>
-        <td><%= student.father_name %></td>
-        <td><%= student.mother_name %></td>
-        <td><button type="button" class="btn btn-tip" data-bs-toggle="tooltip" trigger="hover focus" title="Show Student invoices">
-                <%= link_to '<i class="bi bi-receipt-cutoff"></i>'.html_safe, students_show_invoices_path(student), class: 'btn btn-info btn-sm' %></button></td>
-        <td><button type="button" class="btn btn-tip" data-bs-toggle="tooltip" title="Edit Student Data">
-          <%= link_to '<i class="bi bi-pass-fill"></i>'.html_safe, edit_student_path(student), class: 'btn btn-secondary btn-round btn-sm' %></button></td>
-        <td><button type="button" class="btn btn-tip" data-bs-toggle="tooltip" title="Delete">
-          <%= link_to '<i class="bi bi-trash3-fill"></i>'.html_safe, student, method: :delete, class: 'btn btn-danger btn-round btn-sm', data: { confirm: 'Are you sure?' } %></button></td>
-        <td><%= link_to 'Add <i class="bi bi-receipt-cutoff"></i>'.html_safe, new_student_invoice_path(student), class: 'btn btn-primary btn-round btn-sm' %></td>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Date of Birth</th>
+        <th>Date of Admission</th>
+        <th>Admission no</th>
+        <th>Phone number</th>
+        <th>Class</th>
+        <th>Section</th>
+        <th>Father name</th>
+        <th>Mother name</th>
+        <th class="text-center" colspan="4">Actions</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
+    <tbody>
+      <% @students.each do |student| %>
+        <tr>
+          <td><%= student.first_name %></td>
+          <td><%= student.last_name %></td>
+          <td><%= student.dob.strftime("%d-%m-%Y") unless !student.dob.present?%></td>
+          <td><%= student.date_of_admission.strftime("%d-%m-%Y") unless !student.date_of_admission.present?%></td>
+          <td><%= student.admission_no %></td>
+          <td><%= student.phone_number %></td>
+          <td><%= student.grade %></td>
+          <td><%= student.section %></td>
+          <td><%= student.father_name %></td>
+          <td><%= student.mother_name %></td>
+          <td><button type="button" class="btn btn-tip" data-bs-toggle="tooltip" trigger="hover focus" title="Show Student invoices">
+                  <%= link_to '<i class="bi bi-receipt-cutoff"></i>'.html_safe, students_show_invoices_path(student), class: 'btn btn-info btn-sm' %></button></td>
+          <td><button type="button" class="btn btn-tip" data-bs-toggle="tooltip" title="Edit Student Data">
+            <%= link_to '<i class="bi bi-pass-fill"></i>'.html_safe, edit_student_path(student), class: 'btn btn-secondary btn-round btn-sm' %></button></td>
+          <td><button type="button" class="btn btn-tip" data-bs-toggle="tooltip" title="Delete">
+            <%= link_to '<i class="bi bi-trash3-fill"></i>'.html_safe, student, method: :delete, class: 'btn btn-danger btn-round btn-sm', data: { confirm: 'Are you sure?' } %></button></td>
+          <td><%= link_to 'Add <i class="bi bi-receipt-cutoff"></i>'.html_safe, new_student_invoice_path(student), class: 'btn btn-primary btn-round btn-sm' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-<div class="container text-center" style="margin-bottom: 2.5em;">
+<div class="text-center" style="margin-bottom: 2.5em;">
   <%= paginate @students %>  
   
         <%# if current_user.admin? %>

@@ -1,92 +1,117 @@
-<table class="table table-sty table-sm table-hover table-bordered" cellspacing="0" width="100%">
-  <thead>
-    <tr>
-      <th>Date</th>
-      <th>Total</th>
-      <th>Fee Data</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @invoices_created_this_month.kept.where(created_at: (Time.zone.now.beginning_of_day - 7.days).. Time.zone.now).pluck('DATE(created_at)').uniq.sort.each do |dates| %>
+<div class="table-responsive">
+  <table class="table table-sm table-sty table-hover table-bordered">
+    <thead>
       <tr>
-        <td><%= dates.to_date.strftime("%d-%B") %></td>
-        <td><%= @invoices_created_this_month.kept.where(created_at: dates.to_date.beginning_of_day .. dates.to_date.end_of_day).sum(:total) %></td>
-        <td>
-          <button type="button" class="btn btn-sm rounded btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<%= dates.to_s.split(" ").first %>">
-            <i class="bi bi-file-earmark-bar-graph"></i>
-          </button>
+        <th>Date</th>
+        <th>Total</th>
+        <th>Fee Data</th>
+      </tr>
+    </thead>
 
-          <!-- Modal -->
-          <div class="modal modal-lg fade" id="exampleModal<%= dates.to_s.split(" ").first %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="font-family: open-sans;">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header bg-info">
-                  <h5 class="modal-title fw-bolder" id="exampleModalLabel">More data for invoices created on <u><%= dates.to_date.strftime("%d-%B") %></u></h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <tbody>
+        
+          <%= form_tag admin_dashboard_index_path, id: 'invoice-more-data-form', method: :post do %>
+            <div class="row g-3 align-items-end mb-3" style="margin-left: 7.2em;">
+              <!--<div class=""> -->
+                <div class="col-auto">
+                  <%= label_tag :start_date, 'Start Date' %>
+                <!--</div>
+                <div class="col-auto"> -->
+                  <%= date_field_tag :start_date, params[:start_date], max: Time.zone.today, class: 'form-control' %>
                 </div>
-                <div class="modal-body">
-                      <table class="table table-sm table-hover table-bordered" cellspacing="0" width="100%">                      
-                          <thead><span class="fw-bolder">Fee types wise amount split for total amount received on this day</span>
-                            <tr>
-                              <th>Fee Types</th>
-                              <th>Amount</th>
-                            </tr>
-                          </thead>
+                <div class="col-auto">
+                  <%= label_tag :end_date, 'End Date' %>
+                <!--</div>
+                <div class="col-auto">-->
+                  <%= date_field_tag :end_date, params[:end_date], max: Time.zone.today, class: 'form-control' %>
+                </div>
+                <div class="col-auto">
+                  <%= submit_tag 'Filter', class: 'btn btn-primary' %>
+                </div>
+              <!--</div> -->
+            </div>
+          <% end %>
+        
+      <% @more_invoice_data.kept.where(created_at: (Time.zone.now.beginning_of_day - 7.days).. Time.zone.now).pluck('DATE(created_at)').uniq.sort.each do |dates| %>
+        <tr>
+          <td><%= dates.to_date.strftime("%d-%B") %></td>
+          <td><%= @more_invoice_data.kept.where(created_at: dates.to_date.beginning_of_day .. dates.to_date.end_of_day).sum(:total) %></td>
+          <td>
+            <button type="button" class="btn btn-sm rounded btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal<%= dates.to_s.split(" ").first %>">
+              <i class="bi bi-file-earmark-bar-graph"></i>
+            </button>
 
-                          <tbody>
-                                <% fee = {} %>
-                                <% @invoices_created_this_month.kept.where(created_at: dates.to_date.beginning_of_day .. dates.to_date.end_of_day).each do|invoice| %>
-                                  <% invoice.particulars.each do |particular| %>
-                                    <% if fee.has_key?(particular.fee_type) %>
-                                      <% fee[particular.fee_type] += particular.amount unless particular.amount.nil? %>
-                                    <% else %>
-                                      <% fee[particular.fee_type] = particular.amount %>
+            <!-- Modal -->
+            <div class="modal modal-lg fade" id="exampleModal<%= dates.to_s.split(" ").first %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="font-family: open-sans;">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header bg-info">
+                    <h5 class="modal-title fw-bolder" id="exampleModalLabel">More data for invoices created on <u><%= dates.to_date.strftime("%d-%B") %></u></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                        <table class="table table-sm table-hover table-bordered" cellspacing="0" width="100%">                      
+                            <thead><span class="fw-bolder">Fee types wise amount split for total amount received on this day</span>
+                              <tr>
+                                <th>Fee Types</th>
+                                <th>Amount</th>
+                              </tr>
+                            </thead>
+
+                            <tbody>
+                                  <% fee = {} %>
+                                  <% @more_invoice_data.kept.where(created_at: dates.to_date.beginning_of_day .. dates.to_date.end_of_day).each do|invoice| %>
+                                    <% invoice.particulars.each do |particular| %>
+                                      <% if fee.has_key?(particular.fee_type) %>
+                                        <% fee[particular.fee_type] += particular.amount unless particular.amount.nil? %>
+                                      <% else %>
+                                        <% fee[particular.fee_type] = particular.amount %>
+                                      <% end %>
                                     <% end %>
                                   <% end %>
-                                <% end %>
-                                <% fee.each do |type,amt|%>
-                              <tr>
-                                <td><%= type.capitalize %></td>
-                                <td><%= amt %></td>
-                              </tr>
-                              <% end %>
-                          </tbody>
-                      </table>
-
-                      <table class="table table-sm table-hover table-bordered" cellspacing="0" width="100%">                      
-                          <thead><span class="fw-bolder">User Wise Invoices created on this day </span>
-                            <tr>
-                              <th>Username</th>
-                              <th>Invoice Ids Created</th>
-                              <th>Total</th>
-                            </tr>
-                          </thead>
-
-                          <tbody>
-                            <% @users.each do |user|%>
-                              <% if user.invoices.kept.where(created_at: dates.to_date.beginning_of_day .. dates.to_date.end_of_day).
-                                present? %>
+                                  <% fee.each do |type,amt|%>
                                 <tr>
-                                  <td><%= user.username.capitalize %></td>
-                                  <td>
-                                    <% user.invoices.kept.where(created_at: dates.to_date.beginning_of_day .. dates.to_date.end_of_day).each do|inv| %>
-                                      <%= link_to inv.id, invoice_path(inv) unless !inv.id.present? %>
-                                     <% end %> 
-                                    </td>
-                                  <td><%= user.invoices.kept.where(created_at: dates.to_date.beginning_of_day .. dates.to_date.end_of_day).sum(:total) %></td>
+                                  <td><%= type.capitalize %></td>
+                                  <td><%= amt %></td>
                                 </tr>
-                              <% end %>
-                            <% end %>
-                          </tbody>
-                      </table>
+                                <% end %>
+                            </tbody>
+                        </table>
 
+                        <table class="table table-sm table-hover table-bordered" cellspacing="0" width="100%">                      
+                            <thead><span class="fw-bolder">User Wise Invoices created on this day </span>
+                              <tr>
+                                <th>Username</th>
+                                <th>Invoice Ids Created</th>
+                                <th>Total</th>
+                              </tr>
+                            </thead>
+
+                            <tbody>
+                              <% @users.each do |user|%>
+                                <% if user.invoices.kept.where(created_at: dates.to_date.beginning_of_day .. dates.to_date.end_of_day).
+                                  present? %>
+                                  <tr>
+                                    <td><%= user.username.capitalize %></td>
+                                    <td>
+                                      <% user.invoices.kept.where(created_at: dates.to_date.beginning_of_day .. dates.to_date.end_of_day).each do|inv| %>
+                                        <%= link_to inv.id, invoice_path(inv) %> ,
+                                       <% end %> 
+                                      </td>
+                                    <td><%= user.invoices.kept.where(created_at: dates.to_date.beginning_of_day .. dates.to_date.end_of_day).sum(:total) %></td>
+                                  </tr>
+                                <% end %>
+                              <% end %>
+                            </tbody>
+                        </table>
+
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

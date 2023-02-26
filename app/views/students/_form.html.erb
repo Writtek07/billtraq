@@ -97,15 +97,15 @@
                 </div>
                 
 
-                <% if @student.discarded? %>
-                <div class="d-grid gap-2 col-8">
+                <%# if @student.discarded? %>
+                <!--<div class="d-grid gap-2 col-8">
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" name= "restore" id="restore" style="margin-left: 30em;margin-right: -2em;height: 1.5em;width: 3em;">
-                              <label class="form-check-label" for="flexSwitchCheckChecked" style="margin-left: 0em;"><strong>Click to Restore Student!</strong></label>
-                            <% end %>
+                              <label class="form-check-label text-center" for="flexSwitchCheckChecked" style="margin-left: 0em;"><strong>Click to Restore Student!</strong></label>
+                            
                         </div>
-                </div>
-                
+                </div>-->
+                <%# end %>
 
                 <div class="form-action", style="margin-top:10px">
                       <%= form.submit class: 'btn btn-outline-primary' , style: 'width:300px; margin-bottom:0.9em;' %>

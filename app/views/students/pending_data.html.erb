@@ -1,42 +1,42 @@
-<div class="container">
-	<div class="card border-dark">
+<div class="card border-dark" style="font-family: open-sans; font-size: 0.9em;">
 		<div class="card-header text-dark">
-			<table class="table table-hover table-bordered">
-				<thead>
-					<tr>
-						<th>First name</th>
-						<th>Last name</th>
-						<th>Date of Birth</th>
-						<th>Date of Admission</th>
-						<th>Admission no</th>
-						<th>Phone number</th>
-						<th>Class</th>
-						<th>Section</th>
-						<th>Father name</th>
-						<th>Mother name</th>
-						<th colspan="3"></th>
-					</tr>
-				</thead>
-
-
-				<tbody>
-					<% @students.each do |student| %>
+			<div class="table-responsive">
+				<table class="table table-hover table-bordered">
+					<thead>
 						<tr>
-									<td><%= student.first_name %></td>
-							        <td><%= student.last_name unless !student.last_name.present? %></td>
-							        <td><%= student.dob.strftime("%d-%m-%Y") unless !student.dob.present? %></td>
-							        <td><%= student.date_of_admission.strftime("%d-%m-%Y") unless !student.date_of_admission.present? %></td>
-							        <td><%= student.admission_no unless !student.admission_no.present?%></td>
-							        <td><%= student.phone_number unless !student.phone_number.present? %></td>
-							        <td><%= student.grade %></td>
-							        <td><%= student.section %></td>
-							        <td><%= student.father_name unless !student.father_name.present? %></td>
-							        <td><%= student.mother_name unless !student.mother_name.present? %></td>
-							        <td><%= link_to 'Edit', edit_student_path(student), class: 'btn btn-secondary btn-round btn-sm' %></td>
+							<th>First name</th>
+							<th>Last name</th>
+							<th>Date of Birth</th>
+							<th>Date of Admission</th>
+							<th>Admission no</th>
+							<th>Phone number</th>
+							<th>Class</th>
+							<th>Section</th>
+							<th>Father name</th>
+							<th>Mother name</th>
+							<th colspan="3"></th>
 						</tr>
-					<% end %>
-				</tbody>
-			</table>			
+					</thead>
+
+
+					<tbody>
+						<% @students.each do |student| %>
+							<tr>
+										<td><%= student.first_name %></td>
+								        <td><%= student.last_name unless !student.last_name.present? %></td>
+								        <td><%= student.dob.strftime("%d-%m-%Y") unless !student.dob.present? %></td>
+								        <td><%= student.date_of_admission.strftime("%d-%m-%Y") unless !student.date_of_admission.present? %></td>
+								        <td><%= student.admission_no unless !student.admission_no.present?%></td>
+								        <td><%= student.phone_number unless !student.phone_number.present? %></td>
+								        <td><%= student.grade %></td>
+								        <td><%= student.section %></td>
+								        <td><%= student.father_name unless !student.father_name.present? %></td>
+								        <td><%= student.mother_name unless !student.mother_name.present? %></td>
+								        <td><%= link_to 'Edit', edit_student_path(student), class: 'btn btn-secondary btn-round btn-sm' %></td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>			
 		</div>
-	</div>
 </div>

@@ -32,3 +32,46 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+//After using post method on form submission, url only showed admin/dashboard on click.
+//So to make it look like we actually fired a search, I am modifying the url on form submission from admin/dashboard.
+//NOTE- params aren't effected hence justed javascript to just append str to url.
+
+$(document).ready(function() {
+    $('#invoice-chart-form').submit(function(e) {
+      e.preventDefault(); // prevent the form from submitting
+
+      // append a random string to the form URL
+      var randomString = Math.random().toString(36).substring(2,9);
+      var formUrl = $(this).attr('action') + '?;search_chart_filter=' + randomString;
+      $(this).attr('action', formUrl);
+
+      // submit the form
+      this.submit();
+    });
+
+    $('#invoice-more-data-form').submit(function(e) {
+      e.preventDefault(); // prevent the form from submitting
+
+      // append a random string to the form URL
+      var randomString = Math.random().toString(36).substring(2,10);
+      var formUrl = $(this).attr('action') + '?;search_invoice_filter=' + randomString;
+      $(this).attr('action', formUrl);
+
+      // submit the form
+      this.submit();
+    });
+  });
+
+//Adding invoices items with modal via AJAX.(Pending)
+//$(document).ready(function() {
+//    $('[data-toggle="modal"]').click(function() {
+//      $.ajax({
+//        url: '<%= new_invoice_particular_path(@invoice) %>',
+//        success: function(data) {
+//          console.log(data);
+//          $('#new-invoice-particular-form').html(data);
+//        }
+//      });
+//    });
+//  });

@@ -40,6 +40,13 @@ class StudentsController < ApplicationController
     end
   end
 
+  def undiscard
+    @student = Student.find(params[:id])
+    @student.undiscard
+    flash[:notice] = "Student Restored!"
+    redirect_to removed_students_path
+  end
+
   def import
     if params[:file].present?
       begin
@@ -105,7 +112,7 @@ class StudentsController < ApplicationController
 
   # PATCH/PUT /students/1 or /students/1.json
   def update
-    @student.undiscard if params.dig(:restore)
+    #@student.undiscard if params.dig(:restore)
     respond_to do |format|
       if @student.update(student_params)
         format.html { redirect_to student_url(@student), notice: "Student was successfully updated." }

@@ -3,6 +3,11 @@
 2.scp srv-ceavhi2rrk0bbtdf7820@ssh.oregon.render.com:~/project/src/lib/data.csv Desktop/  (This cmd will save file in lib of render to Desktop of local)
 
 
+## Run rails server to debug in phone
+1.Get ip --> ipconfig getifaddr en0 || ipconfig getifaddr en1 => this will give ip address of current system
+2. rails server -b ip_address
+3.Access from phone --> http://<your_ip_address>:3000
+
 #Check workaround for validations on Invoice, 
 #Test build with next deploy by removing gem update --system 3.2.3 & bundle update --bundler
 

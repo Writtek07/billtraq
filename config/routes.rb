@@ -2,13 +2,16 @@ Rails.application.routes.draw do
   
   resources :students do
     collection { post :import}
-    get :removed, on: :collection
-
+    
     collection do
       get 'pending_fee'
       get 'missing'
+      get 'removed'
     end
 
+    member do
+      patch :undiscard      
+    end
     resources :invoices
   end
  
@@ -17,6 +20,7 @@ Rails.application.routes.draw do
         registrations: 'user/registrations'
       }
 
+  #/student/:id/update_
 
   
   get 'invoices/print/:id', to: 'invoices#print', as: 'invoices_print'

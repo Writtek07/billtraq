@@ -21,7 +21,7 @@ class Student < ApplicationRecord
 
 
 
-	#validates :section, presence: true
+	validates :section, presence: true
 	 #Removed the presense and uniqeness as some cases dont have number now + uniquesness is not needed as one parent can have multiple students
 	 #Later will add presence once all have number updated
 	#validates :phone_number, presence: true, uniqueness: true, numericality: { only_integer: true }, length: { is: 10 }
