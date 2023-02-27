@@ -32,7 +32,16 @@
             </div>
           <% end %>
         
-      <% @more_invoice_data.kept.where(created_at: (Time.zone.now.beginning_of_day - 7.days).. Time.zone.now).pluck('DATE(created_at)').uniq.sort.each do |dates| %>
+          <%# @more_invoice_data.kept.where(created_at: (Time.zone.now.beginning_of_day - 7.days).. Time.zone.now).pluck('DATE(created_at)').uniq.each do |dates| %>
+      <!-- As per above implementation, there was @more_invoice_data always selecting last 7days even after filter applying in prod.
+              
+              Also, earlier the loop would return ["2023-02-24", "2023-02-25", "2023-02-26", "2023-02-27"]
+                And 'dates' was each of these array items and i had manually updated fields based on this exact format of data
+
+                So the below loop for @more_invoice_data should also return in the above format only!
+            -->
+
+      <% @more_invoice_data.pluck("DATE(created_at)").uniq.sort.each do |dates| %>
         <tr>
           <td><%= dates.to_date.strftime("%d-%B") %></td>
           <td><%= @more_invoice_data.kept.where(created_at: dates.to_date.beginning_of_day .. dates.to_date.end_of_day).sum(:total) %></td>
@@ -60,7 +69,7 @@
 
                             <tbody>
                                   <% fee = {} %>
-                                  <% @more_invoice_data.kept.where(created_at: dates.to_date.beginning_of_day .. dates.to_date.end_of_day).each do|invoice| %>
+                                  <% @more_invoice_data.kept.where(created_at: dates.to_date.beginning_of_day .. dates.to_date.end_of_day).sort.each do|invoice| %>
                                     <% invoice.particulars.each do |particular| %>
                                       <% if fee.has_key?(particular.fee_type) %>
                                         <% fee[particular.fee_type] += particular.amount unless particular.amount.nil? %>

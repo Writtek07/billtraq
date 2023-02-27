@@ -108,7 +108,7 @@
   <div class="col">    
     <div class="card" id="dash-cards">
       <div class="card-body">
-        <h5 class="card-title"><u>Count of Invoices Created</u><span class="blockquote-footer">default last 7 days</span></h5>
+        <h5 class="card-title"><u>Count of Invoices Created</u></h5>
         <!-- Here using post method to block the params being passed in url-->
 	        <%= form_tag admin_dashboard_index_path, id: 'invoice-chart-form', method: :post do %>
 	          <div class="row g-3 align-items-end mb-3" style="margin-left: 7.2em;">
@@ -182,7 +182,7 @@
    <div class="col">
     <div class="card" id="dash-cards">      
       <div class="card-body">
-        <h5 class="card-title"><u>Invoice or Particular Anamoly/Deleted Data</u></h5>
+        <h5 class="card-title"><u>Invoice or Particular Deleted Data</u></h5>
         <div style="margin-top: 1em;"><%= render 'admin/deleted_invoices' %></div>
       </div>
     </div>

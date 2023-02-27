@@ -2,19 +2,20 @@
 <ul class="list-inline">
     <li>
       <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample1" aria-expanded="false" aria-controls="collapseExample" style="margin-bottom: 0.4em;">
-            <span class="fw-bolder">Invoices Deleted By User after 20th Jan'23 - <%= @discarded_invoices.count %></span> <span><i class="bi bi-chevron-double-down"></i></span>
+            <span class="fw-bolder">Invoices Deleted By User after 20th Jan'23</span> <i class="bi bi-chevron-double-down"></i>
       </button>
 
       <div class="collapse" id="collapseExample1">
         <div class="table-responsive">
           <table class="table table-sm table-sty table-hover table-bordered" cellspacing="0">
-          <thead>
+          <thead><span class="fw-bolder">Total: <%= @discarded_invoices.count %></span>
             <tr>
               <th>ID</th>
               <th>Username</th>
               <th>Created At</th>
-              <th>Amount</th>
+              <th>Deleted At</th>
               <th>Deleted By</th>
+              <th>Amount</th>
             </tr>
           </thead>
 
@@ -23,9 +24,10 @@
               <tr>
                 <td><%= invoice.id %></td>
                 <td><%= invoice.user.username %></td>
-                <td><%= invoice.created_at.strftime("%B") %></td>
-                <td><%= invoice.total %></td>
+                <td><%= invoice.created_at.strftime("%d-%B-%y") %></td>                
+                <td><%= invoice.discarded_at.strftime("%d-%B-%y") %></td>                
                 <td><%= invoice.discarded_by.present? ? User.find(invoice.discarded_by).username : 'Not Recorded' %></td>                
+                <td><%= invoice.total %></td>
               </tr>
             <% end %>
           </tbody>
@@ -33,16 +35,20 @@
         </div>
       </div>
     </li>
-  <% elsif @anamoly_invoices.present? %>
+<% else %>
+    <li style="margin-top: 1em;"><p class="font-monospace opacity-50">No Data for Deleted Invoices!</p></li>
+<% end %>    
+
+<% if @anamoly_invoices.present? %>
     <li style="margin-top: 1em;">
       <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample" style="margin-bottom: 0.4em;">
-            <span class="fw-bolder">Invoices updated atleast 1 day after creation - <%= @anamoly_invoices.count %></span> <span><i class="bi bi-chevron-double-down"></i></span>
+            <span class="fw-bolder">Invoices updated atleast 1 day after creation</span> <i class="bi bi-chevron-double-down"></i>
       </button>
 
       <div class="collapse" id="collapseExample2">
         <div class="table-responsive">
           <table class="table table-responsive table-sm table-sty table-hover table-bordered" cellspacing="0">
-          <thead>
+          <thead><span class="fw-bolder">Total: <%= @anamoly_invoices.count %></span>
             <tr>
               <th>Invoice ID</th>
               <th>Created By</th>
@@ -65,27 +71,28 @@
         </div>
       </div>
   </li>
-  <% else %>
-    <li style="margin-top: 1em;"><p style="font-family: monospace;">No Data for Invoice!</p></li>
-  <% end %>
+<% else %>
+    <li style="margin-top: 1em;"><p class="font-monospace opacity-50">No Data for post-updated Invoice!</p></li>
+<% end %>
 
-  <% if @discarded_particulars.present? %>
+<% if @discarded_particulars.present? %>
     <li style="margin-top: 1em;">
       <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample3" aria-expanded="false" aria-controls="collapseExample" style="margin-bottom: 0.4em;">
-            <span class="fw-bolder">Particulars Deleted By User - <%= @discarded_particulars.count %></span> <span><i class="bi bi-chevron-double-down"></i></span>
+            <span class="fw-bolder">Particulars Deleted By User</span> <i class="bi bi-chevron-double-down"></i>
       </button>
 
       <div class="collapse" id="collapseExample3">
         <div class="table-responsive">
           <table class="table table-responsive table-sm table-sty table-hover table-bordered" cellspacing="0">
-          <thead>
+          <thead><span class="fw-bolder">Total: <%= @discarded_particulars.count %></span>
             <tr>
               <th>ID</th>
-              <th>Fee type</th>
-              <th>Amount</th>
-              <th>Deleted At</th>
+              <th>Fee type</th>              
+              <th>Created At</th>              
               <th>Created By</th>
+              <th>Deleted At</th>
               <th>Deleted By</th>
+              <th>Amount</th>
             </tr>
           </thead>
 
@@ -93,11 +100,12 @@
             <% @discarded_particulars.each do |particular| %>
               <tr>
                 <td><%= particular.id %></td>
-                <td><%= particular.fee_type %></td>
-                <td><%= particular.amount %></td>
-                <td><%= particular.discarded_at.strftime("%d-%b-%y") %></td>
+                <td><%= particular.fee_type %></td>                
+                <td><%= particular.created_at.strftime("%d-%b-%y") %></td>                
                 <td><%= particular.invoice.user.username %></td>
+                <td><%= particular.discarded_at.strftime("%d-%b-%y") %></td>
                 <td><%= particular.discarded_by.present? ? User.find(particular.discarded_by).username : 'Not Recorded' %></td>
+                <td><%= particular.amount %></td>
               </tr>
             <% end %>      
           </tbody>
@@ -105,7 +113,7 @@
       </div>
     </div>
     </li>
-  <% else %>
-    <li style="margin-top: 1em;"><p style="font-family: monospace;">No Data for Particulars!</p></li>
+<% else %>
+    <li style="margin-top: 1em;"><p class="font-monospace opacity-50">No Data for Particulars!</p></li>
 </ul>
 <% end %>
