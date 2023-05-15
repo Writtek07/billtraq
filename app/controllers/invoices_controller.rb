@@ -153,8 +153,9 @@ class InvoicesController < ApplicationController
         #pending_months = student.pending_fees
         #if pending_months.blank?
           pending_months = {}
-        #end
-        (2022..Time.zone.now.year).each do |year|
+        #end      
+        start_year = student.date_of_admission.year > 2022? student.date_of_admission.year : 2022
+        (start_year..Time.zone.now.year).each do |year|
           inv_year = []
           #inv_month = []
           months_array.each do |e|
