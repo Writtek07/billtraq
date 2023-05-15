@@ -1,22 +1,24 @@
-# README
+# Moved from old repo due to mismatching config push https://github.com/Writtek07/Invoice_final
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* DO NOT upgrade or downgrade, use this exact versions, as issues with deployment as well as system and other node libraries which require this exact config to work.
 
-Things you may want to cover:
+* Ruby version -> `2.5.0`
 
-* Ruby version
+## System dependencies
+ * Node version -> `v12`
 
-* System dependencies
+## Database creation
+ * Now using psql in local as well. 
 
-* Configuration
+## Database initialization (For Dev only)
+ * database: `mimis`
+ * username: `postgres`
+ * password: `password`
 
-* Database creation
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+## Steps to use in dev mode
+* Git clone the repo after setting the local system with above requirements.
+* gem update --system 3.2.3
+* bundle install
+* Then if needed `yarn install --check-files`
+* `rails s` 
