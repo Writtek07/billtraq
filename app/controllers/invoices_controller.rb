@@ -133,26 +133,26 @@ class InvoicesController < ApplicationController
     def update_pending_months(student)
         #student = Student.find(self.student_id)
         months_array = []
-        student.invoices.kept.each do |inv|
-          if inv.month_from == inv.month_to
-            months_array << [inv.month_from]
-          else
-            months_array << [inv.month_from]
-            months_array << [inv.month_to]
+          student.invoices.kept.each do |inv|
+            if inv.month_from == inv.month_to
+              months_array << [inv.month_from]
+            else
+              months_array << [inv.month_from]
+              months_array << [inv.month_to]
               cur_months = months_array.sort.map {|i| i[0].to_s.split("-").second} #=> ["05", "06", "09"]
-            missing_months = find_missing_consecutive_numbers(cur_months).map { |e| e.rjust(2, "0") }
-            temp_months = []
-            missing_months.map { |j| temp_months << [months_array.last[0].split("-").first+ "-" +j] }
+              missing_months = find_missing_consecutive_numbers(cur_months).map { |e| e.rjust(2, "0") }
+              temp_months = []
+              missing_months.map { |j| temp_months << [months_array.last[0].split("-").first+ "-" +j] }
               months_array += temp_months 
+            end
           end
-        end     
         
         #pending_months_2022 = check_months(months_array, "2022") #returns => {"2022"=>["01", "02", "03", "04", "05", "06", "07", "08", "09", "10"]}
         #pending_months_till = check_months(months_array, "#{Time.zone.today.year}")
 
         #pending_months = student.pending_fees
         #if pending_months.blank?
-          pending_months = {}
+        pending_months = {}
         #end      
         start_year = student.date_of_admission.year > 2022? student.date_of_admission.year : 2022
         (start_year..Time.zone.now.year).each do |year|
@@ -161,7 +161,7 @@ class InvoicesController < ApplicationController
           months_array.each do |e|
             inv_year << e[0].to_s.split("-").first
             if inv_year.include?(year.to_s)
-              pending_months.merge!(check_months(months_array, year.to_s))
+              pending_months.merge!(check_months(months_array, year.to_s, student.date_of_admission))
             end
           end
         end
@@ -184,7 +184,7 @@ class InvoicesController < ApplicationController
         end
     end
 
-    def check_months(arr,year)
+    def check_months(arr,year,doa)
       # Initialize an empty hash to store months for the given year
       months_year = {}
       # Initialize an array to store the pending months
@@ -201,9 +201,16 @@ class InvoicesController < ApplicationController
         end
       end
 
-      # Check if all 12 months are present in the given year array
-      (1..12).each do |month|
-        pending_months << month.to_s.rjust(2, "0") if !months_year[year].include?(month.to_s.rjust(2, "0"))
+      # If new admission then select months from date of admission month
+      if doa.year == Time.zone.now.year
+        (doa.month+1..12).each do |month|
+          pending_months << month.to_s.rjust(2, "0") if !months_year[year].include?(month.to_s.rjust(2, "0"))
+        end
+      else  
+        # Check if all 12 months are present in the given year array
+        (1..12).each do |month|
+          pending_months << month.to_s.rjust(2, "0") if !months_year[year].include?(month.to_s.rjust(2, "0"))
+        end
       end
 
       return { year => pending_months }
