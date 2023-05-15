@@ -18,7 +18,7 @@
                     <div class="form-group">
                       <div class="input-group">
                           <span class="input-group-text" id="addon-wrapping"><strong>Invoice from:</strong></span>
-                          <b><%= form.month_field :month_from, min: Date.parse("01-01-2022"), max: Time.zone.today+12.month, class: 'form-control rounded-left' ,aria_describedby: "addon-wrapping", autofocus: true, style: 'width:300px; margin-bottom:0.9em;', value: invoice.month_from %></b>
+                          <b><%= form.month_field :month_from, min: Date.parse("01-01-2022"), max: Time.zone.today+20.month, class: 'form-control rounded-left' ,aria_describedby: "addon-wrapping", autofocus: true, style: 'width:300px; margin-bottom:0.9em;', value: invoice.month_from %></b>
                       </div>
                     </div>
                     
@@ -26,7 +26,7 @@
                     <div class="form-group">
                       <div class="input-group">
                           <span class="input-group-text" id="addon-wrapping"><strong>Invoice to:</strong></span>
-                          <b><%= form.month_field :month_to, min: Date.parse("01-01-2022"), max: Time.zone.today+12.month, class: 'form-control rounded-left', aria_describedby: "addon-wrapping", autofocus: true, style: 'width:300px; margin-bottom:0.9em;', value: invoice.month_to %></b>
+                          <b><%= form.month_field :month_to, min: Date.parse("01-01-2022"), max: Time.zone.today+20.month, class: 'form-control rounded-left', aria_describedby: "addon-wrapping", autofocus: true, style: 'width:300px; margin-bottom:0.9em;', value: invoice.month_to %></b>
                           <b class="blockquote-footer text-dark text-left" style="margin-top:0.1em">Enter same <u>from:</u> and <u>to:</u> month if entry is for 1 month</b>
                       </div>
                     </div>
