@@ -8,6 +8,11 @@
 
 ## System dependencies
  * Node version -> `v12.22.12`
+ * Windows command to set node version if node and npm already installed :-
+ 1. List all available node versions -> `nvm ls`
+ 2. Use the defined version -> `nvm use v12.22.12`
+ * Install the packages if error.
+ 
 
 ## Database creation
  * Now using psql in local as well. 
