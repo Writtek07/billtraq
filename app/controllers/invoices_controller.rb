@@ -53,6 +53,7 @@ class InvoicesController < ApplicationController
       @invoice = Invoice.find(params[:id])
       @student = Student.find_by_id(@invoice.student_id)
       @particulars = @invoice.particulars
+      @particular = Particular.new
     rescue StandardError => e
       redirect_to root_path
       flash[:error] = e.message

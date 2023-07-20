@@ -124,25 +124,24 @@
               </div>
 
 
-              <%# link_to 'Add new items', '#', class: 'btn btn-outline-primary', data: { bs_toggle: 'modal', bs_target: '#modalAddPart' } %>
+              <%= link_to 'Add new items', "#" , class: 'btn btn-outline-primary', data: { bs_toggle: 'modal', bs_target: '#modalAddPart' } %>
               
 
-              <!--<div class="modal fade" id="modalAddPart" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="font-family: open-sans;">
+              <div class="modal fade" id="modalAddPart" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="font-family: open-sans;">
                 <div class="modal-dialog">
                   <div class="modal-content">
-                    <div class="modal-header bg-primary">
-                      <h5 class="modal-title text-center" id="exampleModalLabel">Add Fee </h5>
+                    <div class="modal-header bg-grey">
+                      <h5 class="modal-title" id="exampleModalLabel">Add Fee for <%= @invoice.student.first_name %> </h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                      <%# render 'particulars/new.html.erb' %>
-                      <div id="new-invoice-particular-form"></div>
+                    <div class="modal-body">                      
+                      <%= render "invoices/particulars/form", { invoice: @invoice, particular: @particular }%>
                     </div>
                   </div>
                 </div>
-              </div>-->
+              </div>
               
-              <%= link_to 'Add new items', new_invoice_particular_path(@invoice), class: 'btn btn-outline-primary' %>
+              <%# link_to 'Add new items', new_invoice_particular_path(@invoice), class: 'btn btn-outline-primary' %>
               
               <h4 >Total: <%= number_to_currency(cur_total, unit: "₹", raise: true) %></h4>
               <%= button_to 'Submit Fees', @invoice, method: :patch, params: {"invoice[total]" => cur_total}, class: 'btn btn-outline-success', style: 'width:250px' %>
