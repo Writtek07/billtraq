@@ -6,7 +6,7 @@ namespace :twilio do
         cash_total = Invoice.where(created_at: Time.zone.today.beginning_of_day..Time.zone.today.end_of_day, payment_mode: 'Cash').sum(:total)
         online_total = Invoice.where(created_at: Time.zone.today.beginning_of_day..Time.zone.today.end_of_day, payment_mode: 'Online').sum(:total)
         total = cash_total + online_total
-        message = "Total for #{today}. Cash - #{cash_total} | Online - #{online_total}"
+        message = "Total for #{today} - #{total}. Cash - #{cash_total} | Online - #{online_total}"
     
         phone_number.each do |phn|
             SmsService.send_invoice_reminder(phn, message)
