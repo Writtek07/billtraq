@@ -4,7 +4,7 @@ class SmsService
       from_number = Rails.application.credentials.dig(:TWILIO_PHONE_NUMBER) || ENV['TWILIO_PHONE_NUMBER']
   
       begin
-        puts client.messages.create(
+        client.messages.create(
           from: from_number,
           to: phone_number,
           body: message
