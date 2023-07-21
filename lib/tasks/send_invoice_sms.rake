@@ -1,7 +1,7 @@
 namespace :twilio do
     desc 'Send daily invoice SMS'
     task send_invoice_sms: :environment do
-        phone_number = '917676469507'
+        phone_number = '+918839390992'
         today = Date.today
         cash_total = Invoice.where(created_at: Time.zone.today.beginning_of_day..Time.zone.today.end_of_day, payment_mode: 'Cash').sum(:total)
         online_total = Invoice.where(created_at: Time.zone.today.beginning_of_day..Time.zone.today.end_of_day, payment_mode: 'Online').sum(:total)
