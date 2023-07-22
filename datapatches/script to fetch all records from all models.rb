@@ -8,7 +8,7 @@ models = {
   "Users" => User
 }
 
-csv_file_path = "#{Rails.root}/lib/data.csv"
+csv_file_path = "#{Rails.root}/lib/Data_#{Time.now}.csv"
 
 # Loop through each model and generate its sheet in the CSV file
 CSV.open(csv_file_path, "wb") do |csv|
@@ -21,7 +21,7 @@ CSV.open(csv_file_path, "wb") do |csv|
 
     # Loop through each record in the model and write its data as a row in the sheet
     model.all.each do |record|
-      csv << record.attributes.values
+      csv << record.attributes.values      
     end
 
     # Add an empty row to separate the sheets
