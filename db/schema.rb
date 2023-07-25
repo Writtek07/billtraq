@@ -10,7 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_15_154043) do
+ActiveRecord::Schema.define(version: 2023_07_24_202245) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "invoices", force: :cascade do |t|
     t.datetime "date"
@@ -37,7 +40,7 @@ ActiveRecord::Schema.define(version: 2023_02_15_154043) do
   create_table "particulars", force: :cascade do |t|
     t.string "fee_type"
     t.decimal "amount"
-    t.integer "invoice_id", null: false
+    t.bigint "invoice_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "discarded_at"
@@ -50,7 +53,7 @@ ActiveRecord::Schema.define(version: 2023_02_15_154043) do
     t.string "first_name"
     t.string "last_name"
     t.integer "admission_no"
-    t.integer "phone_number"
+    t.bigint "phone_number"
     t.string "grade"
     t.string "section"
     t.string "father_name"
@@ -60,8 +63,12 @@ ActiveRecord::Schema.define(version: 2023_02_15_154043) do
     t.date "dob"
     t.date "date_of_admission"
     t.datetime "discarded_at"
-    t.json "pending_fees"
+    t.jsonb "pending_fees"
     t.boolean "fee_pending"
+    t.integer "sms_status", default: 0
+    t.integer "sms_sent_count", default: 0
+    t.datetime "sent_at"
+    t.string "message"
     t.index ["discarded_at"], name: "index_students_on_discarded_at"
   end
 
@@ -96,9 +103,9 @@ ActiveRecord::Schema.define(version: 2023_02_15_154043) do
     t.bigint "item_id", null: false
     t.string "event", null: false
     t.string "whodunnit"
-    t.text "object", limit: 1073741823
+    t.text "object"
     t.datetime "created_at"
-    t.text "object_changes", limit: 1073741823
+    t.text "object_changes"
     t.index ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
   end
 

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  get 'fee_reminder/index'
   resources :students do
     collection { post :import}
     

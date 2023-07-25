@@ -29,7 +29,7 @@
 
 		
 					<tbody>
-			                	<% @invoices.each do |invoice| %>
+			                	<% @invoices.order(created_at: :desc).each do |invoice| %>
 			                      <tr>
 			                      	<td><%= link_to invoice.id, invoice_path(invoice) %></td>
 			                        <td><%= invoice.created_at.strftime("%d-%m-%Y") %></td>

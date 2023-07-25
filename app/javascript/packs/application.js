@@ -6,18 +6,17 @@
 
 require("@rails/ujs").start()
 //require("turbolinks").start()
-require("@rails/activestorage").start()
+// require("@rails/activestorage").start()
 require("channels")
 require("@popperjs/core")
 require("../stylesheets/application.scss")
-
+import 'bootstrap'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import "chartkick"
 //= require highcharts
 //= require chartkick
 
 // Import the specific modules you may need (Modal, Alert, etc)
-import { Tooltip, Popover } from "bootstrap"
 
 // The stylesheet location we created earlier
 
@@ -61,6 +60,10 @@ $(document).ready(function() {
       // submit the form
       this.submit();
     });
+  });
+
+  $(".nav-tabs li.nav-item a.nav-link").click(function() {
+    $(".nav-tabs li.nav-item a.nav-link").removeClass('active');
   });
 
 //Adding invoices items with modal via AJAX.(Pending)

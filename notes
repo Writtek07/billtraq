@@ -1,3 +1,8 @@
+##Use `spring stop` to stop the cache in case you are unable to open rails console due to this error, but rails s starts.
+/* warning Integrity check: System parameters don't match
+error Integrity check failed
+error Found 1 errors. */
+
 ##Download data from Render server
 1. Add ssh keys to account( Google)
 2.scp srv-ceavhi2rrk0bbtdf7820@ssh.oregon.render.com:~/project/src/lib/data.csv Desktop/  (This cmd will save file in lib of render to Desktop of local)

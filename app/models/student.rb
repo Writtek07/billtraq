@@ -33,7 +33,8 @@ class Student < ApplicationRecord
 
 	validate :validate_dob
 
-
+	enum sms_status: { default: 0, sent: 1, error: 2 }
+	
 
 	def self.import(file)
 		CSV.foreach(file.path, headers: true) do |row|
