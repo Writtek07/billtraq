@@ -48,7 +48,7 @@ class Admin::DashboardController < ApplicationController
 	    	#When no filter or one param i.e.start or end date missing	    
 	     	@more_invoice_data = Invoice.kept.where(created_at: (Time.zone.today-7.days).beginning_of_day..Time.zone.now)
 	    end
-	  end
+	end
 
 	def set_invoice_chart_data
 		#puts params[:inv_chart_start_date], params[:inv_chart_end_date]

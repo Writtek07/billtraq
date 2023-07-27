@@ -8,9 +8,10 @@ require("@rails/ujs").start()
 //require("turbolinks").start()
 // require("@rails/activestorage").start()
 require("channels")
+require("bootstrap")
 require("@popperjs/core")
 require("../stylesheets/application.scss")
-import 'bootstrap'
+// import 'bootstrap'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import "chartkick"
 //= require highcharts
@@ -60,11 +61,10 @@ $(document).ready(function() {
       // submit the form
       this.submit();
     });
+
+
   });
 
-  $(".nav-tabs li.nav-item a.nav-link").click(function() {
-    $(".nav-tabs li.nav-item a.nav-link").removeClass('active');
-  });
 
 //Adding invoices items with modal via AJAX.(Pending)
 //$(document).ready(function() {

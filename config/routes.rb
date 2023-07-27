@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
   
   get 'fee_reminder/index'
+  post 'fee_reminder/index'
+  
   resources :students do
     collection { post :import}
     
     collection do
       get 'pending_fee'
+      post 'pending_fee', to: 'students#send_fee_reminder', as: 'send_fee_reminder_path'
       get 'missing'
       get 'removed'
     end
@@ -16,6 +19,7 @@ Rails.application.routes.draw do
     resources :invoices
   end
  
+  
 
   devise_for :users, controllers: {
         registrations: 'user/registrations'

@@ -1,5 +1,5 @@
 class StudentsController < ApplicationController
-  before_action :set_student, only: %i[ show edit update destroy ]
+  before_action :set_student, only: %i[ show edit update destroy send_fee_reminder]
   before_action :set_paper_trail_whodunnit
   
   # GET /students or /students.json
@@ -28,6 +28,16 @@ class StudentsController < ApplicationController
     Invoice.where(created_at: Time.zone.today.beginning_of_month.beginning_of_day..Time.zone.now).map { |i| cur_students << i.student }
     @current_month_students = Student.all - cur_students.uniq
     render 'pending_fee.html.erb'
+  end
+
+  def send_fee_reminder    
+    resp = Services::FeeReminderService.send_fee_reminder_message(@student)
+    if resp[:success]
+      flash[:success] = "Sms Sent successfully!"
+    else
+      flash[:error] = "Sms sending failed! - #{resp[:error_message]}"
+    end
+    pending_fee
   end
 
   def removed

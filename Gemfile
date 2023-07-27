@@ -60,7 +60,7 @@ gem 'ransack'
 gem 'devise'
 gem 'awesome_print'
 gem 'paper_trail'
-gem 'bootstrap'
+gem 'bootstrap', '~> 4.0'
 
 gem "prawn", "~> 2.4"
 
