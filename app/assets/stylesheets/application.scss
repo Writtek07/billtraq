@@ -20,6 +20,22 @@
 @import "**/*";
 @import 'animate';
 
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #fafafa;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;    
+}
+
+
 .nav-header-txt {
     -webkit-animation-duration: 4.5s;
     animation-duration: 4.5s;
@@ -98,4 +114,10 @@ a:hover {
     //height: 300px;
     border: 1px solid black;
     width: 600px;
+}
+
+a, a:hover, a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
 }

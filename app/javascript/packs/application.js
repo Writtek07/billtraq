@@ -62,6 +62,10 @@ $(document).ready(function() {
       this.submit();
     });
 
+    $('#sidebarCollapse').on('click', function () {
+      $('#sidebar').toggleClass('active');
+    });
+
 
   });
 

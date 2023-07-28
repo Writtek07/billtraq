@@ -79,7 +79,6 @@ class InvoicesController < ApplicationController
     @student = @invoice.student
     respond_to do |format|
       if @invoice.save
-        update_pending_months(@student)
         format.html { redirect_to invoice_url(@invoice), notice: "Invoice was successfully created." }
         format.json { render :show, status: :created, location: @invoice }
       else
@@ -87,6 +86,7 @@ class InvoicesController < ApplicationController
         format.json { render json: @invoice.errors, status: :unprocessable_entity }
       end
     end
+    update_pending_months(@student)
   end
 
   # PATCH/PUT /invoices/1 or /invoices/1.json
@@ -99,7 +99,6 @@ class InvoicesController < ApplicationController
         @invoice = Invoice.find(params[:id])
         @student = @invoice.student
         if @invoice.update(invoice_params)
-          update_pending_months(@student)
           format.html { redirect_to invoice_url(@invoice), notice: "Invoice was successfully updated." }
           format.json { render :show, status: :ok, location: @invoice }
         else
@@ -107,6 +106,7 @@ class InvoicesController < ApplicationController
           format.json { render json: @invoice.errors, status: :unprocessable_entity }
         end
       end
+      update_pending_months(@student)
     end
   end
 
