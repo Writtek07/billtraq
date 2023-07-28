@@ -86,7 +86,7 @@ class InvoicesController < ApplicationController
         format.json { render json: @invoice.errors, status: :unprocessable_entity }
       end
     end
-    update_pending_months(@student)
+    # update_pending_months(@student)
   end
 
   # PATCH/PUT /invoices/1 or /invoices/1.json
@@ -106,7 +106,7 @@ class InvoicesController < ApplicationController
           format.json { render json: @invoice.errors, status: :unprocessable_entity }
         end
       end
-      update_pending_months(@student)
+      # update_pending_months(@student)
     end
   end
 
@@ -129,11 +129,5 @@ class InvoicesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def invoice_params
       params.require(:invoice).permit(:date, :total, :user_id, :payment_mode, :student_id, :class_no, :cheque_no, :receipt_number, :bank_account, :status, :month_from, :month_to, :discarded_by, :notes)
-    end
-
-    def update_pending_months(student)
-        #student = Student.find(self.student_id)        
-        student.update_column(:pending_fees, InvoiceService::CalculatePendingFee.pending(student))
-        InvoiceService::FeePendingStatus.update_status(student)
-    end
+    end  
 end

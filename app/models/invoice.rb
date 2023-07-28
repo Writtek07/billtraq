@@ -13,6 +13,7 @@ class Invoice < ApplicationRecord
 	after_validation :invoice_month_validity, on: [ :create, :update ]
 	before_create :check_invoice_dates
 	after_create :change_status
+	after_save :update_pending_months
 	#after_validation :repeated_invoice_month_check, on: [ :create, :update ]
 	
 	paginates_per 10
@@ -39,7 +40,7 @@ class Invoice < ApplicationRecord
         elsif self.payment_mode == 'Cheque'
           self.update_attributes!(status: 'Pending')
         end
-  end
+  	end
 	
 
 	def check_invoice_dates
@@ -58,7 +59,15 @@ class Invoice < ApplicationRecord
 				errors.add(:base, 'There are months pending for this student before'.concat(" "+month_from.concat("-01").to_date.strftime("%B")))
 			else
 			end
-		end
+	end
+
+
+	def update_pending_months
+		student = Student.find(self.student_id)        
+		student.update_column(:pending_fees, InvoiceService::CalculatePendingFee.pending(student))
+		InvoiceService::FeePendingStatus.update_status(student)
+	end
+
   end
 
 
