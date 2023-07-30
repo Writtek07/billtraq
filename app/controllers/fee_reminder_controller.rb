@@ -1,4 +1,6 @@
 class FeeReminderController < ApplicationController
+  before_action :check_admin, on: :index
+
   def index
     # @sms_statuses = Student.distinct.pluck(:sms_status)
     @sms_statuses = ["error", "sent"]    
@@ -10,4 +12,15 @@ class FeeReminderController < ApplicationController
       @students = Student.where(sent_at: Time.zone.today.beginning_of_day .. Time.zone.now).order(sent_at: :desc)
     end
   end
+
+
+  private
+
+  def check_admin
+    if !current_user.admin?
+      redirect_to root_path
+      flash[:error] = "Unauthorized access!"
+    end
+  end
+
 end

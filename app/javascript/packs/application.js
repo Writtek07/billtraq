@@ -65,6 +65,13 @@ $(document).ready(function() {
     $('#sidebarCollapse').on('click', function () {
       $('#sidebar').toggleClass('active');
     });
+    const sidebarHeader = document.querySelector('.sidebar-header');
+        const sidebar = document.getElementById('sidebar');
+        
+        sidebarHeader.addEventListener('click', function() {
+            sidebar.classList.toggle('active');
+        });
+    
 
 
   });

@@ -118,7 +118,7 @@
               <a class="dropdown-item" href="#">Cash : <%= number_to_currency(Invoice.all.kept.where(created_at: Time.zone.today.beginning_of_day..Time.zone.today.end_of_day, payment_mode: 'Cash').sum(:total), unit: "₹", raise: true) %></a>
               <a class="dropdown-item" href="#">Online : <%= number_to_currency(Invoice.all.kept.where(created_at: Time.zone.today.beginning_of_day..Time.zone.today.end_of_day, payment_mode: 'Online').sum(:total), unit: "₹", raise: true) %></a>
             </div>
-          </div>
+          </div>          
 
           <!--<ul class="list-inline text-center d-flex justify-content-center">
             <li class="list-group-item">

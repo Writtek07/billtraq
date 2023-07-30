@@ -1,5 +1,6 @@
 class InvoicesController < ApplicationController
   before_action :set_invoice, only: %i[ show edit update destroy print pdf]
+  before_action :check_admin, only: :cheque
 
   before_action :set_paper_trail_whodunnit
   # GET /invoices or /invoices.json
@@ -130,4 +131,12 @@ class InvoicesController < ApplicationController
     def invoice_params
       params.require(:invoice).permit(:date, :total, :user_id, :payment_mode, :student_id, :class_no, :cheque_no, :receipt_number, :bank_account, :status, :month_from, :month_to, :discarded_by, :notes)
     end  
+
+    def check_admin
+      if !current_user.admin?
+        redirect_to root_path
+        flash[:error] = "Unauthorized access!"
+      end
+    end
+
 end

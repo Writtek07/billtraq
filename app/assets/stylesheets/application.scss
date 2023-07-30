@@ -24,6 +24,9 @@
 body {
     font-family: 'Poppins', sans-serif;
     background: #fafafa;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 p {
@@ -79,17 +82,17 @@ p {
 }
 
 
-.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    background-color: #FFFF00;
-    color: #FFC0CB;
+// .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+//     background-color: #FFFF00;
+//     color: #FFC0CB;
 
-}
+// }
 
-.navbar-nav {
-    font-family:"open-sans";
-    text-transform: uppercase;
-    font-size: 1.1em;  
-}
+// .navbar-nav {
+//     font-family:"open-sans";
+//     text-transform: uppercase;
+//     font-size: 1.1em;  
+// }
 
 
 //.navbar-nav .nav-link.active,
@@ -119,3 +122,123 @@ a, a:hover, a:focus {
     text-decoration: none;
     transition: all 0.3s;
 }
+
+
+// #sidebar {
+    
+//     background: #7386D5;
+//     color: #fff;
+//     transition: all 0.3s;
+// }
+
+// #sidebar .sidebar-header {
+//     padding: 20px;
+//     background: #6d7fcc;
+// }
+
+// #sidebar ul.components {
+//     padding: 20px 0;
+//     border-bottom: 1px solid #47748b;
+// }
+
+// #sidebar ul p {
+//     color: #fff;
+//     padding: 10px;
+// }
+
+// #sidebar ul li a {
+//     padding: 10px;
+//     font-size: 1.1em;
+//     display: block;
+// }
+// #sidebar ul li a:hover {
+//     color: #7386D5;
+//     background: #fff;
+// }
+
+// #sidebar ul li.active > a, a[aria-expanded="true"] {
+//     color: #fff;
+//     background: #6d7fcc;
+// }
+
+// .wrapper {
+//     display: flex;
+//     align-items: stretch;
+// }
+
+// #sidebar {
+//     min-width: 250px;
+//     max-width: 250px;
+// }
+
+// #sidebar.active {
+//     margin-left: -250px;
+// }
+// #sidebar {
+//     background: #7386D5;
+//     color: #fff;
+//     transition: all 0.3s;
+//     width: 100%;
+//     // min-width: 250px;
+//     // max-width: 600px;
+//     height: 100%; /* Set the height of the sidebar to the full viewport height */
+//     overflow-y: auto; /* Add a scrollbar when content overflows */
+// }
+
+// #sidebar .sidebar-header {
+//     padding: 20px;
+//     background: #6d7fcc;
+// }
+
+// #sidebar ul.components {
+//     padding: 20px 0;
+//     border-bottom: 1px solid #47748b;
+// }
+
+// #sidebar ul p {
+//     color: #fff;
+//     padding: 10px;
+// }
+
+// #sidebar ul li a {
+//     padding: 10px;
+//     font-size: 1.1em;
+//     display: block;
+// }
+
+// #sidebar ul li a:hover {
+//     color: #7386D5;
+//     background: #fff;
+// }
+
+// #sidebar ul li.active > a,
+// a[aria-expanded="true"] {
+//     color: #fff;
+//     background: #6d7fcc;
+// }
+
+// .wrapper {
+//     display: flex;
+//     width: 100%;
+//     height: 100%;
+// }
+
+// #sidebar.active {
+//     margin-left: -250px;
+// }
+
+// /* Media query for small screens */
+// @media (max-width: 768px) {
+//     .wrapper {
+//         flex-direction: column;
+//     }
+
+//     #sidebar {
+//         margin-left: 0;
+//         max-width: none;
+//     }
+
+//     #sidebar.active {
+//         margin-left: 0;
+//     }
+// }

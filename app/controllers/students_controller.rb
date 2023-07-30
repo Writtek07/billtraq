@@ -1,6 +1,7 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: %i[ show edit update destroy send_fee_reminder]
   before_action :set_paper_trail_whodunnit
+  before_action :check_admin, only: %i[ removed ]
   
   # GET /students or /students.json
   def index
@@ -153,5 +154,12 @@ class StudentsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def student_params
       params.require(:student).permit(:first_name, :last_name, :admission_no, :phone_number, :grade, :section, :father_name, :mother_name, :dob, :date_of_admission, :discarded_at)
+    end
+
+    def check_admin
+      if !current_user.admin?
+        redirect_to root_path
+        flash[:error] = "Unauthorized access!"
+      end
     end
 end

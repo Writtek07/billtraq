@@ -57,7 +57,7 @@ class Invoice < ApplicationRecord
 				else
 				end
 				if pending_fee[from_year].include?(from_month) && pending_fee[from_year].index(from_month) != 0
-					# errors.add(:base, 'There are months pending for this student before'.concat(" "+month_from.concat("-01").to_date.strftime("%B")))
+					# errors.add(:base, 'There are months pending for this student before'.concat(" "+from_month.concat("-01").to_date.strftime("%B")))
 					errors.add(:base, 'There are months pending for this student before the entered month')
 				else
 				end
@@ -71,29 +71,6 @@ class Invoice < ApplicationRecord
 		student.update_column(:pending_fees, InvoiceService::CalculatePendingFee.pending(student))
 		InvoiceService::FeePendingStatus.update_status(student)
 	end
-
-  end
-
-
-
-
-
-  #Moved all logic to controller as validations in model is getting affected by update pending fees logic
-	#For now skipping that part where invoice having month_from != month_to 
-  #def repeated_invoice_month_check
-  #	student = Student.find(self.student_id)
-  #	if student.pending_fees.present?
-	#  	if self.month_from == self.month_to
-	#  		if !(student.pending_fees[self.month_from.split("-").first.to_s].include?(self.month_from.split("-").last.to_s))
-	#  			errors.add(:base, 'Invoice for entered months already exists.')
-	#  		end
-	#  	else
-	#  		if !student.pending_fees[self.month_from.split("-").first].include?(self.month_from.split("-").last) && !student.pending_fees[self.month_to.split("-").first].include?(self.month_to.split("-").last)
-	#  			errors.add(:base, 'Invoice for entered months already exists.')
-	#  		end
-	#  	end
-	#  end
-  #end
 
 	private
 end
