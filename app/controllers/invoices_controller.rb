@@ -37,7 +37,7 @@ class InvoicesController < ApplicationController
 
 
   def cheque
-    @invoices = Invoice.kept.where(status: 'Pending')
+    @invoices = Invoice.kept.where(status: :pending)
     if @invoices.present?
       render 'cheque_data.html.erb'
     else

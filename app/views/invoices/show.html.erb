@@ -53,15 +53,18 @@
                     <%= @invoice.month_to.present? ? month_name(@invoice.month_to)+" "+@invoice.month_to.split("-").first[2,3] : "<a href='#''>Missing</a>".html_safe %>
                   </li>
 
-                  <li class="inv-list">
-                    <strong>Cheque No:</strong>
-                    <%= @invoice.cheque_no %>
-                  </li>
+                  <% if @invoice.payment_mode == 'Cheque' %>
 
-                  <li class="inv-list">
-                    <strong>Bank Name:</strong>
-                    <%= @invoice.bank_account.capitalize %>
-                  </li>
+                    <li class="inv-list">
+                      <strong>Cheque No:</strong>
+                      <%= @invoice.cheque_no %>
+                    </li>
+
+                    <li class="inv-list">
+                      <strong>Bank Name:</strong>
+                      <%= @invoice.bank_account.capitalize %>
+                    </li>
+                  <% end %>
 
                   <!--Old logic code. Now cheque data is added during invoice creation. -->
                    <%# if @invoice.payment_mode == 'Cheque' && !@invoice.cheque_no.present? && !@invoice.bank_account.present? %>

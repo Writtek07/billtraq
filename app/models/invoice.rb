@@ -10,8 +10,8 @@ class Invoice < ApplicationRecord
 	validates :month_to, presence: true
 	validates :month_from, presence: true
 	validates :payment_mode, presence: true
-	validates :bank_account, presence: true
-	validates :cheque_no, presence: true
+	validates :bank_account, presence: true, if: :payment_mode_cheque?
+	validates :cheque_no, presence: true, if: :payment_mode_cheque?
 
 	after_validation :invoice_month_validity, on: [ :create, :update ]
 	before_create :check_invoice_dates
@@ -19,6 +19,8 @@ class Invoice < ApplicationRecord
 	after_save :update_pending_months
 	#after_validation :repeated_invoice_month_check, on: [ :create, :update ]
 	
+	enum status: { paid: 0, pending: 1 }
+
 	paginates_per 10
 
 	
@@ -39,9 +41,11 @@ class Invoice < ApplicationRecord
 
 	def change_status
         if self.payment_mode == 'Cash' || self.payment_mode == 'Online'
-          self.update_attributes!(status: 'Paid')
+        #   self.update_attributes!(status: 'Paid')
+			self.paid!
         elsif self.payment_mode == 'Cheque'
-          self.update_attributes!(status: 'Pending')
+        #   self.update_attributes!(status: 'Pending')
+			self.pending!
         end
   	end
 	
@@ -50,9 +54,7 @@ class Invoice < ApplicationRecord
 		student = Student.find(self.student_id)
 		pending_fee = student.pending_fees
 		if pending_fee.present?
-			from_year, from_month = self.month_from.split("-")
-			#to_year, to_month = self.month_to.split("-")
-			#puts student.id,from_year, from_month,pending_fee
+			from_year, from_month = self.month_from.split("-")			
 			if pending_fee[from_year].present?
 				if !pending_fee[from_year].include?(from_month)
 					#puts pending_fee[from_year].include?(from_month).to_s+"Pending->#{pending_fee[from_year]}"+"from_month->#{from_month}"
@@ -76,4 +78,8 @@ class Invoice < ApplicationRecord
 	end
 
 	private
+
+	def payment_mode_cheque?
+		payment_mode == 'Cheque'
+	end
 end
