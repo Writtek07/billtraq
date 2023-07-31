@@ -94,7 +94,7 @@ class InvoicesController < ApplicationController
   def update
     if (invoice_params[:month_from] || invoice_params[:month_to]) && !current_user.admin?
       flash[:error] = 'Unauthorized to update months in invoice after creating'
-      redirect_to invoice_url(@invoice)
+      redirect_to invoice_url(@invoice)    
     else
       respond_to do |format|
         @invoice = Invoice.find(params[:id])
@@ -108,7 +108,7 @@ class InvoicesController < ApplicationController
         end
       end
       # update_pending_months(@student)
-    end
+    end    
   end
 
   # DELETE /invoices/1 or /invoices/1.json
@@ -137,6 +137,5 @@ class InvoicesController < ApplicationController
         redirect_to root_path
         flash[:error] = "Unauthorized access!"
       end
-    end
-
+    end    
 end

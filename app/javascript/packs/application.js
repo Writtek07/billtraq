@@ -62,6 +62,7 @@ $(document).ready(function() {
       this.submit();
     });
 
+    // ################## Sidebar starts ##################
     $('#sidebarCollapse').on('click', function () {
       $('#sidebar').toggleClass('active');
     });
@@ -71,8 +72,31 @@ $(document).ready(function() {
         sidebarHeader.addEventListener('click', function() {
             sidebar.classList.toggle('active');
         });
-    
+    // ################## Sidebar end ##################
 
+    // ################## cheque data input fields starts ##################
+    var paymentModeSelect = document.getElementById('payment_mode_select');
+
+    // Function to show or hide the cheque fields based on the selected value
+    function toggleChequeFields() {
+      var chequeFields = document.querySelector('.cheque-fields');
+      var selectedValue = paymentModeSelect.value;
+
+      // Show the cheque fields if the selected value is "Cheque", hide them otherwise
+      if (selectedValue === 'Cheque') {
+        chequeFields.style.display = 'block';
+      } else {
+        chequeFields.style.display = 'none';
+      }
+    }
+
+    // Initial call to set the visibility based on the default value
+    toggleChequeFields();
+
+    // Add an event listener to the payment_mode select to toggle the cheque fields
+    paymentModeSelect.addEventListener('change', toggleChequeFields);
+    
+    // ################## cheque data input fields ends ##################
 
   });
 

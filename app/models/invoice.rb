@@ -9,7 +9,10 @@ class Invoice < ApplicationRecord
 	validates :student, presence: true
 	validates :month_to, presence: true
 	validates :month_from, presence: true
-	
+	validates :payment_mode, presence: true
+	validates :bank_account, presence: true
+	validates :cheque_no, presence: true
+
 	after_validation :invoice_month_validity, on: [ :create, :update ]
 	before_create :check_invoice_dates
 	after_create :change_status

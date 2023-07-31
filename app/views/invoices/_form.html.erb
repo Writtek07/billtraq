@@ -45,8 +45,24 @@
                     <div class="form-group">
                           <div class="input-group">
                               <span class="input-group-text" id="addon-wrapping"><strong>Fee Type:</strong></span>
-                              <b><%= form.select(:payment_mode, options_for_select([['Online','Online'],['Cash','Cash'],['Cheque','Cheque']]) , {}, { class: 'form-control rounded-left', style: 'width:300px; margin-bottom:0.9em;' }) %></b>
+                              <b><%= form.select(:payment_mode, options_for_select([['Online','Online'],['Cash','Cash'],['Cheque','Cheque']]) , {}, { class: 'form-control rounded-left', style: 'width:300px; margin-bottom:0.9em;', id: 'payment_mode_select' }) %></b>
                           </div>
+                    </div>
+
+                    <div class="cheque-fields" style="display: none;">
+                      <div class="form-group">
+                        <div class="input-group">
+                          <span class="input-group-text" id="addon-wrapping"><strong>Bank Account:</strong></span>
+                          <b><%= form.text_field :bank_account, autofocus: true, class: "form-control rounded-left", aria_describedby: "addon-wrapping", style: 'width:300px; margin-bottom:0.9em;' %></b>
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="input-group">
+                          <span class="input-group-text" id="addon-wrapping"><strong>Cheque No:</strong></span>
+                          <b><%= form.number_field :cheque_no, autofocus: true, class: "form-control rounded-left", aria_describedby: "addon-wrapping", style: 'width:300px; margin-bottom:0.9em;' %></b>
+                        </div>
+                      </div>
                     </div>
                     
 

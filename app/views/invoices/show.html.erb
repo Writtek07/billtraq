@@ -53,23 +53,6 @@
                     <%= @invoice.month_to.present? ? month_name(@invoice.month_to)+" "+@invoice.month_to.split("-").first[2,3] : "<a href='#''>Missing</a>".html_safe %>
                   </li>
 
-                  
-                   <% if @invoice.payment_mode == 'Cheque' && !@invoice.cheque_no.present? && !@invoice.bank_account.present? %>
-                    <%= form_for @invoice do |form| %>
-                    <li class="inv-list">
-                      <div class="form-group">
-                        <div class="input-group">
-                            <!--<span class="input-group-text" id="addon-wrapping"><strong>Cheque No:</strong></span> -->
-                            <%= form.text_field :cheque_no, autofocus: true, class: "form-control rounded-left text-center", aria_describedby: "addon-wrapping", style: 'width:auto;', placeholder: 'Enter Cheque No.' %>
-                            <!--<span class="input-group-text" id="addon-wrapping"><strong>Cheque No:</strong></span> -->
-                            <%= form.text_field :bank_account, autofocus: true, class: "form-control rounded-left text-center", aria_describedby: "addon-wrapping", style: 'width:auto;', placeholder: 'Enter Bank Name' %>
-                        </div>
-                        <%= form.submit "Submit Cheque_details" ,class: 'btn btn-outline-primary rounded', style: 'width:auto;' %>
-                      </div>
-                      
-                    <% end %>
-                    </li>
-                  <% elsif @invoice.payment_mode == 'Cheque' && @invoice.cheque_no.present? && @invoice.cheque_no.present? %>
                   <li class="inv-list">
                     <strong>Cheque No:</strong>
                     <%= @invoice.cheque_no %>
@@ -77,9 +60,28 @@
 
                   <li class="inv-list">
                     <strong>Bank Name:</strong>
-                    <%= @invoice.bank_account.upcase %>
+                    <%= @invoice.bank_account.capitalize %>
                   </li>
-                  <% end %>
+
+                  <!--Old logic code. Now cheque data is added during invoice creation. -->
+                   <%# if @invoice.payment_mode == 'Cheque' && !@invoice.cheque_no.present? && !@invoice.bank_account.present? %>
+                    <%# form_for @invoice do |form| %>
+                    <!--<li class="inv-list">
+                      <div class="form-group">
+                        <div class="input-group"> -->
+                            <!--<span class="input-group-text" id="addon-wrapping"><strong>Cheque No:</strong></span> -->
+                            <%# form.text_field :cheque_no, autofocus: true, class: "form-control rounded-left text-center", aria_describedby: "addon-wrapping", style: 'width:auto;', placeholder: 'Enter Cheque No.' %>
+                            <!--<span class="input-group-text" id="addon-wrapping"><strong>Cheque No:</strong></span> -->
+                            <%# form.text_field :bank_account, autofocus: true, class: "form-control rounded-left text-center", aria_describedby: "addon-wrapping", style: 'width:auto;', placeholder: 'Enter Bank Name' %>
+                        <!--</div>
+                        <%# form.submit "Submit Cheque_details" ,class: 'btn btn-outline-primary rounded', style: 'width:auto;' %>
+                      </div> 
+                      
+                    <%# end %>
+                    </li> -->
+                  <%# elsif @invoice.payment_mode == 'Cheque' && @invoice.cheque_no.present? && @invoice.cheque_no.present? %>
+                  
+                  <%# end %>
 
             </ul>
         </div>
@@ -144,7 +146,9 @@
               <%# link_to 'Add new items', new_invoice_particular_path(@invoice), class: 'btn btn-outline-primary' %>
               
               <h4 >Total: <%= number_to_currency(cur_total, unit: "₹", raise: true) %></h4>
-              <%= button_to 'Submit Fees', @invoice, method: :patch, params: {"invoice[total]" => cur_total}, class: 'btn btn-outline-success', style: 'width:250px' %>
+              <%= button_to 'Submit Fees', @invoice, method: :patch, 
+                  params: {"invoice[total]" => cur_total}, class: 'btn btn-outline-success', style: 'width:250px'
+                 %>
         </div>
 
 
