@@ -1,5 +1,3 @@
-## Moved from old repo due to mismatching config push https://github.com/Writtek07/Invoice_final
-
 * Last stable merge on the earlier repo -> https://github.com/Writtek07/Invoice_final/pull/91 
 
 # DO NOT upgrade or downgrade, use this exact versions, as issues with deployment as well as OS and other node libraries which require this exact config to work.
