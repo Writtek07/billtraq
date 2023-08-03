@@ -39,3 +39,6 @@
 * `sudo -i -u postgres`
 * Inside postgres ->  Drop existing table(if present), and run -> `CREATE DATABASE mimis;` 
 * Exit out to `/code/` and run `sudo -u postgres psql -d mimis -f 2023-05-14T19_06Z.sql`
+
+## Project PPT
+decktop.us/ysjBknEPl
