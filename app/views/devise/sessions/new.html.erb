@@ -33,7 +33,10 @@
                 <% if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
                   <%= link_to "Forgot your password? Click here!", new_password_path(resource_name), class: "btn btn-outline-secondary" %>
                 <% end %>
-                <p><em>If you are a new user, click <u>Sign Up</u> button on top of the page to create your new account.</em></p>
+                <div>          
+                    <p>If you are a new user, click below</p>                
+                    <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-outline-info rounded'%>
+                </div>
           </div>
           </div>
     </div>

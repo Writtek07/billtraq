@@ -3,7 +3,7 @@
   <span class="navbar-toggler-icon"></span></button> -->
 
 <div class="navbar-collapse" id="navbarTogglerDemo01">
-  <a class="navbar-brand" ><%= image_tag 'logo.png', style:'height:50px;width:150px;' %></a>
+  <a class="navbar-brand" ><% image_tag 'logo.jpg' %></a>
   
   <!--<a class="user-txt text-dark">
     <%# if current_user %>    
@@ -43,9 +43,22 @@
                       </ul>
       </div> -->
   <%# else %>
-      <div class="d-grid col-6 mx-auto text-center">
-          <h4 class="nav-header-txt">Fee Management Service</h4>
+      <!-- <div class="d-grid col-6 mx-auto text-center">
+          <h4 class="nav-header-txt">BillTraq</h4>
+      </div> -->
+
+    <div class="d-grid col-6 mx-auto text-center">
+      <div class="waterfall-text">
+        <span class="letter">B</span>
+        <span class="letter">i</span>
+        <span class="letter">l</span>
+        <span class="letter">l</span>
+        <span class="letter">T</span>
+        <span class="letter">r</span>
+        <span class="letter">a</span>
+        <span class="letter">q</span>        
       </div>
+    </div>
   <%# end %>
 
   <div class="d-grid ml-auto">
@@ -74,9 +87,9 @@
       </div>
     <%# end %> -->
    
-    <div class="btn-group">
-      <div><%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-outline-info rounded', style: 'margin-right:10px' %></div>
-      <div><%= link_to "Log In", new_user_session_path, class: 'btn btn-outline-info rounded' %></div>
+    <div class="btn-group mt-2">
+      <% link_to "Sign Up", new_user_registration_path, class: 'btn btn-outline-info rounded me-2'%>
+      <% link_to "Log In", new_user_session_path, class: 'btn btn-outline-info rounded' %>
     </div>    
   </div>  
   

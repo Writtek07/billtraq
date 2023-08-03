@@ -29,6 +29,9 @@
 * `bundle install`
 * Then if needed `yarn install --check-files`
 * `rails s` 
+## Since now ActiveJob is also added using redis
+# Run this command to start sidekiq also in new tab with rails server
+* `bundle exec sidekiq` - Credentials in credentails.yml.enc. Open the decyrpted file to see the url
 
 ## Dumping from Prod to Local.
 * Download the dump(.sql.gz) from render.

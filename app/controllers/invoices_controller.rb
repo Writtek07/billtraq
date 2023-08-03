@@ -44,9 +44,7 @@ class InvoicesController < ApplicationController
       flash[:alert] = "No Cheque Invoices found in Pending!"
       redirect_to root_path
     end
-  end
-
-
+  end  
 
   # GET /invoices/1 or /invoices/1.json
   def show

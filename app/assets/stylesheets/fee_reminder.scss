@@ -1,3 +1,12 @@
 // Place all the styles related to the fee_reminder controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+#fee-reminder-form {
+    margin-left: 20em;   
+}
+@media (max-width: 768px) {
+    #fee-reminder-form {
+        margin-left: 0;   
+    }
+}

@@ -17,6 +17,7 @@ class Invoice < ApplicationRecord
 	before_create :check_invoice_dates
 	after_create :change_status
 	after_save :update_pending_months
+	after_create :send_invoice_sms
 	#after_validation :repeated_invoice_month_check, on: [ :create, :update ]
 	
 	enum status: { paid: 0, pending: 1 }
@@ -81,5 +82,11 @@ class Invoice < ApplicationRecord
 
 	def payment_mode_cheque?
 		payment_mode == 'Cheque'
+	end
+
+	def send_invoice_sms
+		# Trigger notification to student phone_number after 5 minutes to allow staff to input invoice total
+		# Blocked this feature in development for testing and running
+		SendInvoiceCreatedNotificationJob.perform_at(15.seconds.from_now, self.id) 
 	end
 end

@@ -2,8 +2,8 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <%= image_tag 'logo.png', style:'height:50%;width:100%' %>
-                <strong>MS</strong>
+                <%= image_tag 'logo.jpg', style:'height:50%;width:80%' %>
+                <strong>YL</strong>
             </div>
 
             <ul class="list-unstyled components">
@@ -47,38 +47,41 @@
                     </ul> -->
                     <%= link_to "<i class='fas fa-user-graduate	'></i> Students".html_safe, students_path %>
                 </li>
-                <% if current_user.admin? %>
-                    <li>                    
-                        <%= link_to "<i class='fas fa-chart-bar'></i> Dashboard".html_safe, admin_dashboard_index_path %>
-                    </li>
-                    <li>
-                        <%= link_to "<i class='fas fa-list-ul'></i> TC Student List".html_safe, removed_students_path %>
-                    </li>
-                    <li>
-                        <%= link_to "<i class='fas fa-money-check'></i> Cheque Data".html_safe, cheque_invoices_path %>
-                    </li>
-                    <li>
-                        <%= link_to "<i class='fas fa-paper-plane'></i> Communication".html_safe, fee_reminder_index_path %>
-                    </li>
-                <% end %>
                 <li>
                     <%= link_to "<i class='fas fa-calendar-times'></i> Pending Fee List".html_safe, pending_fee_students_path %>
                 </li>
                 <li>
                     <%= link_to "<i class='fas fa-user-times'></i>  Missing Data".html_safe, missing_students_path %>
                 </li>
+                <% if current_user.admin? %>
+                    <li>
+                        <%= link_to "<i class='fas fa-list-ul'></i> TC Student List".html_safe, removed_students_path %>
+                    </li>
+                    <li>
+                        <%= link_to "<i class='fas fa-money-check'></i> Cheque Data".html_safe, cheque_invoices_path %>
+                    </li>
+                    <li>                    
+                        <%= link_to "<i class='fas fa-chart-bar'></i> Dashboard".html_safe, admin_dashboard_index_path %>
+                    </li>
+                    <li>
+                        <%= link_to "<i class='fas fa-paper-plane'></i> Communication".html_safe, fee_reminder_index_path %>
+                    </li>
+                    <li>
+                        <%= link_to "<i class='fas fa-server'></i> Sidekiq".html_safe, sidekiq_web_path, target: '_blank' %>
+                    </li>
+                <% end %>                
             </ul>
 
             <ul class="list-unstyled CTAs">
                 <!--<li>                                        
                     <a href="#" class="article">Logged in as <%= current_user.username %></a>
                 </li>-->
-                
-                <p class="article">Logged in as <u><%= current_user.username %></u></p>
-                
-                
-                <p class="article">Last Log in: <%= current_user.current_sign_in_at.present? ? time_ago_in_words(current_user.current_sign_in_at) +' ' + 'ago' : 'Never Logged In' %></p>                
-                
+                <li>
+                    <p class="article">Logged in as <u><%= current_user.username %></u></p>
+                </li>                
+                <li>
+                    <p class="article">Last Log in: <%= current_user.current_sign_in_at.present? ? time_ago_in_words(current_user.current_sign_in_at) +' ' + 'ago' : 'Never Logged In' %></p>                
+                </li>
                 <li>
                     <!-- <a href="#" class="article">Somthing</a> -->
                     <%= link_to "Log Out", destroy_user_session_path, class: 'download text-center', method: :delete %>

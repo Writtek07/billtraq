@@ -1,18 +1,16 @@
 <!--<strong>Search Students with:</strong> -->
-<%= search_form_for @q do |f| %>
+<%= search_form_for @q, class: 'form-group', id: 'stu-search-group' do |f| %>
   
-  <div class="input-group">
-  
-	  <%= f.search_field :first_name_or_last_name_cont, placeholder: 'Name', class: 'form-control rounded btn-outline-primary text-center' %>
+	  <%= f.search_field :first_name_or_last_name_cont, placeholder: 'Name', class: 'form-control rounded text-center' %>
 	  
-	  <%= f.search_field :grade_eq, placeholder: 'Class', class: 'form-control rounded btn-outline-primary text-center' %>
+	  <%= f.search_field :grade_eq, placeholder: 'Class', class: 'form-control rounded text-center' %>
 
-	  <%= f.search_field :admission_no_eq, placeholder: 'Admission No', class: 'form-control rounded btn-outline-primary text-center' %>
+	  <%= f.search_field :admission_no_eq, placeholder: 'Admission No', class: 'form-control rounded text-center' %>
 
-	  	<div class="btn-group" style="margin-left: 0.2em;">
-	    		<%= f.submit 'Search Student!', class: 'btn btn-outline-success rounded', style: 'width:150px;' %>
-	    		<%= link_to 'Reset Filter', students_path, class: 'btn btn-outline-dark rounded', style: 'margin-left:0.2em;' %>
+	  	<div class="btn-group">
+	    		<%= f.submit 'Search!', class: 'btn btn-sm btn-outline-success rounded mx-2' %>
+	    		<%= link_to 'Reset', students_path, class: 'btn btn-sm btn-outline-dark rounded' %>
 	    </div>
-</div>
+	
 	
 <% end %>

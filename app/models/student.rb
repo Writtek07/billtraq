@@ -20,7 +20,6 @@ class Student < ApplicationRecord
 	
 
 
-
 	validates :section, presence: true
 	 #Removed the presense and uniqeness as some cases dont have number now + uniquesness is not needed as one parent can have multiple students
 	 #Later will add presence once all have number updated
@@ -39,6 +38,14 @@ class Student < ApplicationRecord
 	def self.import(file)
 		CSV.foreach(file.path, headers: true) do |row|
 			Student.create! row.to_hash
+		end
+	end
+
+	def student_name
+		if last_name.present?
+		  "#{first_name} #{last_name}"
+		else
+		  first_name
 		end
 	end
 

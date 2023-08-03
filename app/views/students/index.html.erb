@@ -1,11 +1,11 @@
 <!--<h3 style="margin-bottom:20px;">Students</h3> -->
 
-<div class="text-center" style="margin-bottom:0.6em;">
-  <div class="btn-group">
+<div class="container text-center" style="margin-bottom:0.6em;">
+  <div class="container mb-3">
     <%= render 'students/search_form.html.erb' %>
-    <%= link_to 'Add New Student', new_student_path, class:'btn btn-outline-primary rounded' , style: 'margin-right: 1em;margin-left: 2em;' %>
+    <%= link_to 'Add New Student', new_student_path, class:'btn btn-outline-primary rounded mx-auto mt-3'  %>
     <% if current_user.admin? %>
-        <button type="button" class="btn rounded btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" class="btn rounded btn-outline-primary mx-auto mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
           Import Students
         </button>
 

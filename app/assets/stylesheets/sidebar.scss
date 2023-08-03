@@ -151,6 +151,7 @@ ul.CTAs a {
 a.download {
     background: #fff;
     color: #7386D5;
+    width: 100%;
 }
 
 a.article,
@@ -228,6 +229,9 @@ a.article:hover {
         display: none;
     }
     #sidebarCollapse {
+        display: block;
+    }
+    #sidebar.active .list-unstyled.CTAs {
         display: block;
     }
 }

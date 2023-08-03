@@ -1,31 +1,31 @@
 <div class="card border-dark">
         <div class="card-header text-dark">
-              <%= search_form_for @search,url: search_invoices_path, html: { method: :post} do |f| %>
+              <%= search_form_for @search,url: search_invoices_path, html: { method: :post, class: 'container'} do |f| %>
                 <div class="adm-date-field">
-                  <ul class="list-inline text-center d-flex justify-content-center">
+                  <ul class="list-inline text-center justify-content-center">
 
-                    <li>
+                    <li class="list-inline-item">
                      <div class="input-group" id="adm-inv-input-gp">
                          <span class="input-group-text" id="addon-wrapping">Date From:</span>
                          <b><%=f.date_field :created_at_gteq, autofocus: true, max: Time.zone.today+1.day, class: "form-control rounded-left", aria_describedby: "addon-wrapping" %></b>
                      </div>
                     </li>
 
-                    <li>
+                    <li class="list-inline-item">
                      <div class="input-group" id="adm-inv-input-gp">
                          <span class="input-group-text" id="addon-wrapping">Date To:</span>
                          <b><%=f.date_field :created_at_lteq, autofocus: true, max: Time.zone.today+1.day, class: "form-control rounded-left", aria_describedby: "addon-wrapping" %></b>
                      </div>
                     </li>
 
-                    <li>
+                    <li class="list-inline-item">
                      <div class="input-group" id="adm-inv-input-gp">
                          <span class="input-group-text" id="addon-wrapping">Invoice ID:</span>
                          <b><%=f.number_field :id_eq, autofocus: true, max: Time.zone.today+1.day, class: "form-control rounded-left", aria_describedby: "addon-wrapping", style: "width:auto;" %></b>
                      </div>
                     </li>
 
-                    <li>
+                    <li class="list-inline-item">
                       <div class="btn-group" role="group" id="adm-inv-btn-group">
                         <%= f.submit "Search", class: "form-control btn btn-outline-primary rounded", style: "margin-right:1em;" %>
                       
@@ -133,7 +133,7 @@
         </div>
 
 
-        <div class="card-footer">
-          <%= paginate @invoices %>
+        <div class="card-footer justify-content-center">          
+          <%= paginate @invoices %>          
         </div>
 </div>

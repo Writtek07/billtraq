@@ -85,6 +85,7 @@ GEM
     chartkick (3.4.2)
     childprocess (3.0.0)
     concurrent-ruby (1.2.2)
+    connection_pool (2.4.1)
     crass (1.0.6)
     css_parser (1.12.0)
       addressable
@@ -267,6 +268,10 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
+    sidekiq (6.5.9)
+      connection_pool (>= 2.2.5, < 3)
+      rack (~> 2.0)
+      redis (>= 4.5.0, < 5)
     spring (2.1.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -351,6 +356,7 @@ DEPENDENCIES
   redis (~> 4.0)
   sass-rails (>= 6)
   selenium-webdriver
+  sidekiq (~> 6.5)
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)

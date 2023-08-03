@@ -23,6 +23,18 @@
   font-family: 'open-sans';
 }
 
+#stu-search-group {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  #stu-search-group {
+    flex-direction: column; /* On mobile, display buttons vertically */
+    
+  }  
+}
+
 
 
 //.field_with_errors {

@@ -85,3 +85,5 @@ gem 'highcharts-rails'
 #gem 'groupdate'
 #gem 'trestle'
 gem "twilio-ruby", "~> 6.3"
+
+gem "sidekiq", "~> 6.5"
