@@ -1,5 +1,3 @@
-## Moved from old repo due to mismatching config push https://github.com/Writtek07/Invoice_final
-
 * Last stable merge on the earlier repo -> https://github.com/Writtek07/Invoice_final/pull/91 
 
 # DO NOT upgrade or downgrade, use this exact versions, as issues with deployment as well as OS and other node libraries which require this exact config to work.
@@ -39,3 +37,6 @@
 * `sudo -i -u postgres`
 * Inside postgres ->  Drop existing table(if present), and run -> `CREATE DATABASE mimis;` 
 * Exit out to `/code/` and run `sudo -u postgres psql -d mimis -f 2023-05-14T19_06Z.sql`
+
+## Project PPT
+decktop.us/ysjBknEPl
