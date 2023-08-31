@@ -325,6 +325,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-21
+  x86_64-darwin-22
   x86_64-linux
 
 DEPENDENCIES
@@ -370,7 +371,7 @@ DEPENDENCIES
   wkhtmltopdf-heroku
 
 RUBY VERSION
-   ruby 2.5.0p0
+   ruby 2.6.5p114
 
 BUNDLED WITH
    2.3.23

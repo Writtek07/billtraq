@@ -101,60 +101,85 @@
 </div> -->
 
 
+	<div class="col m-3">
+		<div class="card" id="dash-cards">      
+		<div class="card-body">
+			<h5 class="card-title"><u>User Data Stats</u></h5>
+			<%= render 'admin/user_data' %>
+		</div>
+		</div>
+  	</div>
+
+	<div class="row row-cols-1 row-cols-md-2 g-4" style="margin-bottom: 2.5em;">
+	
+		<div class="col">    
+			<div class="card" id="dash-cards">
+			<div class="card-body">
+				<h5 class="card-title"><u>Count of Invoices Created</u></h5>
+				<!-- Here using post method to block the params being passed in url-->
+					<%= form_tag admin_dashboard_index_path, id: 'invoice-chart-form', method: :post do %>
+					<div class="row g-3 align-items-end mb-3" style="margin-left: 7.2em;">
+						<!--<div class=""> -->
+						<div class="col-auto">
+							<%= label_tag :inv_chart_start_date, 'Start Date' %>
+						<!--</div>
+						<div class="col-auto"> -->
+							<%= date_field_tag :inv_chart_start_date, params[:inv_chart_start_date], max: Time.zone.today, class: 'form-control' %>
+						</div>
+						<div class="col-auto">
+							<%= label_tag :inv_chart_end_date, 'End Date' %>
+						<!--</div>
+						<div class="col-auto">-->
+							<%= date_field_tag :inv_chart_end_date, params[:inv_chart_end_date], max: Time.zone.today, class: 'form-control' %>
+						</div>
+						<div class="col-auto">
+							<%= submit_tag 'Filter', class: 'btn btn-primary' %>
+						</div>
+						<!--</div> -->
+					</div>
+					<% end %>
+					<%= column_chart @invoice_chart_data, width: 'auto', height: '300px', ytitle: "No of Invoices Created", points: false, label: 'Invoices created' %>
+			</div>
+			</div>
+		</div>
+
+		<div class="col">
+			<div class="card" id="dash-cards">     
+				<div class="card-body">
+					<h5 class="card-title"><u>Overall Fee Type Percentage</u></h5>
+					<%= pie_chart Particular.joins(:invoice).where(invoices: { discarded_at: nil }).group(:fee_type).count,width: 'auto', height: '378px', title: 'Current Fee types & Count ' %>
+				</div>
+			</div>
+		</div>
+
+		<div class="col">
+				<div class="card" id="dash-cards">     
+					<div class="card-body">
+						<h5 class="card-title"><u>Collection by Payment modes</u></h5>
+						<%= pie_chart Invoice.kept.group(:payment_mode).count, width: 'auto', height: '378px', title: 'Payment Modes summary',colors: ["red", "#e68a00","#006bb3"] %>
+					</div>
+				</div>
+			</div>
 
 
-<div class="row row-cols-1 row-cols-md-2 g-4" style="margin-bottom: 2.5em;">
-  
-  <div class="col">    
-    <div class="card" id="dash-cards">
-      <div class="card-body">
-        <h5 class="card-title"><u>Count of Invoices Created</u></h5>
-        <!-- Here using post method to block the params being passed in url-->
-	        <%= form_tag admin_dashboard_index_path, id: 'invoice-chart-form', method: :post do %>
-	          <div class="row g-3 align-items-end mb-3" style="margin-left: 7.2em;">
-	            <!--<div class=""> -->
-	              <div class="col-auto">
-	                <%= label_tag :inv_chart_start_date, 'Start Date' %>
-	              <!--</div>
-	              <div class="col-auto"> -->
-	                <%= date_field_tag :inv_chart_start_date, params[:inv_chart_start_date], max: Time.zone.today, class: 'form-control' %>
-	              </div>
-	              <div class="col-auto">
-	                <%= label_tag :inv_chart_end_date, 'End Date' %>
-	              <!--</div>
-	              <div class="col-auto">-->
-	                <%= date_field_tag :inv_chart_end_date, params[:inv_chart_end_date], max: Time.zone.today, class: 'form-control' %>
-	              </div>
-	              <div class="col-auto">
-	                <%= submit_tag 'Filter', class: 'btn btn-primary' %>
-	              </div>
-	            <!--</div> -->
-	          </div>
-	        <% end %>
-	        <%= column_chart @invoice_chart_data, width: 'auto', height: '300px', ytitle: "No of Invoices Created", points: false, label: 'Invoices created' %>
-      </div>
-    </div>
-  </div>
+		<div class="col">
+			<div class="card" id="dash-cards">      
+				<div class="card-body">
+					<h5 class="card-title"><u>Overall Student Pending Fee Percentage</u></h5>
+					<%= pie_chart Student.all.group(:fee_pending).count, width: 'auto', height: '268px', colors: ['#4287f5','#f55d42','#006600'] %>
+						<div class="text-center">Here data with:-
+										<ul>
+											<li><u>Null</u> block indicates student whose pending fees is not set yet.</li>
+											<li><u>True</u> block indicates student with pending fees.</li>
+											<li><u>False</u> block indicates student without pending fees.</li>
+										</ul>
+						</div>
+				</div>
+			</div>
+		</div> 
 
-  <div class="col">
-    <div class="card" id="dash-cards">     
-      <div class="card-body">
-        <h5 class="card-title"><u>Overall Fee Type Percentage</u></h5>
-        <%= pie_chart Particular.joins(:invoice).where(invoices: { discarded_at: nil }).group(:fee_type).count,width: 'auto', height: '300px', title: 'Current Fee types & Count ' %>
-      </div>
-    </div>
-  </div>
-  
-  <div class="col">
-    <div class="card" id="dash-cards">      
-      <div class="card-body">
-        <h5 class="card-title"><u>User Data Stats</u></h5>
-        <%= render 'admin/user_data' %>
-      </div>
-    </div>
-  </div>
-  
-  <div class="col">
+	</div>
+	<div class="col">
     <div class="card" id="dash-cards">      
       <div class="card-body">
         <h5 class="card-title"><u>More Invoice Fee Related Data</u><span class="blockquote-footer">default last 7 days</span></h5>
@@ -162,34 +187,6 @@
       </div>
     </div>
   </div>
-
-  <div class="col">
-    <div class="card" id="dash-cards">      
-      <div class="card-body">
-        <h5 class="card-title"><u>Overall Student Pending Fee Percentage</u></h5>
-        <%= pie_chart Student.all.group(:fee_pending).count, width: 'auto', height: '300px' %>
-        	<div class="text-center">Here data with:-
-							<ul>
-								<li><u>Null</u> block indicates student whose pending fees is not set yet.</li>
-								<li><u>True</u> block indicates student with pending fees.</li>
-								<li><u>False</u> block indicates student without pending fees.</li>
-							</ul>
-					</div>
-      </div>
-    </div>
-  </div>  
-
-   <div class="col">
-    <div class="card" id="dash-cards">      
-      <div class="card-body">
-        <h5 class="card-title"><u>Invoice or Particular Deleted Data</u></h5>
-        <div style="margin-top: 1em;"><%= render 'admin/deleted_invoices' %></div>
-      </div>
-    </div>
-  </div>
-
-
-	</div>
 </div>
 
 

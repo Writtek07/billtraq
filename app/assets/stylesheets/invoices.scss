@@ -41,3 +41,25 @@
     border-right: 2px dotted;
 }
 
+.badge {
+    border-radius: 0;
+    font-size: 20px;
+    line-height: 1;
+    padding: .375rem .5625rem;
+    font-weight: normal;
+    display: inline-block;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+ }
+
+.pending-status {
+    color: #fff;
+    background-color: #db4c5b;
+}
+
+.paid-status {
+    color: #fff;
+    background-color: #4f9e60;
+}
