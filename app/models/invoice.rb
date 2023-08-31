@@ -87,6 +87,6 @@ class Invoice < ApplicationRecord
 	def send_invoice_sms
 		# Trigger notification to student phone_number after 5 minutes to allow staff to input invoice total
 		# Blocked this feature in development for testing and running
-		SendInvoiceCreatedNotificationJob.perform_at(15.seconds.from_now, self.id) 
+		# SendInvoiceCreatedNotificationJob.perform_at(5.minutes.from_now, self.id) 
 	end
 end

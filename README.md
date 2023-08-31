@@ -2,10 +2,10 @@
 
 # DO NOT upgrade or downgrade, use this exact versions, as issues with deployment as well as OS and other node libraries which require this exact config to work.
 
-* Ruby version -> `2.5.0`
+* Ruby version -> `2.6.5`
 
 ## System dependencies
- * Node version -> `v12.22.12`
+ * Node version -> `v12.22.12` || Version of `14.17.0` is also fine
  * Windows command to set node version if node and npm already installed :-
  1. List all available node versions -> `nvm ls`
  2. Use the defined version -> `nvm use v12.22.12`

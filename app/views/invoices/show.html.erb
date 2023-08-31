@@ -54,7 +54,11 @@
                   </li>
 
                   <% if @invoice.payment_mode == 'Cheque' %>
-
+                    <li class="inv-list">
+                      <strong>Status:</strong>
+                      <span class="badge <%= @invoice.pending? ? 'pending-status' : 'paid-status' %>"><%= @invoice.status.capitalize %><span>
+                    </li>
+                    
                     <li class="inv-list">
                       <strong>Cheque No:</strong>
                       <%= @invoice.cheque_no %>

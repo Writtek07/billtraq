@@ -25,7 +25,8 @@
 								<td><%= invoice.cheque_no %></td>
 								<td><%= invoice.total %></td>
 								<td><%= invoice.bank_account.upcase if invoice.bank_account.present?  %></td>
-								<td><%= button_to 'Mark as Paid', invoice, method: :put, params: {"invoice[status]" => "Paid"}, class: 'btn btn-outline-success', style: 'width:250px' %></td>
+								<!-- <td><%# button_to 'Mark as Paid', invoice, method: :put, params: {"invoice[status]" => "paid"}, class: 'btn btn-outline-success', style: 'width:250px' %></td> -->
+								<td>  <%= button_to 'Mark as Paid', invoice_path(invoice, invoice: { status: 'paid' }), method: :patch, class: 'btn btn-outline-success', style: 'width:250px' %></td>
 							</tr>
 						<% end %>
 					</tbody>
