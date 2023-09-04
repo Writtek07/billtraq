@@ -87,3 +87,4 @@ gem 'highcharts-rails'
 gem "twilio-ruby", "~> 6.3"
 
 gem "sidekiq", "~> 6.5"
+gem 'faker'

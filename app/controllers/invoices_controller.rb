@@ -1,7 +1,6 @@
 class InvoicesController < ApplicationController
   before_action :set_invoice, only: %i[ show edit update destroy print pdf]
   before_action :check_admin, only: :cheque
-
   before_action :set_paper_trail_whodunnit
   # GET /invoices or /invoices.json
   def index
@@ -93,7 +92,7 @@ class InvoicesController < ApplicationController
     if (invoice_params[:month_from] || invoice_params[:month_to]) && !current_user.admin?
       flash[:error] = 'Unauthorized to update months in invoice after creating'
       redirect_to invoice_url(@invoice)    
-    else
+    else      
       respond_to do |format|
         @invoice = Invoice.find(params[:id])
         @student = @invoice.student
@@ -135,5 +134,5 @@ class InvoicesController < ApplicationController
         redirect_to root_path
         flash[:error] = "Unauthorized access!"
       end
-    end    
+    end 
 end

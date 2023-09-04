@@ -1,5 +1,3 @@
-# Make sure it matches the Ruby version in .ruby-version and Gemfile
-# ARG RUBY_VERSION=2.5.0
 FROM ruby:2.6.5-slim-buster
 
 # Install libvips for Active Storage preview support

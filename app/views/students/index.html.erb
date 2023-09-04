@@ -50,6 +50,7 @@
         <th>Date of Admission</th>
         <th>Admission no</th>
         <th>Phone number</th>
+        <th>Email</th>
         <th>Class</th>
         <th>Section</th>
         <th>Father name</th>
@@ -67,6 +68,7 @@
           <td><%= student.date_of_admission.strftime("%d-%m-%Y") unless !student.date_of_admission.present?%></td>
           <td><%= student.admission_no %></td>
           <td><%= student.phone_number %></td>
+          <td><%= student.email %></td>
           <td><%= student.grade %></td>
           <td><%= student.section %></td>
           <td><%= student.father_name %></td>

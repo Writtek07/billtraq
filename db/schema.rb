@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_07_31_132838) do
+ActiveRecord::Schema.define(version: 2023_09_03_173805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 2023_07_31_132838) do
     t.integer "sms_sent_count", default: 0
     t.datetime "sent_at"
     t.string "message"
+    t.string "email"
     t.index ["discarded_at"], name: "index_students_on_discarded_at"
   end
 

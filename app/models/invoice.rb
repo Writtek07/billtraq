@@ -13,8 +13,9 @@ class Invoice < ApplicationRecord
 	validates :bank_account, presence: true, if: :payment_mode_cheque?
 	validates :cheque_no, presence: true, if: :payment_mode_cheque?
 
+	validate :check_invoice_dates, on: [ :create ]
+	
 	after_validation :invoice_month_validity, on: [ :create, :update ]
-	before_create :check_invoice_dates
 	after_create :change_status
 	after_save :update_pending_months
 	after_create :send_invoice_sms
@@ -51,24 +52,24 @@ class Invoice < ApplicationRecord
   	end
 	
 
-	def check_invoice_dates
+	def check_invoice_dates		
 		student = Student.find(self.student_id)
 		pending_fee = student.pending_fees
 		if pending_fee.present?
 			from_year, from_month = self.month_from.split("-")			
 			if pending_fee[from_year].present?
 				if !pending_fee[from_year].include?(from_month)
-					#puts pending_fee[from_year].include?(from_month).to_s+"Pending->#{pending_fee[from_year]}"+"from_month->#{from_month}"
+					#puts pending_fee[from_year].include?(from_month).to_s+"Pending->#{pending_fee[from_year]}"+"from_month->#{from_month}"							
 					errors.add(:month_from, 'Invoice exists!')
-				else
+				else									
 				end
 				if pending_fee[from_year].include?(from_month) && pending_fee[from_year].index(from_month) != 0
-					# errors.add(:base, 'There are months pending for this student before'.concat(" "+from_month.concat("-01").to_date.strftime("%B")))
-					errors.add(:base, 'There are months pending for this student before the entered month')
-				else
+					# errors.add(:base, 'There are months pending for this student before'.concat(" "+from_month.concat("-01").to_date.strftime("%B")))					
+					errors.add(:base, 'There are months pending for this student before the entered month')				
+				else					
 				end
 			end
-		end
+		end		
 	end
 
 
