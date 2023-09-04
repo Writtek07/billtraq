@@ -17,18 +17,11 @@ class Student < ApplicationRecord
 	validates :section, presence: true,  unless: Proc.new { |a| a.grade == "Playgroup" }
 	validates :father_name, presence: true
 	validates :mother_name, presence: true
-	
-
-
-	validates :section, presence: true
+		
 	 #Removed the presense and uniqeness as some cases dont have number now + uniquesness is not needed as one parent can have multiple students
 	 #Later will add presence once all have number updated
-	#validates :phone_number, presence: true, uniqueness: true, numericality: { only_integer: true }, length: { is: 10 }
-	#validates :email, presence: true, uniqueness: true {We are not using email now}
-
-
-
-	
+	# validates :phone_number, presence: true, numericality: { only_integer: true }, length: { is: 10 }
+	# validates :email, presence: true
 
 	validate :validate_dob
 

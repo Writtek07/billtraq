@@ -2,7 +2,7 @@ version: '3'
 services:
   billtraq-db:
     image: postgres:14.2-alpine
-    container_name: demo-postgres-14.2
+    container_name: billtraq-postgres-14.2
     volumes:
       - postgres_data:/var/lib/postgresql/data
     command: 
@@ -13,6 +13,7 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     ports:
       - "5432:5432"
+
   billtraq-web:
     build: .
     command: "./bin/rails server"
@@ -29,6 +30,23 @@ services:
       - billtraq-db
     ports:
       - "3000:3000"
+
+  redis:
+    image: redis:latest
+    container_name: billtraq-redis
+    ports:
+      - "6379:6379"
+
+  sidekiq:
+    build: .
+    command: bundle exec sidekiq -C config/sidekiq.yml
+    environment:
+      - RAILS_ENV=${RAILS_ENV}
+    volumes:
+      - app-storage:/rails/storage
+    depends_on:
+      - billtraq-web
+      - redis
 
 volumes:
   postgres_data: {}

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   
   get 'fee_reminder/index'
   post 'fee_reminder/index'
+  get 'send', to: 'fee_reminder#send_message'
+  post 'send', to: 'fee_reminder#send_message'
   
   resources :students do
     collection { post :import}

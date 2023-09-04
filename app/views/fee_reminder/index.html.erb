@@ -1,8 +1,13 @@
 <div class="container">
-    <div class="text-center">
-        <div>
-            <h4> <u>Sms Communications Data</u> </h4>
-        </div>
+    <div class="text-center">        
+        <%= form_tag send_path, class: 'row align-items-center mb-3', method: :post do %>
+            <div class="mx-auto">
+                <%= label_tag :message, 'Message', class: 'fw-bolder mb-2' %>    
+                <%= text_area_tag :message, params[:message], placeholder: "Type your message to send to all Student's", class: 'form-control' %>
+            
+                <%= submit_tag 'Send SMS and Email', class: 'btn btn-primary my-3 col-3', data: { disable_with: "Sending message to all students..."} %>                
+            </div>
+        <% end %>
         <%= form_tag fee_reminder_index_path, id: 'fee-reminder-form', class: 'row g-3 align-items-end mb-3', method: :post do %>                
                 <div class="col-auto">
                     <%= label_tag :fee_sent_start_date, 'Start Date' %>            
@@ -10,7 +15,7 @@
                 </div>
                 <div class="col-auto">
                     <%= label_tag :fee_sent_end_date, 'End Date' %>	              
-                        <%= date_field_tag :end_date, params[:end_date], max: Time.zone.today, class: 'form-control' %>
+                    <%= date_field_tag :end_date, params[:end_date], max: Time.zone.today, class: 'form-control' %>
                 </div>                
                 <div class="col-auto">
                     <%= submit_tag 'Filter', class: 'btn btn-primary' %>
