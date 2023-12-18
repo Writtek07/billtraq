@@ -2,7 +2,7 @@
 
 # DO NOT upgrade or downgrade, use this exact versions, as issues with deployment as well as OS and other node libraries which require this exact config to work.
 
-* Ruby version -> `2.6.5`
+* Ruby version -> `2.6.3`
 
 ## System dependencies
  * Node version -> `v12.22.12` || Version of `14.17.0` is also fine

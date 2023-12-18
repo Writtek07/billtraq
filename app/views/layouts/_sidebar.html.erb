@@ -1,123 +1,122 @@
 <div class="wrapper">
-        <!-- Sidebar  -->
-        <nav id="sidebar">
-            <div class="sidebar-header">
-                <%= image_tag 'logo.jpg', style:'height:50%;width:80%' %>
-                <strong>YL</strong>
-            </div>
-
-            <ul class="list-unstyled components">
-                <li class="active">
-                    <!-- <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-home"></i>
-                        Home
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <%= image_tag 'logo.jpg', style:'height:50%;width:70%' %>
+            <strong>YL</strong>
+        </div>
+        <ul class="list-unstyled components">
+            <li class="active">
+                <!-- <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                    <i class="fas fa-home"></i>
+                    Home
                     </a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li>
-                            <a href="#">Home 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Home 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Home 3</a>
-                        </li>
+                    <li>
+                        <a href="#">Home 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Home 2</a>
+                    </li>
+                    <li>
+                        <a href="#">Home 3</a>
+                    </li>
                     </ul> -->
-                    <%= link_to "<i class='fas fa-home'></i> Home".html_safe, root_path %>
-                </li>
-                <li>
-                    <!-- <a href="#">
-                        <i class="fas fa-briefcase"></i>
-                        About
+                <%= link_to "<i class='fas fa-home'></i> Home".html_safe, root_path %>
+            </li>
+            <li>
+                <!-- <a href="#">
+                    <i class="fas fa-briefcase"></i>
+                    About
                     </a>
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-copy"></i>
-                        Pages
+                    <i class="fas fa-copy"></i>
+                    Pages
                     </a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li>
-                            <a href="#">Page 1</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 2</a>
-                        </li>
-                        <li>
-                            <a href="#">Page 3</a>
-                        </li>
+                    <li>
+                        <a href="#">Page 1</a>
+                    </li>
+                    <li>
+                        <a href="#">Page 2</a>
+                    </li>
+                    <li>
+                        <a href="#">Page 3</a>
+                    </li>
                     </ul> -->
-                    <%= link_to "<i class='fas fa-user-graduate	'></i> Students".html_safe, students_path %>
-                </li>
-                <li>
-                    <%= link_to "<i class='fas fa-calendar-times'></i> Pending Fee List".html_safe, pending_fee_students_path %>
-                </li>
-                <li>
-                    <%= link_to "<i class='fas fa-user-times'></i>  Missing Data".html_safe, missing_students_path %>
-                </li>
-                <% if current_user.admin? %>
-                    <li>
-                        <%= link_to "<i class='fas fa-list-ul'></i> TC Student List".html_safe, removed_students_path %>
-                    </li>
-                    <li>
-                        <%= link_to "<i class='fas fa-money-check'></i> Cheque Data".html_safe, cheque_invoices_path %>
-                    </li>
-                    <li>                    
-                        <%= link_to "<i class='fas fa-chart-bar'></i> Dashboard".html_safe, admin_dashboard_index_path %>
-                    </li>
-                    <li>
-                        <%= link_to "<i class='fas fa-paper-plane'></i> Communication".html_safe, fee_reminder_index_path %>
-                    </li>                    
-                <% end %>                
-            </ul>
-
-            <ul class="list-unstyled CTAs">
-                <!--<li>                                        
-                    <a href="#" class="article">Logged in as <%= current_user.username %></a>
+                <%= link_to "<i class='fas fa-user-graduate	'></i> Students".html_safe, students_path %>
+            </li>
+            <li>
+                <%= link_to "<i class='fas fa-calendar-times'></i> Pending Fee List".html_safe, pending_fee_students_path %>
+            </li>
+            <li>
+                <%= link_to "<i class='fas fa-user-times'></i>  Missing Data".html_safe, missing_students_path %>
+            </li>
+            <% if current_user.admin? %>
+            <li>
+                <%= link_to "<i class='fas fa-list-ul'></i> TC Student List".html_safe, removed_students_path %>
+            </li>
+            <li>
+                <%= link_to "<i class='fas fa-money-check'></i> Cheque Data".html_safe, cheque_invoices_path %>
+            </li>
+            <li>                    
+                <%= link_to "<i class='fas fa-chart-bar'></i> Dashboard".html_safe, admin_dashboard_index_path %>
+            </li>
+            <li>
+                <%= link_to "<i class='fas fa-paper-plane'></i> Communication".html_safe, fee_reminder_index_path %>
+            </li>
+            <% end %>                
+        </ul>
+        <ul class="list-unstyled CTAs">
+            <!--<li>                                        
+                <a href="#" class="article">Logged in as <%= current_user.username %></a>
                 </li>-->
-                <li>
-                    <p class="article">Logged in as <u><%= current_user.username %></u></p>
-                </li>                
-                <li>
-                    <p class="article">Last Log in: <%= current_user.current_sign_in_at.present? ? time_ago_in_words(current_user.current_sign_in_at) +' ' + 'ago' : 'Never Logged In' %></p>                
-                </li>
-                <li>
-                    <!-- <a href="#" class="article">Somthing</a> -->
-                    <%= link_to "Log Out", destroy_user_session_path, class: 'download text-center', method: :delete %>
-                </li>
-            </ul>
-        </nav>
-
-
-        <div id="content">
-            <div class="mb-2">
-                <% if flash[:notice] %>
-                <div class="alert alert-success alert-dismissible fade show m-1 text-center" role="alert" style="height:55px;">
-                    <p class="text-center fw-bolder" style="font-size:18px;"><%= flash[:notice] %></p>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true"></span>
-                        </button>
-                </div>
-                <% elsif flash[:error] %>
-                <div class="alert alert-danger alert-dismissible fade show m-1" role="alert" style="height:55px;">
-                    <p class="text-center fw-bolder" style="font-size:18px;"><%= flash[:error] %></p>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true"></span>
-                        </button>
-                </div>
-                <% elsif flash[:alert] %>
-                <div class="alert alert-primary alert-dismissible fade show m-1" role="alert" style="height:55px;">
-                    <p class="text-center fw-bolder" style="font-size:18px;"><%= flash[:alert] %></p>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true"></span>
-                        </button>
-                </div>
-                <% end %>                    
+            <li>
+                <p class="article">Logged in as <u><%= current_user.username %></u></p>
+            </li>
+            <li>
+                <p class="article">Last Log in: <%= current_user.current_sign_in_at.present? ? time_ago_in_words(current_user.current_sign_in_at) +' ' + 'ago' : 'Never Logged In' %></p>
+            </li>
+            <li>
+                <!-- <a href="#" class="article">Somthing</a>
+                <%= link_to "Log Out", destroy_user_session_path, class: 'download text-center', method: :delete %> -->
+            </li>
+        </ul>
+    </nav>
+    <div id="content">
+        <div>
+            <%= render "layouts/sidebar_nav" %>
+        </div>
+        <div class="container mb-2">
+            <% if flash[:notice] %>
+            <div class="alert alert-success alert-dismissible fade show m-1 text-center" role="alert" style="height:55px;">
+                <p class="text-center fw-bolder" style="font-size:18px;"><%= flash[:notice] %></p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true"></span>
+                </button>
             </div>
-            <div class="container-fluid">
-                    <button type="button" id="sidebarCollapse" class="btn btn-info mb-2 sidebar-tog">
-                        <i class="fas fa-align-left"></i>
-                        <span>Toggle Sidebar</span>
-                    </button>
-                    <%= yield %> 
-            </div>       
-        </div>        
+            <% elsif flash[:error] %>
+            <div class="alert alert-danger alert-dismissible fade show m-1" role="alert" style="height:55px;">
+                <p class="text-center fw-bolder" style="font-size:18px;"><%= flash[:error] %></p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true"></span>
+                </button>
+            </div>
+            <% elsif flash[:alert] %>
+            <div class="alert alert-primary alert-dismissible fade show m-1" role="alert" style="height:55px;">
+                <p class="text-center fw-bolder" style="font-size:18px;"><%= flash[:alert] %></p>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true"></span>
+                </button>
+            </div>
+            <% end %>                    
+        </div>
+        <div class="container-fluid">
+            <button type="button" id="sidebarCollapse" class="btn btn-info mb-2 sidebar-tog">
+            <i class="fas fa-align-left"></i>
+            <span>Toggle Sidebar</span>
+            </button>
+            <%= yield %> 
+        </div>
+    </div>
 </div>
