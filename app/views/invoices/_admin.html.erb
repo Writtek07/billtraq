@@ -1,6 +1,6 @@
 <div class="card border-dark">
         <div class="card-header text-dark">
-              <%= search_form_for @search,url: search_invoices_path, html: { method: :post, class: 'container'} do |f| %>
+              <%= search_form_for @q, url: search_invoices_path, html: { method: :post, class: 'container'} do |f| %>
                 <div class="adm-date-field">
                   <ul class="list-inline text-center justify-content-center">
 

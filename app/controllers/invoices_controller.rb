@@ -5,10 +5,7 @@ class InvoicesController < ApplicationController
   # GET /invoices or /invoices.json
   def index
     @q = Invoice.ransack(params[:q])
-    @invoices = @q.result(distinct: true)
-    @search = Invoice.all.search(params[:q])
-    @invoices = @search.result
-    @invoices = @invoices.order('created_at DESC').page(params[:page])
+    @invoices = @q.result(distinct: true).order('created_at DESC').page(params[:page])    
   end
 
   def search

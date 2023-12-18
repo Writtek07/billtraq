@@ -27,10 +27,9 @@
   </head>
 
   <body>
-
     <!-- Both admin and non admin users now go to sidebar. -->
     <% if current_user %>
-          <%= render "layouts/sidebar" %>
+      <%= render "layouts/sidebar" %>
     <% else %>    
       <%= render "layouts/navbar" %>
       <div class="container-fluid">
@@ -59,9 +58,13 @@
               </div>
             <% end %>
           </div>
-          <%= yield %>
-          
+          <%= yield %>          
       </div>
     <% end %>
+    <footer class="footer">
+      <div class="container text-center">
+        <span class="text-muted">Powered by &#169; <a href="https://www.rorsolutions.in" target="_blank">RoRSolutions</a></span>
+      </div>
+    </footer>
     </body>
 </html>
